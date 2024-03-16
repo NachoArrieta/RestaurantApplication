@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/drawer_home" />
+        <item
+            android:id="@+id/nav_my_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="@string/drawer_profile" />
+        <item
+            android:id="@+id/nav_my_coupons"
+            android:icon="@drawable/ic_coupon"
+            android:title="@string/drawer_my_coupons" />
+        <item
+            android:id="@+id/nav_my_reservations"
+            android:icon="@drawable/ic_calendar"
+            android:title="@string/drawer_my_reservations" />
+        <item
+            android:id="@+id/nav_my_orders"
+            android:icon="@drawable/ic_shopping"
+            android:title="@string/drawer_my_orders" />
+        <item
+            android:id="@+id/nav_stores"
+            android:icon="@drawable/ic_location"
+            android:title="@string/drawer_stores" />
+    </group>
+
+</menu>

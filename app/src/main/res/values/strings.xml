@@ -1,0 +1,106 @@
+<resources>
+    <string name="app_name">Beicon BSB</string>
+
+    <!-- Core -->
+    <string name="name">Nombre</string>
+    <string name="lastname">Apellido</string>
+    <string name="phone">Teléfono</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="city">Ciudad</string>
+    <string name="address">Dirección</string>
+    <string name="floor">Piso</string>
+    <string name="floor_number">Número</string>
+    <string name="cancel">Cancelar</string>
+    <string name="modify">Modificar</string>
+    <string name="total">Total: </string>
+
+    <!-- LogIn -->
+    <string name="login_forgot_password">Olvidó su contraseña?</string>
+    <string name="login_entry">INGRESAR</string>
+    <string name="login_entry_google">INGRESAR CON GOOGLE</string>
+    <string name="login_are_new">Eres nuevo?</string>
+    <string name="login_create_account">Crear cuenta</string>
+
+    <!-- SignUp -->
+    <string name="signup_confirm_password">Confirmar contraseña</string>
+    <string name="signup_terms_and_condition">Aceptar términos y condiciones</string>
+    <string name="signup_finish_register">Finalizar registro</string>
+    <string name="signup_have_account">Ya tienes una cuenta?</string>
+    <string name="signup_go_login">Iniciar sesión</string>
+
+    <!-- Drawer menu -->
+    <string name="drawer_home">Menú principal</string>
+    <string name="drawer_profile">Mi perfil</string>
+    <string name="drawer_my_coupons">Mis cupones</string>
+    <string name="drawer_my_reservations">Mis reservas</string>
+    <string name="drawer_my_orders">Mis pedidos</string>
+    <string name="drawer_stores">Tiendas</string>
+    <string name="drawer_close">Cerrar Sesión</string>
+
+    <!-- Home -->
+    <string name="home_recommendations">Recomendaciones</string>
+    <string name="home_promotions">Promociones</string>
+    <string name="home_new_order">Realizar pedido</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- My Reservations -->
+    <string name="reservations_new">Nueva reserva</string>
+    <string name="reservations_day">Día</string>
+    <string name="reservations_hour">Hora</string>
+    <string name="reservations_places">Lugares</string>
+    <string name="reservations_save">Confirmar reserva</string>
+
+    <!-- Header Drawer -->
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_name">Android Studio</string>
+    <string name="nav_header_email">android.studio@android.com</string>
+
+    <!-- My Coupons -->
+    <string name="coupons">Lo quiero!</string>
+
+    <!-- My Profile -->
+    <string name="profile_save_changes">Guardar cambios</string>
+    <string name="profile_disabled_notifications">Deseas desactivar las notificaciones?</string>
+
+    <!-- Cart -->
+    <string name="cart_confirm_purchase">Confirmar compra</string>
+
+    <!-- Confirm Payment -->
+    <string name="confirm_payment_total">Total: </string>
+    <string name="confirm_payment_discount">Descuento: </string>
+    <string name="confirm_payment_total_price">Total a pagar: </string>
+    <string name="confirm_payment">Realizar pago</string>
+    <string name="confirm_payment_have_coupon">Tengo un cupón de descuento</string>
+
+    <!-- Burgers -->
+    <string name="neworder_burgers">Armá la tuya a tu gusto</string>
+    <string name="neworder_meat">Carne</string>
+    <string name="neworder_chicken">Pollo</string>
+    <string name="neworder_vegan">Veganas</string>
+
+    <!-- Desserts -->
+    <string name="neworder_milkshake">Milkshakes</string>
+    <string name="neworder_sundae">Sundaes</string>
+    <string name="neworder_desserts">Postres BSB</string>
+
+    <!-- Drinks -->
+    <string name="neworder_beer">Cervezas</string>
+    <string name="neworder_water">Aguas</string>
+    <string name="neworder_soda">Gaseosas</string>
+    <string name="neworder_flavored">Saborizadas</string>
+
+    <!-- Assemble -->
+    <string name="assemble_confirm">Confirmar hamburguesa</string>
+    <string name="assemble_size">Talle</string>
+    <string name="assemble_topping">Toppings</string>
+    <string name="assemble_dressing">Aderezos y salsas</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_quit">¿Deseas salir de la aplicación?</string>
+    <string name="dialog_exit">Sí, deseo salir!</string>
+    <string name="dialog_cancel">Cancelar</string>
+
+</resources>

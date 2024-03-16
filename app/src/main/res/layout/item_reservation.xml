@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_reservation"
+    android:layout_width="match_parent"
+    android:layout_height="212dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:strokeColor="#FFFFFF">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_gradient_white">
+
+        <LinearLayout
+            android:id="@+id/item_reservation_ll"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:background="@drawable/background_gradient_grey"
+            android:elevation="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_reservation_txt_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="16dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/montserrat_regular"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Río Tercero" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/item_reservation_img_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:tint="@color/red_extra_light" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_reservation_txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:fontFamily="@font/montserrat_regular"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintStart_toEndOf="@+id/item_reservation_img_date"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            tools:text="25 - 06 - 2024" />
+
+        <ImageView
+            android:id="@+id/item_reservation_img_clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_clock"
+            app:layout_constraintBottom_toTopOf="@+id/guideline6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline5"
+            app:tint="@color/red_extra_light" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_reservation_txt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:fontFamily="@font/montserrat_regular"
+            app:layout_constraintBottom_toTopOf="@+id/guideline6"
+            app:layout_constraintStart_toEndOf="@+id/item_reservation_img_clock"
+            app:layout_constraintTop_toTopOf="@+id/guideline5"
+            tools:text="22.00 hs" />
+
+        <ImageView
+            android:id="@+id/item_reservation_img_places"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_places"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_reservation_img_clock"
+            app:tint="@color/red_extra_light" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_reservation_txt_places"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:fontFamily="@font/montserrat_regular"
+            app:layout_constraintBottom_toTopOf="@+id/guideline8"
+            app:layout_constraintStart_toEndOf="@+id/item_reservation_img_clock"
+            app:layout_constraintTop_toTopOf="@+id/guideline7"
+            tools:text="5 personas" />
+
+        <ImageView
+            android:id="@+id/item_reservation_img_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline9"
+            app:tint="@color/red_extra_light" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_reservation_txt_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:fontFamily="@font/montserrat_regular"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            app:layout_constraintStart_toEndOf="@+id/item_reservation_img_clock"
+            app:layout_constraintTop_toTopOf="@+id/guideline9"
+            tools:text="Capandegui 624" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/item_reservation_btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_gradient_red"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/item_reservation_btn_modify"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_gradient_red"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/modify"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_reservation_btn_cancel"
+            app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="44dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="68dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="76dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="108dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="132dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="142dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="166dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="176dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

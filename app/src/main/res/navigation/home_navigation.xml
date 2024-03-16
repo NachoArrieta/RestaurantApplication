@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@id/nav_home"
+        android:name="com.nacho.restaurantapplication.presentation.home.fragment.HomeFragment"
+        android:label="Menú principal"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_nav_home_to_newsFragment"
+            app:destination="@id/newsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.nacho.restaurantapplication.presentation.home.fragment.NewsFragment"
+        android:label="Noticias"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/nav_my_profile"
+        android:name="com.nacho.restaurantapplication.presentation.home.fragment.MyProfileFragment"
+        android:label="Mi perfil"
+        tools:layout="@layout/fragment_my_profile" />
+
+    <fragment
+        android:id="@+id/nav_my_coupons"
+        android:name="com.nacho.restaurantapplication.presentation.home.fragment.MyCouponsFragment"
+        android:label="Mis cupones"
+        tools:layout="@layout/fragment_my_coupons" />
+
+    <fragment
+        android:id="@+id/nav_my_orders"
+        android:name="com.nacho.restaurantapplication.presentation.home.fragment.MyOrdersFragment"
+        android:label="Mis pedidos"
+        tools:layout="@layout/fragment_my_orders" />
+
+    <fragment
+        android:id="@+id/nav_stores"
+        android:name="com.nacho.restaurantapplication.presentation.home.fragment.StoresFragment"
+        android:label="Tiendas"
+        tools:layout="@layout/fragment_stores" />
+
+    <fragment
+        android:id="@+id/nav_my_reservations"
+        android:name="com.nacho.restaurantapplication.presentation.home.fragment.MyReservationsFragment"
+        android:label="Mis reservas"
+        tools:layout="@layout/fragment_my_reservations">
+
+        <action
+            android:id="@+id/action_nav_my_reservations_to_addReservationFragment"
+            app:destination="@id/addReservationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addReservationFragment"
+        android:name="com.nacho.restaurantapplication.presentation.home.fragment.AddReservationFragment"
+        android:label="Reservá tu lugar"
+        tools:layout="@layout/fragment_add_reservation" />
+
+</navigation>
