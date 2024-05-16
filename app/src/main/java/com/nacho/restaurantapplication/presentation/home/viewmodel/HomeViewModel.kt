@@ -6,22 +6,18 @@ import androidx.lifecycle.ViewModel
 
 class HomeViewModel: ViewModel() {
 
-    private val _navigateOnBack = MutableLiveData<Boolean>()
-    val navigateOnBack: LiveData<Boolean> = _navigateOnBack
+    private val _backInHome = MutableLiveData<Boolean>()
+    val backInHome: LiveData<Boolean> = _backInHome
 
+    private val _drawerOpen = MutableLiveData<Boolean>()
+    val drawerOpen: LiveData<Boolean> = _drawerOpen
 
-
-
-
-
-
-
-
-
-
+    fun setDrawerOpen(open: Boolean) {
+        _drawerOpen.value = open
+    }
 
     fun handleBackNavigation(backPressed: Boolean) {
-        _navigateOnBack.value = backPressed
+        _backInHome.value = backPressed
     }
 
 }

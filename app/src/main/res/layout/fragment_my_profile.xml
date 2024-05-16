@@ -240,6 +240,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/btn_gradient_red"
+        android:foreground="?attr/selectableItemBackground"
         android:fontFamily="@font/montserrat_regular"
         android:text="@string/profile_save_changes"
         android:textColor="@color/white"

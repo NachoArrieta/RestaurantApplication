@@ -1,7 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.RestaurantApplication" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
         <item name="android:fontFamily">@font/montserrat_regular</item>
         <item name="colorPrimary">@color/red_extra_dark</item>
         <item name="colorPrimaryVariant">@color/red_dark</item>
@@ -10,7 +8,6 @@
 
     <style name="Theme.RestaurantApplication" parent="Base.Theme.RestaurantApplication" />
 
-    <!-- textInputLayout textInputEditText-->
     <style name="TextInputLayoutStyleWhite" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/til_tie_white_color</item>
         <item name="hintTextColor">@color/white</item>
@@ -36,21 +33,47 @@
 
     <style name="Theme.RestaurantApplication.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="MyCardView" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut</item>
+    <style name="MyCardViewTop" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.CutTop</item>
         <item name="strokeColor">@color/white</item>
     </style>
 
-    <style name="Toolbar_TitleText" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">20sp</item>
+    <style name="MyCardViewBottom" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.CutBottom</item>
+        <item name="strokeColor">@color/white</item>
+        <item name="android:backgroundTint">@color/white</item>
     </style>
 
-    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
+
+    <style name="Toolbar_TitleText" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MaterialCardView.CutTop" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">24dp</item>
         <item name="cornerSizeTopLeft">24dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MaterialCardView.CutBottom" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">36dp</item>
+        <item name="cornerSizeBottomLeft">36dp</item>
+    </style>
+
+    <style name="TextTabLayout" parent="TextAppearance.Design.Tab">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateTint">@color/red_extra_dark</item>
     </style>
 
 </resources>

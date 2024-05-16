@@ -1,109 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_gradient_white"
-    tools:context=".presentation.cart.fragment.ConfirmPaymentFragment">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/confirm_payment_rv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/confirm_payment_cv_information_payment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:itemCount="3" />
+    tools:context=".presentation.payment.fragment.ConfirmPaymentFragment">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/confirm_payment_cv_information_payment"
-        style="@style/MyCardView"
+        android:id="@+id/confirm_payment_cv"
+        style="@style/MyCardViewBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
         app:cardElevation="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/confirm_payment_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/confirm_payment_txt_total"
+            <TextView
+                android:id="@+id/confirm_payment_txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/confirm_payment_title" />
+
+            <TextView
+                android:id="@+id/confirm_payment_txt_title_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/confirm_payment_products"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_payment_txt_title" />
+
+            <TextView
+                android:id="@+id/confirm_payment_txt_title_discount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:textColor="@color/grey_dark"
+                android:text="@string/confirm_payment_discount"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Total: $24.000" />
+                app:layout_constraintTop_toBottomOf="@+id/confirm_payment_txt_title_total" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/confirm_payment_txt_discount"
+            <TextView
+                android:id="@+id/confirm_payment_txt_title_shipment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:textColor="@color/grey"
+                android:text="@string/confirm_payment_shipment"
+                android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/confirm_payment_txt_total"
-                tools:text="Descuento: $2000" />
+                app:layout_constraintTop_toBottomOf="@+id/confirm_payment_txt_title_discount" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/confirm_payment_txt_price_total"
+            <TextView
+                android:id="@+id/confirm_payment_txt_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/confirm_payment_txt_title_total"
+                tools:text="$ 20000" />
+
+            <TextView
+                android:id="@+id/confirm_payment_txt_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/confirm_payment_txt_title_discount"
+                tools:text="- $ 2000" />
+
+            <TextView
+                android:id="@+id/confirm_payment_txt_shipment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/confirm_payment_txt_title_shipment"
+                tools:text="$ 6000" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/plated"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_payment_txt_title_shipment" />
+
+            <TextView
+                android:id="@+id/confirm_payment_txt_subtitle_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/montserrat_regular"
+                tools:text="TOTAL $ 24000"
                 android:textColor="@color/black"
-                android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/confirm_payment_til_discount"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/confirm_payment_txt_discount"
-                tools:text="Total a pagar: $2000" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/confirm_payment_til_discount"
-                style="@style/TextInputLayoutStyleRed"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="16dp"
-                android:hint="@string/confirm_payment_have_coupon"
-                android:textColorHint="@color/red_extra_dark"
+                android:layout_marginBottom="12dp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/confirm_payment_tie_discount"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/red_extra_dark"
-                    android:textSize="14sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

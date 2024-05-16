@@ -24,7 +24,9 @@ class BurgersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
+            burgersBtnAssemble.setOnClickListener {
 
+            }
         }
 
     }

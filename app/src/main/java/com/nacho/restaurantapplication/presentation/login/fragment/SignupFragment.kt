@@ -1,5 +1,6 @@
 package com.nacho.restaurantapplication.presentation.login.fragment
 
+import android.graphics.Paint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,7 +24,11 @@ class SignupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(binding) {}
+        with(binding) {
+
+            signupTxtGoLogin.paintFlags = signupTxtGoLogin.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+
+        }
 
     }
 

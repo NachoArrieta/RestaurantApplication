@@ -109,9 +109,11 @@
             tools:text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.  Lorem Ipsum ha sido el texto de relleno estándar de las industria." />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/item_coupon_btn_want"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
+            android:foreground="?attr/selectableItemBackground"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/btn_gradient_red_stroke_white"

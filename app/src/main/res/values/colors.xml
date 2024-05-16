@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="plated">#E6E6E6</color>
 
     <color name="red">#9C0001</color>
     <color name="red_light">#AD0001</color>

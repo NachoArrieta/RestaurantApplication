@@ -40,9 +40,10 @@
                 android:id="@+id/toolbar_txt_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/Toolbar_TitleText"
                 android:layout_marginStart="36dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="Menú principal"
+                android:text="@string/neworder_title"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 

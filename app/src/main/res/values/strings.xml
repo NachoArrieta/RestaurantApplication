@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Beicon BSB</string>
+    <string name="app_name">Beicon</string>
 
     <!-- Core -->
     <string name="name">Nombre</string>
@@ -14,6 +14,7 @@
     <string name="cancel">Cancelar</string>
     <string name="modify">Modificar</string>
     <string name="total">Total: </string>
+    <string name="delete">Eliminar</string>
 
     <!-- LogIn -->
     <string name="login_forgot_password">Olvidó su contraseña?</string>
@@ -35,6 +36,7 @@
     <string name="drawer_my_coupons">Mis cupones</string>
     <string name="drawer_my_reservations">Mis reservas</string>
     <string name="drawer_my_orders">Mis pedidos</string>
+    <string name="drawer_my_payment_methods">Medios de pago</string>
     <string name="drawer_stores">Tiendas</string>
     <string name="drawer_close">Cerrar Sesión</string>
 
@@ -42,8 +44,6 @@
     <string name="home_recommendations">Recomendaciones</string>
     <string name="home_promotions">Promociones</string>
     <string name="home_new_order">Realizar pedido</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- My Reservations -->
     <string name="reservations_new">Nueva reserva</string>
@@ -61,22 +61,24 @@
     <!-- My Coupons -->
     <string name="coupons">Lo quiero!</string>
 
+    <!-- My Coupons -->
+    <string name="orders_repeat">Repetir pedido</string>
+
     <!-- My Profile -->
     <string name="profile_save_changes">Guardar cambios</string>
     <string name="profile_disabled_notifications">Deseas desactivar las notificaciones?</string>
 
     <!-- Cart -->
-    <string name="cart_confirm_purchase">Confirmar compra</string>
+    <string name="cart_discount">Descuento: </string>
+    <string name="cart_total_price">Total a pagar: </string>
+    <string name="cart_confirm_payment">Realizar pago</string>
+    <string name="cart_have_coupon">Cupón de descuento</string>
 
-    <!-- Confirm Payment -->
-    <string name="confirm_payment_total">Total: </string>
-    <string name="confirm_payment_discount">Descuento: </string>
-    <string name="confirm_payment_total_price">Total a pagar: </string>
-    <string name="confirm_payment">Realizar pago</string>
-    <string name="confirm_payment_have_coupon">Tengo un cupón de descuento</string>
+    <!-- Cart -->
+    <string name="neworder_title">Armá tu pedido</string>
 
     <!-- Burgers -->
-    <string name="neworder_burgers">Armá la tuya a tu gusto</string>
+    <string name="neworder_burgers">Armala a tu gusto</string>
     <string name="neworder_meat">Carne</string>
     <string name="neworder_chicken">Pollo</string>
     <string name="neworder_vegan">Veganas</string>
@@ -100,7 +102,35 @@
 
     <!-- Dialogs -->
     <string name="dialog_quit">¿Deseas salir de la aplicación?</string>
-    <string name="dialog_exit">Sí, deseo salir!</string>
-    <string name="dialog_cancel">Cancelar</string>
+    <string name="dialog_exit">Sí, deseo salir</string>
+
+    <!-- Shopping Cart -->
+    <string name="neworder_confirm_shopping_cart">Continuar compra</string>
+
+    <!-- Delivery Method -->
+    <string name="delivery_method_delivery">ENVÍO A DOMICILIO</string>
+    <string name="delivery_method_pick_it">RETIRO EN LOCAL</string>
+    <string name="delivery_method_free">Gratis</string>
+    <string name="delivery_method_modify">Modificar domicilio</string>
+
+    <!-- Payment Method -->
+    <string name="payment_method_add">Añadir nuevo medio de pago</string>
+
+    <!-- Shopping Cart -->
+    <string name="confirm_payment">Confirmar compra</string>
+    <string name="confirm_payment_title">Vas a pagar</string>
+    <string name="confirm_payment_products">Productos</string>
+    <string name="confirm_payment_discount">Descuento</string>
+    <string name="confirm_payment_shipment">Envío</string>
+
+    <!-- Status payment -->
+    <string name="status_payment_title_ok">¡Compra realizada con éxito!</string>
+    <string name="status_payment_title_denied">¡Algo ha salido mal!</string>
+    <string name="status_payment_go_home">Volver al inicio</string>
+    <string name="status_payment_go_my_orders">Ver mis pedidos</string>
+
+    <!-- Status payment -->
+    <string name="loading_title">¡Estamos procesando la compra!</string>
+
 
 </resources>

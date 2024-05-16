@@ -23,7 +23,7 @@
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:strokeColor="#E6E6E6"
+            app:strokeColor="@color/plated"
             android:layout_marginEnd="8dp"
             app:cardCornerRadius="12dp"
             app:layout_constraintEnd_toEndOf="parent"

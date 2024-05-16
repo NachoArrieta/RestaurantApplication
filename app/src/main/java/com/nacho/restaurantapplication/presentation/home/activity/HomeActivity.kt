@@ -1,10 +1,8 @@
 package com.nacho.restaurantapplication.presentation.home.activity
 
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.activity.viewModels
-import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -13,9 +11,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.lifecycle.ViewModelProvider
 import com.nacho.restaurantapplication.R
-import com.nacho.restaurantapplication.core.presentation.DialogAlertFragment
+import com.nacho.restaurantapplication.core.Fragment.DialogAlertFragment
 import com.nacho.restaurantapplication.databinding.ActivityHomeBinding
 import com.nacho.restaurantapplication.presentation.home.viewmodel.HomeViewModel
 
@@ -26,22 +23,27 @@ class HomeActivity : AppCompatActivity() {
     private val homeVM: HomeViewModel by viewModels()
 
     private fun observers() {
-        homeVM.navigateOnBack.observe(this) { navigateOnBack ->
+        homeVM.backInHome.observe(this) { navigateOnBack ->
             if (navigateOnBack) {
                 showAlertDialog()
                 homeVM.handleBackNavigation(false)
+            }
+        }
+
+        homeVM.drawerOpen.observe(this) { drawerOpen ->
+            if (drawerOpen) {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+                homeVM.setDrawerOpen(false)
             }
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         observers()
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.appBarHome.toolbar)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
@@ -55,6 +57,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_my_coupons,
                 R.id.nav_my_reservations,
                 R.id.nav_my_orders,
+                R.id.nav_my_payment_methods,
                 R.id.nav_stores
             ), drawerLayout
         )
@@ -63,7 +66,9 @@ class HomeActivity : AppCompatActivity() {
 
         onBackPressedDispatcher.addCallback(this) {
             val currentDestinationId = navController.currentDestination?.id
-            if (currentDestinationId == R.id.nav_home) {
+            if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                homeVM.setDrawerOpen(true)
+            } else if (currentDestinationId == R.id.nav_home) {
                 homeVM.handleBackNavigation(true)
             } else {
                 navController.popBackStack()
@@ -79,7 +84,6 @@ class HomeActivity : AppCompatActivity() {
     private fun showAlertDialog() {
         val dialogFragment = DialogAlertFragment()
         dialogFragment.show(supportFragmentManager, "DialogAlertFragment")
-        dialogFragment.isCancelable = false
     }
 
 }
