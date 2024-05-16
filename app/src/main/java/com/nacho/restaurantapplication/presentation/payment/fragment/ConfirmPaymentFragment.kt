@@ -1,4 +1,4 @@
-package com.nacho.restaurantapplication.presentation.cart.fragment
+package com.nacho.restaurantapplication.presentation.payment.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

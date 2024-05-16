@@ -57,6 +57,9 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
+    //Lottie Anim
+    implementation ("com.airbnb.android:lottie:5.0.3")
+
     //CircleImageView
     implementation("de.hdodenhof:circleimageview:3.1.0")
     

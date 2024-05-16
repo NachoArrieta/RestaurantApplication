@@ -11,7 +11,7 @@
     android:layout_marginBottom="4dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
-    app:strokeColor="#FFFFFF">
+    app:strokeColor="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -162,6 +162,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
+            android:foreground="?attr/selectableItemBackground"
             android:background="@drawable/btn_gradient_red"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/cancel"
@@ -181,6 +182,7 @@
             android:background="@drawable/btn_gradient_red"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/modify"
+            android:foreground="?attr/selectableItemBackground"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:backgroundTint="@null"

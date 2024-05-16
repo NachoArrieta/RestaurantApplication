@@ -25,12 +25,12 @@
                 android:id="@+id/drinks_txt_beers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/neworder_beer"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,12 +54,12 @@
                 android:id="@+id/drinks_txt_sodas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/neworder_soda"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/drinks_rv_beers" />
 
@@ -82,12 +82,12 @@
                 android:id="@+id/drinks_txt_flavored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/neworder_flavored"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/drinks_rv_sodas" />
 
@@ -113,9 +113,9 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/neworder_water"
+                android:layout_marginStart="16dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/drinks_rv_flavored" />
 

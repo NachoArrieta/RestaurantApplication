@@ -34,6 +34,7 @@
         android:fontFamily="@font/montserrat_regular"
         android:text="@string/reservations_new"
         android:textColor="@color/white"
+        android:foreground="?attr/selectableItemBackground"
         android:textSize="16sp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"

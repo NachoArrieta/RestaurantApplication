@@ -63,4 +63,10 @@
         android:label="Reservá tu lugar"
         tools:layout="@layout/fragment_add_reservation" />
 
+    <fragment
+        android:id="@+id/nav_my_payment_methods"
+        android:name="com.nacho.restaurantapplication.presentation.home.fragment.MyPaymentMethodsFragment"
+        android:label="Medios de pago"
+        tools:layout="@layout/fragment_my_payment_methods" />
+
 </navigation>

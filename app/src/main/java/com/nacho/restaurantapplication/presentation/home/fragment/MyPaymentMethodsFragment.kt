@@ -1,22 +1,23 @@
-package com.nacho.restaurantapplication.presentation.cart.fragment
+package com.nacho.restaurantapplication.presentation.home.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nacho.restaurantapplication.databinding.FragmentCartBinding
+import com.nacho.restaurantapplication.databinding.FragmentMyPaymentMethodsBinding
 
-class CartFragment : Fragment() {
+class MyPaymentMethodsFragment : Fragment() {
 
-    private var _binding: FragmentCartBinding? = null
+    private var _binding: FragmentMyPaymentMethodsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCartBinding.inflate(inflater, container, false)
+        _binding = FragmentMyPaymentMethodsBinding.inflate(inflater, container, false)
         return binding.root
     }
 

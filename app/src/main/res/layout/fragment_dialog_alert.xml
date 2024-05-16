@@ -6,27 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginStart="24dp"
-    android:layout_marginEnd="24dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginEnd="32dp"
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="8dp"
+        android:elevation="10dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/white"
+        app:strokeColor="#F8F8F8"
         app:strokeWidth="1dp"
-        tools:context=".core.presentation.DialogAlertFragment">
+        tools:context=".core.Fragment.DialogAlertFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/red_light">
+            android:background="@color/red_extra_dark">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/dialog_img_quit"
@@ -64,12 +64,14 @@
                 android:layout_marginTop="48dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/btn_gradient_red_stroke_white"
+                android:background="@drawable/btn_gradient_white"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
+                android:foreground="?attr/selectableItemBackground"
                 android:text="@string/dialog_exit"
-                android:textColor="@color/white"
+                android:textColor="@color/red_extra_dark"
                 android:textSize="14sp"
+                android:textStyle="bold"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toTopOf="@+id/dialog_btn_cancel"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,12 +88,14 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/btn_gradient_red_stroke_white"
+                android:background="@drawable/btn_gradient_white"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
-                android:text="@string/dialog_cancel"
-                android:textColor="@color/white"
+                android:text="@string/cancel"
+                android:textColor="@color/red_extra_dark"
+                android:foreground="?attr/selectableItemBackground"
                 android:textSize="14sp"
+                android:textStyle="bold"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
