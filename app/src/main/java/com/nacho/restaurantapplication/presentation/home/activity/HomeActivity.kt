@@ -12,7 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.nacho.restaurantapplication.R
-import com.nacho.restaurantapplication.core.Fragment.DialogAlertFragment
+import com.nacho.restaurantapplication.core.fragment.DialogAlertFragment
 import com.nacho.restaurantapplication.databinding.ActivityHomeBinding
 import com.nacho.restaurantapplication.presentation.home.viewmodel.HomeViewModel
 

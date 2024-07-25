@@ -1,4 +1,4 @@
-package com.nacho.restaurantapplication.core.Fragment
+package com.nacho.restaurantapplication.core.fragment
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

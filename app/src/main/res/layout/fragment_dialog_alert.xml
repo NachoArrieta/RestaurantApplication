@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="#F8F8F8"
         app:strokeWidth="1dp"
-        tools:context=".core.Fragment.DialogAlertFragment">
+        tools:context=".core.fragment.DialogAlertFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

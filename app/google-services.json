@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "356620275901",
+    "project_id": "restaurantapp-4896a",
+    "storage_bucket": "restaurantapp-4896a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356620275901:android:1fcc0937c8788f930ce7d4",
+        "android_client_info": {
+          "package_name": "com.nacho.restaurantapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356620275901-06mlpmli45f4te1ti9170eim8sd64s8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyPezMITnylQzZZx2j5SnX4PUTRolFUK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356620275901-06mlpmli45f4te1ti9170eim8sd64s8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
