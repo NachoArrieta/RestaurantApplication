@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient_white"
-    tools:context=".presentation.home.fragment.MyPaymentMethodsFragment">
+    tools:context=".presentation.fragment.home.MyPaymentMethodsFragment">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/my_payment_methods_add"
