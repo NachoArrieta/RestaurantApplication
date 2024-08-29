@@ -1,85 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_gradient_red"
     android:layout_height="match_parent"
-    tools:context=".core.fragment.ErrorFragment">
+    android:background="@drawable/background_gradient_red"
+    tools:context=".presentation.fragment.login.VerifyEmailFragment">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/splash_burger_anim"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:id="@+id/verify_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
-        android:layout_marginTop="24dp"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/error_anim"
-        app:lottie_speed="2" />
+        app:lottie_rawRes="@raw/loading_anim"
+        app:lottie_speed="1" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/error_txt_title"
-        android:layout_width="match_parent"
+        android:id="@+id/verify_txt_description"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        android:gravity="center"
         android:fontFamily="@font/montserrat_regular"
-        android:text="@string/error_generic"
+        android:gravity="center"
+        android:text="@string/verify_description"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/splash_burger_anim" />
+        app:layout_constraintTop_toBottomOf="@+id/verify_loading" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/error_txt_description"
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/verify_pb"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="@string/error_not_create_account"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:layout_marginBottom="48dp"
+        android:indeterminateTint="@color/plated"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/error_txt_title" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/signup_btn_register"
+        android:id="@+id/verify_btn_go_to_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/btn_gradient_white"
         android:fontFamily="@font/montserrat_regular"
         android:foreground="?attr/selectableItemBackground"
         android:gravity="center"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:text="@string/error_go_to_login"
+        android:text="@string/status_payment_go_home"
         android:textColor="@color/red_extra_dark"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_marginBottom="24dp"
+        android:visibility="visible"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

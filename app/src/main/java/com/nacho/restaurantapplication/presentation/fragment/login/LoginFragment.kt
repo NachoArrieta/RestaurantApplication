@@ -8,14 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.databinding.FragmentLoginBinding
 import com.nacho.restaurantapplication.presentation.activity.home.HomeActivity
+import com.nacho.restaurantapplication.presentation.viewmodel.login.LoginViewModel
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: LoginViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -22,10 +22,18 @@
         <action
             android:id="@+id/action_signupFragment_to_termsAndConditionsFragment"
             app:destination="@id/termsAndConditionsFragment" />
+        <action
+            android:id="@+id/action_signupFragment_to_verifyEmailFragment"
+            app:destination="@id/verifyEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/termsAndConditionsFragment"
         android:name="com.nacho.restaurantapplication.presentation.fragment.login.TermsAndConditionsFragment"
         android:label="fragment_terms_and_conditions"
         tools:layout="@layout/fragment_terms_and_conditions" />
+    <fragment
+        android:id="@+id/verifyEmailFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.login.VerifyEmailFragment"
+        android:label="fragment_verify_email"
+        tools:layout="@layout/fragment_verify_email" />
 </navigation>

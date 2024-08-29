@@ -3,7 +3,9 @@ package com.nacho.restaurantapplication.presentation.activity.login
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.nacho.restaurantapplication.databinding.ActivityLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
