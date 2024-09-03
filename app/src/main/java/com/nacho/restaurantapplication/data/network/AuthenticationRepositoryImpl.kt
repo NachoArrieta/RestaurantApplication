@@ -2,6 +2,7 @@ package com.nacho.restaurantapplication.data.network
 
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.database.FirebaseDatabase
 import com.nacho.restaurantapplication.data.model.User
 import kotlinx.coroutines.delay
@@ -45,6 +46,22 @@ class AuthenticationRepositoryImpl @Inject constructor(
         return try {
             val userId = firebaseAuth.currentUser?.uid ?: return false
             firebaseDatabase.reference.child("users").child(userId).setValue(user).await()
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    override suspend fun checkEmailExists(email: String): Boolean {
+        return try {
+            // Creamos un usuario temporal con una contraseña aleatoria
+            val fakePassword = "userAdmin"
+            firebaseAuth.createUserWithEmailAndPassword(email.trim(), fakePassword).await()
+            firebaseAuth.currentUser?.delete()?.await()
+            // Si llega aquí, significa que el email no existía
+            false
+        } catch (e: FirebaseAuthUserCollisionException) {
+            // Si llegamos a la excepcion, significa que el email ya existe
             true
         } catch (e: Exception) {
             false

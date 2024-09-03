@@ -82,7 +82,15 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun showAlertDialog() {
-        val dialogFragment = DialogAlertFragment()
+        val dialogFragment = DialogAlertFragment.newInstance(
+            title = getString(R.string.dialog_quit_title),
+            acceptButtonText = getString(R.string.dialog_exit),
+            cancelButtonText = getString(R.string.cancel),
+            onAcceptClick = {
+                finishAffinity()
+            },
+            onCancelClick = {}
+        )
         dialogFragment.show(supportFragmentManager, "DialogAlertFragment")
     }
 

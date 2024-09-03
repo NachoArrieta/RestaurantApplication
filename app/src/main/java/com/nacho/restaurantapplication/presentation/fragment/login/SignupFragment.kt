@@ -2,6 +2,7 @@ package com.nacho.restaurantapplication.presentation.fragment.login
 
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,6 @@ import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.core.extensions.loseFocusAfterAction
 import com.nacho.restaurantapplication.core.extensions.onTextChanged
-import com.nacho.restaurantapplication.data.model.User
 import com.nacho.restaurantapplication.databinding.FragmentSignupBinding
 import com.nacho.restaurantapplication.domain.model.UserSignup
 import com.nacho.restaurantapplication.presentation.fragment.login.state.SignUpViewState
@@ -165,11 +165,17 @@ class SignupFragment : Fragment() {
             !userSignup.isNotEmpty() || !viewState -> showToast(getString(R.string.signup_fields_no_valid))
             !termsAccepted -> showToast(getString(R.string.signup_terms_no_valid))
             else -> {
-                viewModel.createAccount(userSignup)
-                goToVerifyEmail()
+                viewModel.checkEmailExists(userSignup.email) { exists ->
+                    Log.d("SignupFragment", "Email exists: $exists for email: ${userSignup.email}")
+                    if (exists) {
+                        showToast(getString(R.string.signup_email_exist))
+                    } else {
+                        viewModel.createAccount(userSignup)
+                        goToVerifyEmail()
+                    }
+                }
             }
         }
-
     }
 
     private fun goToTermsAndConditions() {

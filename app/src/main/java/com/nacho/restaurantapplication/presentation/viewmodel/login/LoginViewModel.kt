@@ -1,7 +1,6 @@
 package com.nacho.restaurantapplication.presentation.viewmodel.login
 
 import android.util.Patterns
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,16 +9,14 @@ import com.nacho.restaurantapplication.core.Constants.MIN_NAME_LENGTH
 import com.nacho.restaurantapplication.core.Constants.MIN_PASSWORD_LENGTH
 import com.nacho.restaurantapplication.core.Constants.PHONE_LENGTH
 import com.nacho.restaurantapplication.domain.model.UserSignup
+import com.nacho.restaurantapplication.domain.usecase.login.CheckEmailExistsUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.CreateAccountUseCase
-import com.nacho.restaurantapplication.domain.usecase.login.SaveAccountUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.SendEmailVerificationUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.VerifyEmailUseCase
 import com.nacho.restaurantapplication.presentation.fragment.login.state.SignUpViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,6 +25,7 @@ class LoginViewModel @Inject constructor(
     private val createAccountUseCase: CreateAccountUseCase,
     private val sendVerificationEmailUseCase: SendEmailVerificationUseCase,
     private val verifyEmailUseCase: VerifyEmailUseCase,
+    private val checkEmailExistsUseCase: CheckEmailExistsUseCase
     //private val saveAccountUseCase: SaveAccountUseCase
 ) : ViewModel() {
 
@@ -78,6 +76,13 @@ class LoginViewModel @Inject constructor(
                     _emailIsVerified.value = true
                 }
             }
+        }
+    }
+
+    fun checkEmailExists(email: String, onResult: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            val exists = checkEmailExistsUseCase(email)
+            onResult(exists)
         }
     }
 

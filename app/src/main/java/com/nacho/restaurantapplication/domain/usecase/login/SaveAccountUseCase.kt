@@ -6,5 +6,5 @@ import javax.inject.Inject
 class SaveAccountUseCase @Inject constructor(
     private val repository: AuthenticationRepository
 ) {
-    //suspend operator fun invoke(user: UserRegister): Boolean = repository.saveUser(user.toUser())
+
 }

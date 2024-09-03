@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.nacho.restaurantapplication.R
+import com.nacho.restaurantapplication.core.fragment.DialogAlertFragment
 import com.nacho.restaurantapplication.databinding.FragmentVerifyEmailBinding
 import com.nacho.restaurantapplication.presentation.activity.home.HomeActivity
 import com.nacho.restaurantapplication.presentation.viewmodel.login.LoginViewModel
@@ -23,6 +25,8 @@ class VerifyEmailFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: LoginViewModel by activityViewModels()
 
+    private var alertDialog: DialogAlertFragment? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,12 +38,10 @@ class VerifyEmailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-
             setupObservers()
             verifyBtnGoToLogin.setOnClickListener {
-                //Alertdialog preguntando si realmente quiere volver al lobby
+                showAlertDialog()
             }
-
         }
     }
 
@@ -56,12 +58,20 @@ class VerifyEmailFragment : Fragment() {
     }
 
     private fun setupUI() {
+
+        alertDialog?.let {
+            if (it.isVisible) {
+                it.dismiss()
+            }
+        }
+
         with(binding) {
             verifyLoading.visibility = View.INVISIBLE
             verifyBtnGoToLogin.visibility = View.GONE
             verifyPb.visibility = View.VISIBLE
             verifyTxtDescription.text = getString(R.string.verify_description_two)
         }
+
     }
 
     private fun goToHome() {
@@ -69,4 +79,18 @@ class VerifyEmailFragment : Fragment() {
         activity?.finish()
     }
 
+    private fun showAlertDialog() {
+        alertDialog = DialogAlertFragment.newInstance(
+            title = getString(R.string.dialog_return_login_title),
+            acceptButtonText = getString(R.string.dialog_accept),
+            cancelButtonText = getString(R.string.cancel),
+            onAcceptClick = {
+                parentFragmentManager.popBackStack()
+            },
+            onCancelClick = {
+                alertDialog?.dismiss()
+            }
+        )
+        alertDialog?.show(parentFragmentManager, "DialogAlertFragment")
+    }
 }

@@ -36,6 +36,7 @@
     <string name="signup_confirm_password_no_valid">Las contraseñas no coinciden</string>
     <string name="signup_fields_no_valid">Por favor, completá todo los campos</string>
     <string name="signup_terms_no_valid">Por favor, aceptá los términos y condiciones</string>
+    <string name="signup_email_exist">El email ya existe</string>
 
     <!-- Drawer menu -->
     <string name="drawer_home">Menú principal</string>
@@ -108,8 +109,10 @@
     <string name="assemble_dressing">Aderezos y salsas</string>
 
     <!-- Dialogs -->
-    <string name="dialog_quit">¿Deseas salir de la aplicación?</string>
+    <string name="dialog_quit_title">¿Deseas salir de la aplicación?</string>
+    <string name="dialog_return_login_title">¿Deseas volver al inicio?</string>
     <string name="dialog_exit">Sí, deseo salir</string>
+    <string name="dialog_accept">Aceptar</string>
 
     <!-- Shopping Cart -->
     <string name="neworder_confirm_shopping_cart">Continuar compra</string>
