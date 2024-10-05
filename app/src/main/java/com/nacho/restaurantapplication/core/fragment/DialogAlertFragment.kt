@@ -64,11 +64,13 @@ class DialogAlertFragment : DialogFragment() {
             dialogBtnAccept.setOnClickListener {
                 onAcceptClick?.invoke()
                 dismiss()
+                onDestroy()
             }
 
             dialogBtnCancel.setOnClickListener {
                 onCancelClick?.invoke()
                 dismiss()
+                onDestroy()
             }
         }
     }

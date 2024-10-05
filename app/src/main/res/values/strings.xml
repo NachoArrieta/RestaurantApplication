@@ -22,6 +22,11 @@
     <string name="login_entry_google">INGRESAR CON GOOGLE</string>
     <string name="login_are_new">Eres nuevo?</string>
     <string name="login_create_account">Crear cuenta</string>
+    <string name="login_incorrect_credentials">Credenciales incorrectas</string>
+    <string name="login_enter_credentials">Ingresa las credenciales</string>
+    <string name="login_enter_email">Ingresa el email</string>
+    <string name="login_enter_password">Ingresa la contraseña</string>
+
 
     <!-- SignUp -->
     <string name="signup_confirm_password">Confirmar contraseña</string>
@@ -110,8 +115,10 @@
 
     <!-- Dialogs -->
     <string name="dialog_quit_title">¿Deseas salir de la aplicación?</string>
+    <string name="dialog_log_out">¿Deseas cerrar sesión?</string>
     <string name="dialog_return_login_title">¿Deseas volver al inicio?</string>
     <string name="dialog_exit">Sí, deseo salir</string>
+    <string name="dialog_out">Sí, deseo cerrar</string>
     <string name="dialog_accept">Aceptar</string>
 
     <!-- Shopping Cart -->

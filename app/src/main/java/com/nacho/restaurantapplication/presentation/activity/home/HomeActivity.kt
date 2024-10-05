@@ -1,5 +1,6 @@
 package com.nacho.restaurantapplication.presentation.activity.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.activity.viewModels
@@ -11,9 +12,11 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.google.firebase.auth.FirebaseAuth
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.core.fragment.DialogAlertFragment
 import com.nacho.restaurantapplication.databinding.ActivityHomeBinding
+import com.nacho.restaurantapplication.presentation.activity.login.LoginActivity
 import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -22,25 +25,9 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private val homeVM: HomeViewModel by viewModels()
 
-    private fun observers() {
-        homeVM.backInHome.observe(this) { navigateOnBack ->
-            if (navigateOnBack) {
-                showAlertDialog()
-                homeVM.handleBackNavigation(false)
-            }
-        }
-
-        homeVM.drawerOpen.observe(this) { drawerOpen ->
-            if (drawerOpen) {
-                binding.drawerLayout.closeDrawer(GravityCompat.START)
-                homeVM.setDrawerOpen(false)
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        observers()
+        setupObservers()
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -74,6 +61,36 @@ class HomeActivity : AppCompatActivity() {
                 navController.popBackStack()
             }
         }
+
+        binding.homeLogout.setOnClickListener {
+            showAlertDialog(
+                title = getString(R.string.dialog_log_out),
+                acceptButtonText = getString(R.string.dialog_out),
+                onAcceptClick = { logout() }
+            )
+        }
+
+    }
+
+    private fun setupObservers() {
+        homeVM.backInHome.observe(this) { navigateOnBack ->
+            if (navigateOnBack) {
+                showAlertDialog(
+                    title = getString(R.string.dialog_quit_title),
+                    acceptButtonText = getString(R.string.dialog_exit),
+                    onAcceptClick = { finishAffinity() }
+                )
+                homeVM.handleBackNavigation(false)
+            }
+        }
+
+        homeVM.drawerOpen.observe(this) { drawerOpen ->
+            if (drawerOpen) {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+                homeVM.setDrawerOpen(false)
+            }
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -81,14 +98,26 @@ class HomeActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    private fun showAlertDialog() {
+    private fun logout() {
+        FirebaseAuth.getInstance().signOut()
+
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+
+        finishAffinity()
+    }
+
+    private fun showAlertDialog(
+        title: String,
+        acceptButtonText: String,
+        onAcceptClick: () -> Unit
+    ) {
         val dialogFragment = DialogAlertFragment.newInstance(
-            title = getString(R.string.dialog_quit_title),
-            acceptButtonText = getString(R.string.dialog_exit),
+            title = title,
+            acceptButtonText = acceptButtonText,
             cancelButtonText = getString(R.string.cancel),
-            onAcceptClick = {
-                finishAffinity()
-            },
+            onAcceptClick = onAcceptClick,
             onCancelClick = {}
         )
         dialogFragment.show(supportFragmentManager, "DialogAlertFragment")

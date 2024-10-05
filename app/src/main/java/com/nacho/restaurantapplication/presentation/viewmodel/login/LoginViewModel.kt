@@ -11,6 +11,7 @@ import com.nacho.restaurantapplication.core.Constants.PHONE_LENGTH
 import com.nacho.restaurantapplication.domain.model.UserSignup
 import com.nacho.restaurantapplication.domain.usecase.login.CheckEmailExistsUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.CreateAccountUseCase
+import com.nacho.restaurantapplication.domain.usecase.login.LoginUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.SendEmailVerificationUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.VerifyEmailUseCase
 import com.nacho.restaurantapplication.presentation.fragment.login.state.SignUpViewState
@@ -25,7 +26,8 @@ class LoginViewModel @Inject constructor(
     private val createAccountUseCase: CreateAccountUseCase,
     private val sendVerificationEmailUseCase: SendEmailVerificationUseCase,
     private val verifyEmailUseCase: VerifyEmailUseCase,
-    private val checkEmailExistsUseCase: CheckEmailExistsUseCase
+    private val checkEmailExistsUseCase: CheckEmailExistsUseCase,
+    private val loginUseCase: LoginUseCase
     //private val saveAccountUseCase: SaveAccountUseCase
 ) : ViewModel() {
 
@@ -40,6 +42,9 @@ class LoginViewModel @Inject constructor(
 
     private val _emailIsVerified = MutableLiveData<Boolean>()
     val emailIsVerified: LiveData<Boolean> = _emailIsVerified
+
+    private val _loginResult = MutableLiveData<Boolean>()
+    val loginResult: LiveData<Boolean> = _loginResult
 
     fun onFieldsChanged(userSignup: UserSignup) {
         _viewState.value = userSignup.toSignupViewState()
@@ -83,6 +88,13 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             val exists = checkEmailExistsUseCase(email)
             onResult(exists)
+        }
+    }
+
+    fun loginUser(email: String, password: String) {
+        viewModelScope.launch {
+            val result = loginUseCase(email, password)
+            _loginResult.value = result != null
         }
     }
 

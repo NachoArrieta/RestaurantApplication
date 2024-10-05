@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -34,7 +35,27 @@ class LoginFragment : Fragment() {
         with(binding) {
 
             loginBtnEntry.setOnClickListener {
-                goToHome()
+                val email = loginTieEmail.text.toString()
+                val password = loginTiePassword.text.toString()
+
+                when {
+                    email.isEmpty() && password.isEmpty() -> {
+                        showToast(getString(R.string.login_enter_credentials))
+                    }
+
+                    email.isEmpty() -> {
+                        showToast(getString(R.string.login_enter_email))
+                    }
+
+                    password.isEmpty() -> {
+                        showToast(getString(R.string.login_enter_password))
+                    }
+
+                    else -> {
+                        viewModel.loginUser(email, password)
+                    }
+
+                }
             }
 
             loginTxtCreateAccount.paintFlags = loginTxtCreateAccount.paintFlags or Paint.UNDERLINE_TEXT_FLAG
@@ -42,6 +63,18 @@ class LoginFragment : Fragment() {
                 findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
             }
 
+            setupObservers()
+
+        }
+    }
+
+    private fun setupObservers() {
+        viewModel.loginResult.observe(viewLifecycleOwner) { isSuccess ->
+            if (isSuccess) {
+                goToHome()
+            } else {
+                showToast(getString(R.string.login_incorrect_credentials))
+            }
         }
     }
 
@@ -49,5 +82,7 @@ class LoginFragment : Fragment() {
         startActivity(Intent(context, HomeActivity::class.java))
         activity?.finish()
     }
+
+    private fun showToast(message: String) = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
 }

@@ -10,4 +10,6 @@ interface AuthenticationRepository {
     suspend fun checkEmailExists(email: String): Boolean
     suspend fun saveUser(user: User): Boolean
     fun emailIsVerified(): Flow<Boolean>
+
+    suspend fun loginUser(email: String, password: String): AuthResult?
 }

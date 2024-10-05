@@ -25,7 +25,7 @@ class NewOrderActivity : AppCompatActivity() {
 
         viewPagerAdapter = ViewPagerAdapter(this, newOrderVM)
 
-        observers()
+        setupObservers()
         setTabLayout()
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -38,7 +38,7 @@ class NewOrderActivity : AppCompatActivity() {
         })
     }
 
-    private fun observers() {
+    private fun setupObservers() {
         newOrderVM.selectedTabIndex.observe(this) { index ->
             binding.newOrderVp.setCurrentItem(index, true)
         }
