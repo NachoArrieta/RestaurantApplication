@@ -17,6 +17,9 @@ class DialogAlertFragment : DialogFragment() {
     private var _binding: FragmentDialogAlertBinding? = null
     private val binding get() = _binding!!
 
+    private var onAcceptClick: (() -> Unit)? = null
+    private var onCancelClick: (() -> Unit)? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,16 +52,50 @@ class DialogAlertFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(binding) {
+        val title = arguments?.getString(ARG_TITLE)
+        val acceptText = arguments?.getString(ARG_ACCEPT_TEXT)
+        val cancelText = arguments?.getString(ARG_CANCEL_TEXT)
 
-            dialogBtnCancel.setOnClickListener {
-                onDestroyView()
-            }
+        with(binding) {
+            dialogTxtTitle.text = title
+            dialogBtnAccept.text = acceptText
+            dialogBtnCancel.text = cancelText
 
             dialogBtnAccept.setOnClickListener {
-                activity?.finish()
+                onAcceptClick?.invoke()
+                dismiss()
+                onDestroy()
             }
 
+            dialogBtnCancel.setOnClickListener {
+                onCancelClick?.invoke()
+                dismiss()
+                onDestroy()
+            }
+        }
+    }
+
+    companion object {
+        private const val ARG_TITLE = "arg_title"
+        private const val ARG_ACCEPT_TEXT = "arg_accept_text"
+        private const val ARG_CANCEL_TEXT = "arg_cancel_text"
+
+        fun newInstance(
+            title: String,
+            acceptButtonText: String,
+            cancelButtonText: String,
+            onAcceptClick: () -> Unit,
+            onCancelClick: () -> Unit
+        ): DialogAlertFragment {
+            return DialogAlertFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_TITLE, title)
+                    putString(ARG_ACCEPT_TEXT, acceptButtonText)
+                    putString(ARG_CANCEL_TEXT, cancelButtonText)
+                }
+                this.onAcceptClick = onAcceptClick
+                this.onCancelClick = onCancelClick
+            }
         }
     }
 

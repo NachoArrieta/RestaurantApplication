@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_gradient_white"
     android:layout_height="match_parent"
-    tools:context=".presentation.home.fragment.StoresFragment">
+    tools:context=".presentation.fragment.home.StoresFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stores_rv"

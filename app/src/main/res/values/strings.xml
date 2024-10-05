@@ -22,6 +22,11 @@
     <string name="login_entry_google">INGRESAR CON GOOGLE</string>
     <string name="login_are_new">Eres nuevo?</string>
     <string name="login_create_account">Crear cuenta</string>
+    <string name="login_incorrect_credentials">Credenciales incorrectas</string>
+    <string name="login_enter_credentials">Ingresa las credenciales</string>
+    <string name="login_enter_email">Ingresa el email</string>
+    <string name="login_enter_password">Ingresa la contraseña</string>
+
 
     <!-- SignUp -->
     <string name="signup_confirm_password">Confirmar contraseña</string>
@@ -29,6 +34,14 @@
     <string name="signup_finish_register">Finalizar registro</string>
     <string name="signup_have_account">Ya tienes una cuenta?</string>
     <string name="signup_go_login">Iniciar sesión</string>
+    <string name="signup_name_no_valid">Debe contener al menos 4 caracteres</string>
+    <string name="signup_phone_no_valid">Debe contener 10 dígitos</string>
+    <string name="signup_email_no_valid">El email no es válido</string>
+    <string name="signup_password_no_valid">Debe contener al menos 8 caracteres</string>
+    <string name="signup_confirm_password_no_valid">Las contraseñas no coinciden</string>
+    <string name="signup_fields_no_valid">Por favor, completá todo los campos</string>
+    <string name="signup_terms_no_valid">Por favor, aceptá los términos y condiciones</string>
+    <string name="signup_email_exist">El email ya existe</string>
 
     <!-- Drawer menu -->
     <string name="drawer_home">Menú principal</string>
@@ -101,8 +114,12 @@
     <string name="assemble_dressing">Aderezos y salsas</string>
 
     <!-- Dialogs -->
-    <string name="dialog_quit">¿Deseas salir de la aplicación?</string>
+    <string name="dialog_quit_title">¿Deseas salir de la aplicación?</string>
+    <string name="dialog_log_out">¿Deseas cerrar sesión?</string>
+    <string name="dialog_return_login_title">¿Deseas volver al inicio?</string>
     <string name="dialog_exit">Sí, deseo salir</string>
+    <string name="dialog_out">Sí, deseo cerrar</string>
+    <string name="dialog_accept">Aceptar</string>
 
     <!-- Shopping Cart -->
     <string name="neworder_confirm_shopping_cart">Continuar compra</string>
@@ -131,6 +148,49 @@
 
     <!-- Status payment -->
     <string name="loading_title">¡Estamos procesando la compra!</string>
+
+    <!-- Errors -->
+    <string name="error_generic">¡Ha ocurrido un problema!</string>
+    <string name="error_not_create_account">Por motivos desconocidos, no hemos podido crear la cuenta. Intenta nuevamente o inténtalo más tarde</string>
+    <string name="error_go_to_login">Volver al inicio</string>
+
+    <!-- VerifyEmail -->
+    <string name="verify_description">Para poder acceder a la aplicación, necesitamos validar tu correo electrónico. Por favor, revisá tu casilla y verificá el mismo (No olvides revisar SPAM en caso de no encontrarlo)</string>
+    <string name="verify_description_two">Aguarda un instante, ya casi estamos!!!</string>
+
+    <!-- TermsAndConditions -->
+    <string name="tac_title">Términos y condiciones</string>
+    <string name="tac_title_introduction">1. Introducción</string>
+    <string name="tac_title_uses">2. Uso de la App</string>
+    <string name="tac_title_register">3. Registro y Cuenta</string>
+    <string name="tac_title_payment">4. Pedidos y Pagos</string>
+    <string name="tac_title_reservation">5. Reservas</string>
+    <string name="tac_title_deliveries">6. Entrega y Recogida</string>
+    <string name="tac_title_returns">7. Devoluciones y Reembolsos</string>
+    <string name="tac_title_privacy">8. Privacidad</string>
+    <string name="tac_title_intellectual_property">9. Propiedad Intelectual</string>
+    <string name="tac_title_responsibility">10. Limitación de Responsabilidad</string>
+    <string name="tac_title_modify_terms">11. Modificaciones a los Términos</string>
+    <string name="tac_title_contact">12. Contacto</string>
+    <string name="tac_description_introduction">Bienvenido a la aplicación móvil Beicon Bsb, operada por Beicon SA. Estos Términos y Condiciones rigen su acceso y uso de la App, que permite realizar pedidos de comida, reservas para comer en los establecimientos, y otros servicios relacionados. Al usar la App, usted acepta estar sujeto a estos Términos.</string>
+    <string name="tac_description_uses">Para utilizar la App, debe tener al menos 18 años de edad o la mayoría de edad legal en su jurisdicción. Al utilizar la App, usted declara que cumple con este requisito.</string>
+    <string name="tac_description_register">Para acceder a ciertas funciones de la App, como realizar pedidos o reservas, es posible que deba registrarse y crear una cuenta. Usted es responsable de mantener la confidencialidad de su cuenta y contraseña, y acepta ser responsable de todas las actividades que ocurran bajo su cuenta. Notifique de inmediato cualquier uso no autorizado de su cuenta a Beicon SA.</string>
+    <string name="tac_description_payment_one">4.1 Realización de Pedidos: Al realizar un pedido a través de la App, usted acepta proporcionar información precisa y completa. Todos los pedidos están sujetos a la aceptación por parte de Beicon SA.</string>
+    <string name="tac_description_payment_two">4.2 Disponibilidad de Productos: Los productos y precios mostrados en la App están sujetos a disponibilidad y pueden cambiar sin previo aviso.</string>
+    <string name="tac_description_payment_three">4.3 Pago: Al realizar un pedido, se le solicitará que proporcione información de pago válida. Usted acepta que Beicon SA procese el pago a través del método que haya seleccionado.</string>
+    <string name="tac_description_reservation_one">5.1 Hacer una Reserva: A través de la App, usted puede realizar reservas para comer en nuestro establecimiento. Las reservas están sujetas a disponibilidad y confirmación por parte de Beicon SA.</string>
+    <string name="tac_description_reservation_two">5.2 Cancelaciones: Las reservas pueden ser canceladas a través de la App hasta 5hs antes de la hora reservada. Después de este plazo, Beicon SA se reserva el derecho de cobrar una tarifa de cancelación.</string>
+    <string name="tac_description_reservation_three">5.3 Modificación de Reservas: Las reservas pueden modificarse, sujeto a disponibilidad, a través de la App hasta 5hs antes de la hora reservada.</string>
+    <string name="tac_description_deliveries">6.1 Entrega a Domicilio: Los tiempos de entrega proporcionados son estimados y pueden variar según las condiciones. Beicon SA no se responsabiliza por retrasos fuera de su control.</string>
+    <string name="tac_description_deliveries_two">6.2 Recogida en el Local: Si elige recoger su pedido en el establecimiento, asegúrese de hacerlo en el tiempo especificado. No nos hacemos responsables por pedidos no recogidos a tiempo.</string>
+    <string name="tac_description_returns">Los pedidos realizados a través de la App son definitivos y no se aceptan devoluciones. Sin embargo, en caso de problemas con su pedido, como productos incorrectos o defectuosos, por favor contacte a nuestro servicio de atención al cliente para discutir opciones de reembolso o reemplazo.</string>
+    <string name="tac_description_privacy">8.1 Recopilación de Datos: Recopilamos y procesamos información personal como se describe en nuestra Política de Privacidad. Al usar la App, usted acepta estas prácticas de recopilación y uso de datos.</string>
+    <string name="tac_description_privacy_two">8.2 Uso de Datos: La información personal que recopilamos se utiliza para proporcionar, mantener y mejorar nuestros servicios, así como para comunicarnos con usted sobre su cuenta y pedidos.</string>
+    <string name="tac_description_intellectual_property">Todo el contenido disponible en la App, incluyendo pero no limitado a, texto, gráficos, logos, imágenes, y software, es propiedad de Beicon SA o sus licenciantes y está protegido por las leyes de propiedad intelectual. Usted no puede usar el contenido de la App sin el permiso expreso de Beicon SA.</string>
+    <string name="tac_description_responsibility">Beicon SA no se responsabiliza por daños directos, indirectos, incidentales, especiales o consecuentes que surjan de su uso de la App, excepto en casos de negligencia grave o dolo.</string>
+    <string name="tac_description_modify_terms">Nos reservamos el derecho de modificar estos Términos en cualquier momento. Las modificaciones serán efectivas una vez publicadas en la App. Es su responsabilidad revisar periódicamente estos Términos. Su uso continuado de la App después de cualquier modificación constituye su aceptación de los nuevos Términos.</string>
+    <string name="tac_description_contact">Para cualquier consulta o comentario sobre estos Términos, por favor contacte a Beicon SA a través de rrhh@beiconbsb.com</string>
+
 
 
 </resources>

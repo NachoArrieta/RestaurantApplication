@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/background_gradient_red"
     android:layout_height="match_parent"
-    tools:context=".presentation.login.activity.LoginActivity">
+    tools:context=".presentation.activity.login.LoginActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/login_container"

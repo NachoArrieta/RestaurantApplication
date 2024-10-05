@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@id/nav_home"
-        android:name="com.nacho.restaurantapplication.presentation.home.fragment.HomeFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.home.HomeFragment"
         android:label="Menú principal"
         tools:layout="@layout/fragment_home">
 
@@ -18,37 +18,37 @@
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.nacho.restaurantapplication.presentation.home.fragment.NewsFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.home.NewsFragment"
         android:label="Noticias"
         tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/nav_my_profile"
-        android:name="com.nacho.restaurantapplication.presentation.home.fragment.MyProfileFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.home.MyProfileFragment"
         android:label="Mi perfil"
         tools:layout="@layout/fragment_my_profile" />
 
     <fragment
         android:id="@+id/nav_my_coupons"
-        android:name="com.nacho.restaurantapplication.presentation.home.fragment.MyCouponsFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.home.MyCouponsFragment"
         android:label="Mis cupones"
         tools:layout="@layout/fragment_my_coupons" />
 
     <fragment
         android:id="@+id/nav_my_orders"
-        android:name="com.nacho.restaurantapplication.presentation.home.fragment.MyOrdersFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.home.MyOrdersFragment"
         android:label="Mis pedidos"
         tools:layout="@layout/fragment_my_orders" />
 
     <fragment
         android:id="@+id/nav_stores"
-        android:name="com.nacho.restaurantapplication.presentation.home.fragment.StoresFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.home.StoresFragment"
         android:label="Tiendas"
         tools:layout="@layout/fragment_stores" />
 
     <fragment
         android:id="@+id/nav_my_reservations"
-        android:name="com.nacho.restaurantapplication.presentation.home.fragment.MyReservationsFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.home.MyReservationsFragment"
         android:label="Mis reservas"
         tools:layout="@layout/fragment_my_reservations">
 
@@ -59,13 +59,13 @@
 
     <fragment
         android:id="@+id/addReservationFragment"
-        android:name="com.nacho.restaurantapplication.presentation.home.fragment.AddReservationFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.home.AddReservationFragment"
         android:label="Reservá tu lugar"
         tools:layout="@layout/fragment_add_reservation" />
 
     <fragment
         android:id="@+id/nav_my_payment_methods"
-        android:name="com.nacho.restaurantapplication.presentation.home.fragment.MyPaymentMethodsFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.home.MyPaymentMethodsFragment"
         android:label="Medios de pago"
         tools:layout="@layout/fragment_my_payment_methods" />
 

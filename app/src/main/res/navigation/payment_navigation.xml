@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/confirmPaymentFragment"
-        android:name="com.nacho.restaurantapplication.presentation.payment.fragment.ConfirmPaymentFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.payment.ConfirmPaymentFragment"
         android:label="fragment_confirm_payment"
         tools:layout="@layout/fragment_confirm_payment" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/deliveryMethodFragment"
-        android:name="com.nacho.restaurantapplication.presentation.payment.fragment.DeliveryMethodFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.payment.DeliveryMethodFragment"
         android:label="fragment_delivery_method"
         tools:layout="@layout/fragment_delivery_method" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/myPaymentMethodsFragment"
-        android:name="com.nacho.restaurantapplication.presentation.home.fragment.MyPaymentMethodsFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.home.MyPaymentMethodsFragment"
         android:label="fragment_my_payment_methods"
         tools:layout="@layout/fragment_my_payment_methods" >
         <action
@@ -34,12 +34,12 @@
     </fragment>
     <fragment
         android:id="@+id/statusFragment"
-        android:name="com.nacho.restaurantapplication.presentation.payment.fragment.StatusFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.payment.StatusFragment"
         android:label="fragment_status"
         tools:layout="@layout/fragment_status" />
     <fragment
         android:id="@+id/loadingFragment"
-        android:name="com.nacho.restaurantapplication.presentation.payment.fragment.LoadingFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.payment.LoadingFragment"
         android:label="fragment_loading"
         tools:layout="@layout/fragment_loading" >
         <action

@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".RestaurantApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,10 +17,10 @@
         android:theme="@style/Theme.RestaurantApplication"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.payment.activity.PaymentActivity"
+            android:name=".presentation.activity.payment.PaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.splash.activity.SplashActivity"
+            android:name=".presentation.activity.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.RestaurantApplication.NoActionBar">
             <intent-filter>
@@ -29,16 +30,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.neworder.activity.NewOrderActivity"
+            android:name=".presentation.activity.neworder.NewOrderActivity"
             android:exported="false"
             android:theme="@style/Theme.RestaurantApplication.NoActionBar" />
         <activity
-            android:name=".presentation.home.activity.HomeActivity"
+            android:name=".presentation.activity.home.HomeActivity"
             android:exported="true"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.RestaurantApplication.NoActionBar" />
         <activity
-            android:name=".presentation.login.activity.LoginActivity"
+            android:name=".presentation.activity.login.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.RestaurantApplication.NoActionBar" />
     </application>
