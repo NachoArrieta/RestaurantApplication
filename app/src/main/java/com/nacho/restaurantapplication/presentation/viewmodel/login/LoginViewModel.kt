@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nacho.restaurantapplication.core.Constants.MIN_NAME_LENGTH
-import com.nacho.restaurantapplication.core.Constants.MIN_PASSWORD_LENGTH
-import com.nacho.restaurantapplication.core.Constants.PHONE_LENGTH
+import com.nacho.restaurantapplication.core.utils.Constants.MIN_NAME_LENGTH
+import com.nacho.restaurantapplication.core.utils.Constants.MIN_PASSWORD_LENGTH
+import com.nacho.restaurantapplication.core.utils.Constants.PHONE_LENGTH
 import com.nacho.restaurantapplication.domain.model.UserSignup
 import com.nacho.restaurantapplication.domain.usecase.login.CheckEmailExistsUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.CreateAccountUseCase

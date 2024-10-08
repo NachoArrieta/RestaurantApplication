@@ -18,7 +18,9 @@ import com.nacho.restaurantapplication.core.fragment.DialogAlertFragment
 import com.nacho.restaurantapplication.databinding.ActivityHomeBinding
 import com.nacho.restaurantapplication.presentation.activity.login.LoginActivity
 import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration

@@ -1,4 +1,4 @@
-package com.nacho.restaurantapplication.data.network
+package com.nacho.restaurantapplication.data.network.authentication
 
 import com.google.firebase.auth.AuthResult
 import com.nacho.restaurantapplication.data.model.User

@@ -65,9 +65,15 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
 
     //Lottie Anim
-    implementation ("com.airbnb.android:lottie:6.0.1")
+    implementation("com.airbnb.android:lottie:6.0.1")
+
+    //Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    //ShimmerLayout
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 
     //CircleImageView
     implementation("de.hdodenhof:circleimageview:3.1.0")
-    
+
 }

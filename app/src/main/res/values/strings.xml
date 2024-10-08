@@ -81,14 +81,18 @@
     <string name="profile_save_changes">Guardar cambios</string>
     <string name="profile_disabled_notifications">Deseas desactivar las notificaciones?</string>
 
+    <!-- Stores -->
+    <string name="stores_days">Días:</string>
+    <string name="stores_schedules">Horarios:</string>
+    <string name="stores_address">Dirección:</string>
+    <string name="stores_phone">Teléfono:</string>
+    <string name="stores_only_shipments">¡Solo para llevar!</string>
+
     <!-- Cart -->
     <string name="cart_discount">Descuento: </string>
     <string name="cart_total_price">Total a pagar: </string>
     <string name="cart_confirm_payment">Realizar pago</string>
     <string name="cart_have_coupon">Cupón de descuento</string>
-
-    <!-- Cart -->
-    <string name="neworder_title">Armá tu pedido</string>
 
     <!-- Burgers -->
     <string name="neworder_burgers">Armala a tu gusto</string>
@@ -122,6 +126,7 @@
     <string name="dialog_accept">Aceptar</string>
 
     <!-- Shopping Cart -->
+    <string name="neworder_title">Armá tu pedido</string>
     <string name="neworder_confirm_shopping_cart">Continuar compra</string>
 
     <!-- Delivery Method -->
@@ -153,6 +158,7 @@
     <string name="error_generic">¡Ha ocurrido un problema!</string>
     <string name="error_not_create_account">Por motivos desconocidos, no hemos podido crear la cuenta. Intenta nuevamente o inténtalo más tarde</string>
     <string name="error_go_to_login">Volver al inicio</string>
+    <string name="error_img_loading">No pudimos cargar la imagen</string>
 
     <!-- VerifyEmail -->
     <string name="verify_description">Para poder acceder a la aplicación, necesitamos validar tu correo electrónico. Por favor, revisá tu casilla y verificá el mismo (No olvides revisar SPAM en caso de no encontrarlo)</string>

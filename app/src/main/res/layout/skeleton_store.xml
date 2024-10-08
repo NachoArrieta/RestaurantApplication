@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/skeleton_store"
+    android:layout_width="match_parent"
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="2dp"
+    android:layout_height="wrap_content"
+    app:strokeColor="@color/grey_extra_light">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_gradient_white">
+
+        <FrameLayout
+            android:layout_width="240dp"
+            android:layout_height="24dp"
+            android:background="@color/grey_extra_light"
+            app:layout_constraintBottom_toBottomOf="@+id/skeleton_linearLayout5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/skeleton_linearLayout5"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="38dp"
+            android:background="@color/grey_extra_light"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/skeleton_cardView2"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="36dp"
+            android:background="@color/grey_extra_light"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skeleton_linearLayout5" />
+
+        <FrameLayout
+            android:id="@+id/skeleton_txt_days_ref"
+            android:layout_width="0dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/grey_extra_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skeleton_cardView2" />
+
+        <FrameLayout
+            android:id="@+id/skeleton_txt_schedules_ref"
+            android:layout_width="0dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/grey_extra_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skeleton_txt_days_ref" />
+
+        <FrameLayout
+            android:id="@+id/skeleton_txt_address_ref"
+            android:layout_width="0dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/grey_extra_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skeleton_txt_schedules_ref" />
+
+        <FrameLayout
+            android:id="@+id/skeleton_txt_phone_ref"
+            android:layout_width="0dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/grey_extra_light"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skeleton_txt_address_ref" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

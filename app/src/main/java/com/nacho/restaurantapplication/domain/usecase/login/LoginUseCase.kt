@@ -1,7 +1,7 @@
 package com.nacho.restaurantapplication.domain.usecase.login
 
 import com.google.firebase.auth.AuthResult
-import com.nacho.restaurantapplication.data.network.AuthenticationRepository
+import com.nacho.restaurantapplication.data.network.authentication.AuthenticationRepository
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(

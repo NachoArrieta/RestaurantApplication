@@ -1,4 +1,4 @@
-package com.nacho.restaurantapplication.core
+package com.nacho.restaurantapplication.core.utils
 
 object Constants {
     const val BURGERS = "Hamburguesas"

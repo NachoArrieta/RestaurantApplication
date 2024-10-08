@@ -1,7 +1,8 @@
 package com.nacho.restaurantapplication.di
 
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.nacho.restaurantapplication.data.network.stores.StoresRepository
+import com.nacho.restaurantapplication.data.network.stores.StoresRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,12 +11,9 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object StoresModule {
     @Provides
     @Singleton
-    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
-
-    @Provides
-    @Singleton
-    fun provideFirebaseDatabase(): FirebaseDatabase = FirebaseDatabase.getInstance()
+    fun provideStoresRepository(firebaseDatabase: FirebaseDatabase): StoresRepository =
+        StoresRepositoryImpl(firebaseDatabase)
 }
