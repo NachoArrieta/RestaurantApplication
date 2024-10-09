@@ -44,7 +44,7 @@ class StoresFragment : Fragment() {
             }
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+        viewModel.loadingStores.observe(viewLifecycleOwner) { isLoading ->
             binding.apply {
                 storesRv.visibility = if (isLoading) View.GONE else View.VISIBLE
                 storesShimmer.visibility = if (isLoading) View.VISIBLE else View.GONE

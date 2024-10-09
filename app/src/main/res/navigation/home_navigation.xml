@@ -20,7 +20,19 @@
         android:id="@+id/newsFragment"
         android:name="com.nacho.restaurantapplication.presentation.fragment.home.NewsFragment"
         android:label="Noticias"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news">
+
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_my_profile"

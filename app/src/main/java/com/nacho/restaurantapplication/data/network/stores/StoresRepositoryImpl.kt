@@ -13,8 +13,8 @@ class StoresRepositoryImpl @Inject constructor(
         val storesReference = firebaseDatabase.getReference("Stores")
         return try {
             val storesSnapshot = storesReference.get().await()
-            storesSnapshot.children.mapNotNull { snapshot ->
-                val storeData = snapshot.value as? Map<*, *> ?: return@mapNotNull null
+            storesSnapshot.children.mapNotNull { store ->
+                val storeData = store.value as? Map<*, *> ?: return@mapNotNull null
                 Store(
                     city = storeData["City"] as? String ?: "",
                     address = storeData["Address"] as? String ?: "",
