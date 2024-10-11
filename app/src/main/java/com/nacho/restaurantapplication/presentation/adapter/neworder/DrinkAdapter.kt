@@ -3,6 +3,7 @@ package com.nacho.restaurantapplication.presentation.adapter.neworder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.core.utils.ImageLoader
 import com.nacho.restaurantapplication.data.model.Drink
 import com.nacho.restaurantapplication.databinding.ItemProductBinding
@@ -29,7 +30,7 @@ class DrinkAdapter(
         fun bind(drink: Drink) {
             with(binding) {
                 itemProductTxtTitle.text = drink.title
-                itemProductTxtPrice.text = drink.price.toString()
+                itemProductTxtPrice.text = itemView.context.getString(R.string.price_format, drink.price)
                 ImageLoader.loadImage(
                     itemView.context,
                     drink.image,

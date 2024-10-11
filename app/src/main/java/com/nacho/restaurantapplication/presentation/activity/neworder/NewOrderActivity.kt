@@ -49,6 +49,7 @@ class NewOrderActivity : AppCompatActivity() {
     private fun getProducts() {
         with(newOrderVM) {
             fetchDrinks()
+            fetchAccompaniments()
         }
     }
 

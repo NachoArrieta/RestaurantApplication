@@ -144,6 +144,7 @@
     <string name="confirm_payment_products">Productos</string>
     <string name="confirm_payment_discount">Descuento</string>
     <string name="confirm_payment_shipment">Envío</string>
+    <string name="price_format">$%1$d</string>
 
     <!-- Status payment -->
     <string name="status_payment_title_ok">¡Compra realizada con éxito!</string>

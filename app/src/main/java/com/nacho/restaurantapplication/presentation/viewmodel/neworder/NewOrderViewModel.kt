@@ -10,7 +10,9 @@ import com.nacho.restaurantapplication.core.utils.Constants.BURGERS
 import com.nacho.restaurantapplication.core.utils.Constants.DESSERTS
 import com.nacho.restaurantapplication.core.utils.Constants.DRINKS
 import com.nacho.restaurantapplication.core.utils.Constants.PROMOTIONS
+import com.nacho.restaurantapplication.data.model.Accompaniment
 import com.nacho.restaurantapplication.data.model.Drink
+import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetAccompanimentsUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetDrinksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -19,7 +21,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewOrderViewModel @Inject constructor(
-    private val getDrinksUseCase: GetDrinksUseCase
+    private val getDrinksUseCase: GetDrinksUseCase,
+    private val getAccompanimentsUseCase: GetAccompanimentsUseCase
 ) : ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
@@ -30,6 +33,11 @@ class NewOrderViewModel @Inject constructor(
     val drinks: LiveData<Map<String, List<Drink>>> get() = _drinks
     //End Region Drinks
 
+    // Region Accompaniments
+    private val _accompaniments = MutableLiveData<List<Accompaniment>>()
+    val accompaniments: LiveData<List<Accompaniment>> get() = _accompaniments
+    //End Region Accompaniments
+
     //Tab Layout Region
     val selectedTabIndex = MutableLiveData<Int>()
     val sectionNames = listOf(BURGERS, PROMOTIONS, DRINKS, DESSERTS, ACCOMPANIMENTS)
@@ -38,6 +46,12 @@ class NewOrderViewModel @Inject constructor(
     init {
         selectedTabIndex.value = 0
     }
+
+    //Tab Layout Region
+    fun setSelectedTabIndex(index: Int) {
+        selectedTabIndex.value = index
+    }
+    //End Tab Layout Region
 
     //Region Drinks
     fun fetchDrinks() {
@@ -55,10 +69,20 @@ class NewOrderViewModel @Inject constructor(
     }
     //End Region Drinks
 
-    //Tab Layout Region
-    fun setSelectedTabIndex(index: Int) {
-        selectedTabIndex.value = index
+    //Region Accompaniments
+    fun fetchAccompaniments() {
+        viewModelScope.launch {
+            _isLoading.postValue(true)
+            try {
+                val accompaniments = getAccompanimentsUseCase()
+                _accompaniments.postValue(accompaniments)
+            } catch (e: Exception) {
+                // Manejar error
+            } finally {
+                _isLoading.postValue(false)
+            }
+        }
     }
-    //End Tab Layout Region
+    //End Region Accompaniments
 
 }
