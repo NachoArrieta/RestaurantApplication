@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.databinding.FragmentBurgersBinding
 
 class BurgersFragment : Fragment() {
@@ -25,7 +27,7 @@ class BurgersFragment : Fragment() {
 
         with(binding) {
             burgersBtnAssemble.setOnClickListener {
-
+                findNavController().navigate(R.id.action_newOrderFragment_to_assembleYourBurgerFragment)
             }
         }
 
