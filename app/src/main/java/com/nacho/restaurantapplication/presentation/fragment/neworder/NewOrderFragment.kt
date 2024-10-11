@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nacho.restaurantapplication.databinding.FragmentNewOrderBinding
@@ -51,6 +52,7 @@ class NewOrderFragment : Fragment() {
     private fun setTabLayout() {
         with(binding) {
             newOrderVp.adapter = viewPagerAdapter
+            newOrderVp.disableUserInput()
 
             TabLayoutMediator(newOrderTl, newOrderVp) { tab, position ->
                 tab.text = newOrderVM.sectionNames[position]
@@ -68,6 +70,10 @@ class NewOrderFragment : Fragment() {
                 override fun onTabReselected(tab: TabLayout.Tab?) {}
             })
         }
+    }
+
+    private fun ViewPager2.disableUserInput() {
+        this.isUserInputEnabled = false
     }
 
 }

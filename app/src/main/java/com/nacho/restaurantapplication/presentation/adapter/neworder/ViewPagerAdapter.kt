@@ -22,8 +22,8 @@ class ViewPagerAdapter(fragmentActivity: NewOrderFragment, private val newOrderV
             0 -> BurgersFragment()
             1 -> PromotionsFragment()
             2 -> DrinksFragment()
-            3 -> AccompanimentsFragment()
-            4 -> DessertsFragment()
+            3 -> DessertsFragment()
+            4 -> AccompanimentsFragment()
             else -> BurgersFragment()
         }
     }

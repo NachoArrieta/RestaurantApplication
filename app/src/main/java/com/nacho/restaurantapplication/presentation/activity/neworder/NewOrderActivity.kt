@@ -5,20 +5,26 @@ import android.os.Bundle
 import com.nacho.restaurantapplication.databinding.ActivityNewOrderBinding
 import android.content.Intent
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.presentation.activity.home.HomeActivity
+import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
+import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NewOrderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewOrderBinding
+    private val newOrderVM: NewOrderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        getProducts()
 
         val navController = supportFragmentManager.findFragmentById(R.id.new_order_container)
             ?.findNavController()
@@ -38,6 +44,12 @@ class NewOrderActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    private fun getProducts() {
+        with(newOrderVM) {
+            fetchDrinks()
+        }
     }
 
 }

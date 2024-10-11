@@ -34,7 +34,7 @@ class NewsAdapter(
                     news.image,
                     itemNewsImg,
                     onLoadFailed = {
-                        //Manejar error en caso de que no se pueda cargar la imagen
+                        // Manejar error al cargar imagen
                     },
                     onResourceReady = {}
                 )
