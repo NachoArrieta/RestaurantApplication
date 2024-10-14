@@ -48,6 +48,7 @@ class NewOrderActivity : AppCompatActivity() {
 
     private fun getProducts() {
         with(newOrderVM) {
+            fetchBurgers()
             fetchDrinks()
             fetchDesserts()
             fetchAccompaniments()

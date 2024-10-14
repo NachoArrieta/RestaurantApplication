@@ -11,9 +11,11 @@ import com.nacho.restaurantapplication.core.utils.Constants.DESSERTS
 import com.nacho.restaurantapplication.core.utils.Constants.DRINKS
 import com.nacho.restaurantapplication.core.utils.Constants.PROMOTIONS
 import com.nacho.restaurantapplication.data.model.Accompaniment
+import com.nacho.restaurantapplication.data.model.Burger
 import com.nacho.restaurantapplication.data.model.Dessert
 import com.nacho.restaurantapplication.data.model.Drink
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetAccompanimentsUseCase
+import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetBurgersUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetDessertsUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetDrinksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,6 +25,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewOrderViewModel @Inject constructor(
+    private val getBurgersUseCase: GetBurgersUseCase,
     private val getDrinksUseCase: GetDrinksUseCase,
     private val getDessertsUseCase: GetDessertsUseCase,
     private val getAccompanimentsUseCase: GetAccompanimentsUseCase
@@ -30,6 +33,11 @@ class NewOrderViewModel @Inject constructor(
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
+
+    //Region Burgers
+    private val _burgers = MutableLiveData<Map<String, List<Burger>>>()
+    val burgers: LiveData<Map<String, List<Burger>>> get() = _burgers
+    //End Region Burgers
 
     //Region Drinks
     private val _drinks = MutableLiveData<Map<String, List<Drink>>>()
@@ -60,6 +68,22 @@ class NewOrderViewModel @Inject constructor(
         selectedTabIndex.value = index
     }
     //End Tab Layout Region
+
+    //Region Burgers
+    fun fetchBurgers() {
+        viewModelScope.launch {
+            _isLoading.postValue(true)
+            try {
+                val burgers = getBurgersUseCase()
+                _burgers.postValue(burgers)
+            } catch (e: Exception) {
+                // Manejar error
+            } finally {
+                _isLoading.postValue(false)
+            }
+        }
+    }
+    //End Region Burgers
 
     //Region Drinks
     fun fetchDrinks() {

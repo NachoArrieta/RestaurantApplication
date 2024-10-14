@@ -2,6 +2,7 @@ package com.nacho.restaurantapplication.data.network.products
 
 import com.google.firebase.database.FirebaseDatabase
 import com.nacho.restaurantapplication.data.model.Accompaniment
+import com.nacho.restaurantapplication.data.model.Burger
 import com.nacho.restaurantapplication.data.model.Dessert
 import com.nacho.restaurantapplication.data.model.Drink
 import kotlinx.coroutines.tasks.await
@@ -10,6 +11,36 @@ import javax.inject.Inject
 class ProductsRepositoryImpl @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase
 ) : ProductsRepository {
+
+    override suspend fun getBurgers(): Map<String, List<Burger>> {
+        val burgersReference = firebaseDatabase.getReference("Products/Burgers")
+        return try {
+            val burgersSnapshot = burgersReference.get().await()
+            val categories = mutableMapOf<String, List<Burger>>()
+
+            burgersSnapshot.children.forEach { category ->
+                val burgersList = category.children.mapNotNull { burger ->
+                    val burgerData = burger.value as? Map<*, *> ?: return@mapNotNull null
+                    Burger(
+                        title = burgerData["Title"] as? String ?: "",
+                        description = burgerData["Description"] as? String ?: "",
+                        image = burgerData["Image"] as? String ?: "",
+                        size = burgerData["Size"] as? String ?: "",
+                        price = when (val priceValue = burgerData["Price"]) {
+                            is Int -> priceValue
+                            is Long -> priceValue.toInt()
+                            is Double -> priceValue.toInt()
+                            else -> 0
+                        }
+                    )
+                }
+                categories[category.key ?: ""] = burgersList
+            }
+            categories
+        } catch (e: Exception) {
+            emptyMap()
+        }
+    }
 
     override suspend fun getDrinks(): Map<String, List<Drink>> {
         val drinksReference = firebaseDatabase.getReference("Products/Drinks")
