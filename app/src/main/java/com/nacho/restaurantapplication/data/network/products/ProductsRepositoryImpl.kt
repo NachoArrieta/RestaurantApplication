@@ -2,6 +2,7 @@ package com.nacho.restaurantapplication.data.network.products
 
 import com.google.firebase.database.FirebaseDatabase
 import com.nacho.restaurantapplication.data.model.Accompaniment
+import com.nacho.restaurantapplication.data.model.Dessert
 import com.nacho.restaurantapplication.data.model.Drink
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -31,6 +32,34 @@ class ProductsRepositoryImpl @Inject constructor(
                     )
                 }
                 categories[category.key ?: ""] = drinksList
+            }
+            categories
+        } catch (e: Exception) {
+            emptyMap()
+        }
+    }
+
+    override suspend fun getDesserts(): Map<String, List<Dessert>> {
+        val dessertsReference = firebaseDatabase.getReference("Products/Desserts")
+        return try {
+            val dessertsSnapshot = dessertsReference.get().await()
+            val categories = mutableMapOf<String, List<Dessert>>()
+
+            dessertsSnapshot.children.forEach { category ->
+                val dessertsList = category.children.mapNotNull { dessert ->
+                    val dessertData = dessert.value as? Map<*, *> ?: return@mapNotNull null
+                    Dessert(
+                        title = dessertData["Title"] as? String ?: "",
+                        image = dessertData["Image"] as? String ?: "",
+                        price = when (val priceValue = dessertData["Price"]) {
+                            is Int -> priceValue
+                            is Long -> priceValue.toInt()
+                            is Double -> priceValue.toInt()
+                            else -> 0
+                        }
+                    )
+                }
+                categories[category.key ?: ""] = dessertsList
             }
             categories
         } catch (e: Exception) {

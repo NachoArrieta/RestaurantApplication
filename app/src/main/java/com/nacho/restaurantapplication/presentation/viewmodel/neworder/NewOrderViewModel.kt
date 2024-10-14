@@ -11,8 +11,10 @@ import com.nacho.restaurantapplication.core.utils.Constants.DESSERTS
 import com.nacho.restaurantapplication.core.utils.Constants.DRINKS
 import com.nacho.restaurantapplication.core.utils.Constants.PROMOTIONS
 import com.nacho.restaurantapplication.data.model.Accompaniment
+import com.nacho.restaurantapplication.data.model.Dessert
 import com.nacho.restaurantapplication.data.model.Drink
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetAccompanimentsUseCase
+import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetDessertsUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetDrinksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -22,6 +24,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NewOrderViewModel @Inject constructor(
     private val getDrinksUseCase: GetDrinksUseCase,
+    private val getDessertsUseCase: GetDessertsUseCase,
     private val getAccompanimentsUseCase: GetAccompanimentsUseCase
 ) : ViewModel() {
 
@@ -32,6 +35,11 @@ class NewOrderViewModel @Inject constructor(
     private val _drinks = MutableLiveData<Map<String, List<Drink>>>()
     val drinks: LiveData<Map<String, List<Drink>>> get() = _drinks
     //End Region Drinks
+
+    //Region Desserts
+    private val _desserts = MutableLiveData<Map<String, List<Dessert>>>()
+    val desserts: LiveData<Map<String, List<Dessert>>> get() = _desserts
+    //End Region Desserts
 
     // Region Accompaniments
     private val _accompaniments = MutableLiveData<List<Accompaniment>>()
@@ -68,6 +76,22 @@ class NewOrderViewModel @Inject constructor(
         }
     }
     //End Region Drinks
+
+    //Region Desserts
+    fun fetchDesserts() {
+        viewModelScope.launch {
+            _isLoading.postValue(true)
+            try {
+                val desserts = getDessertsUseCase()
+                _desserts.postValue(desserts)
+            } catch (e: Exception) {
+                // Manejar error
+            } finally {
+                _isLoading.postValue(false)
+            }
+        }
+    }
+    //End Region Desserts
 
     //Region Accompaniments
     fun fetchAccompaniments() {
