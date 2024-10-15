@@ -1,10 +1,12 @@
 package com.nacho.restaurantapplication.data.network.products
 
+import android.util.Log
 import com.google.firebase.database.FirebaseDatabase
 import com.nacho.restaurantapplication.data.model.Accompaniment
 import com.nacho.restaurantapplication.data.model.Burger
 import com.nacho.restaurantapplication.data.model.Dessert
 import com.nacho.restaurantapplication.data.model.Drink
+import com.nacho.restaurantapplication.data.model.Promotion
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -39,6 +41,32 @@ class ProductsRepositoryImpl @Inject constructor(
             categories
         } catch (e: Exception) {
             emptyMap()
+        }
+    }
+
+    override suspend fun getPromotions(): List<Promotion> {
+        val promotionsReference = firebaseDatabase.getReference("Products/Promotions")
+        return try {
+            val promotionsSnapshot = promotionsReference.get().await()
+            val promotionsList = promotionsSnapshot.children.mapNotNull { promotionSnapshot ->
+                val promotionData = promotionSnapshot.value as? Map<*, *> ?: return@mapNotNull null
+                val promotion = Promotion(
+                    title = promotionData["Title"] as? String ?: "",
+                    description = promotionData["Description"] as? String ?: "",
+                    image = promotionData["Image"] as? String ?: "",
+                    price = when (val priceValue = promotionData["Price"]) {
+                        is Int -> priceValue
+                        is Long -> priceValue.toInt()
+                        is Double -> priceValue.toInt()
+                        else -> 0
+                    }
+                )
+                Log.d("ProductsRepository", "Promotion Retrieved: $promotion")
+                promotion
+            }
+            promotionsList
+        } catch (e: Exception) {
+            emptyList()
         }
     }
 

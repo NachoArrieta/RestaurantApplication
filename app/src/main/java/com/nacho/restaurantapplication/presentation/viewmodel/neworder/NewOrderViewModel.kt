@@ -1,6 +1,5 @@
 package com.nacho.restaurantapplication.presentation.viewmodel.neworder
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,18 +13,20 @@ import com.nacho.restaurantapplication.data.model.Accompaniment
 import com.nacho.restaurantapplication.data.model.Burger
 import com.nacho.restaurantapplication.data.model.Dessert
 import com.nacho.restaurantapplication.data.model.Drink
+import com.nacho.restaurantapplication.data.model.Promotion
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetAccompanimentsUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetBurgersUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetDessertsUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetDrinksUseCase
+import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetPromotionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class NewOrderViewModel @Inject constructor(
     private val getBurgersUseCase: GetBurgersUseCase,
+    private val getPromotionsUseCase: GetPromotionsUseCase,
     private val getDrinksUseCase: GetDrinksUseCase,
     private val getDessertsUseCase: GetDessertsUseCase,
     private val getAccompanimentsUseCase: GetAccompanimentsUseCase
@@ -38,6 +39,11 @@ class NewOrderViewModel @Inject constructor(
     private val _burgers = MutableLiveData<Map<String, List<Burger>>>()
     val burgers: LiveData<Map<String, List<Burger>>> get() = _burgers
     //End Region Burgers
+
+    //Region Promotions
+    private val _promotions = MutableLiveData<List<Promotion>>()
+    val promotions: LiveData<List<Promotion>> get() = _promotions
+    //End Region Promotions
 
     //Region Drinks
     private val _drinks = MutableLiveData<Map<String, List<Drink>>>()
@@ -84,6 +90,22 @@ class NewOrderViewModel @Inject constructor(
         }
     }
     //End Region Burgers
+
+    //Region Promotions
+    fun fetchPromotions() {
+        viewModelScope.launch {
+            _isLoading.postValue(true)
+            try {
+                val promotions = getPromotionsUseCase()
+                _promotions.postValue(promotions)
+            } catch (e: Exception) {
+                // Manejar error
+            } finally {
+                _isLoading.postValue(false)
+            }
+        }
+    }
+    //End Region Promotions
 
     //Region Drinks
     fun fetchDrinks() {

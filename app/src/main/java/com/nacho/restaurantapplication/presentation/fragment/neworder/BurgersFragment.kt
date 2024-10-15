@@ -64,7 +64,7 @@ class BurgersFragment : Fragment() {
         }
 
         newOrderVM.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            setupViews(isLoading)
+                setupViews(isLoading)
         }
 
     }

@@ -42,6 +42,13 @@ class AccompanimentsFragment : Fragment() {
             binding.accompanimentsRv.adapter = accompanimentList
         }
 
+        newOrderVM.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (!isLoading) {
+                    binding.accompanimentsRv.visibility = View.VISIBLE
+                    binding.accompanimentsShimmer.visibility = View.GONE
+            }
+        }
+
     }
 
 }

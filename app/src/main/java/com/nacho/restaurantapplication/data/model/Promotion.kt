@@ -7,5 +7,5 @@ data class Promotion(
     val burgers: List<Burger> = listOf(),
     val drinks: List<Drink> = listOf(),
     val accompaniments: List<Accompaniment> = listOf(),
-    val price: String = "",
+    val price: Int = 0,
 )
