@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_order_navigation"
+    app:startDestination="@id/newOrderFragment">
+
+    <fragment
+        android:id="@+id/newOrderFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.NewOrderFragment"
+        android:label="fragment_new_order"
+        tools:layout="@layout/fragment_new_order" >
+        <action
+            android:id="@+id/action_newOrderFragment_to_assembleYourBurgerFragment"
+            app:destination="@id/assembleYourBurgerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/assembleYourBurgerFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.AssembleYourBurgerFragment"
+        android:label="fragment_assemble_your_burger"
+        tools:layout="@layout/fragment_assemble_your_burger" />
+</navigation>

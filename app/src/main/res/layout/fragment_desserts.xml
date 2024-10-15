@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_gradient_white"
     tools:context=".presentation.fragment.neworder.DessertsFragment">
 
@@ -11,8 +11,8 @@
         android:id="@+id/desserts_nsv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,11 +31,12 @@
                 android:text="@string/neworder_desserts"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/desserts_rv_meat"
+                android:id="@+id/desserts_rv_desserts"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -43,38 +44,11 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal"
+                android:visibility="invisible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/desserts_txt_desserts"
-                tools:listitem="@layout/item_product" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/desserts_txt_milkshakes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="@string/neworder_milkshake"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/desserts_rv_meat" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/desserts_rv_chicken"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/desserts_txt_milkshakes"
                 tools:listitem="@layout/item_product" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -87,11 +61,12 @@
                 android:text="@string/neworder_sundae"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/desserts_rv_chicken" />
+                app:layout_constraintTop_toBottomOf="@+id/desserts_rv_desserts" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/desserts_rv_vegan"
+                android:id="@+id/desserts_rv_sundaes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -99,11 +74,68 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal"
+                android:visibility="invisible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/desserts_txt_sundaes"
                 tools:listitem="@layout/item_product" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/desserts_txt_milkshakes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/neworder_milkshake"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/desserts_rv_sundaes" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/desserts_rv_milkshakes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal"
+                android:visibility="invisible"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/desserts_txt_milkshakes"
+                tools:listitem="@layout/item_product" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/desserts_shimmer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/skeleton_drinks" />
+
+                    <include layout="@layout/skeleton_drinks" />
+
+                    <include layout="@layout/skeleton_drinks" />
+
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
