@@ -1,6 +1,5 @@
 package com.nacho.restaurantapplication.data.network.products
 
-import android.util.Log
 import com.google.firebase.database.FirebaseDatabase
 import com.nacho.restaurantapplication.data.model.Accompaniment
 import com.nacho.restaurantapplication.data.model.Burger
@@ -61,7 +60,6 @@ class ProductsRepositoryImpl @Inject constructor(
                         else -> 0
                     }
                 )
-                Log.d("ProductsRepository", "Promotion Retrieved: $promotion")
                 promotion
             }
             promotionsList

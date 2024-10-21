@@ -3,7 +3,7 @@ package com.nacho.restaurantapplication.data.model
 data class User(
     val name: String? = "",
     val lastName: String? = "",
-    val email: String = "",
+    val email: String? = "",
     val phone: String? = "",
     val city: String? = "",
     val address: String? = "",
