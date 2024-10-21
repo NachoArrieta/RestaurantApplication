@@ -8,8 +8,7 @@ interface AuthenticationRepository {
     suspend fun createAccount(email: String, password: String): AuthResult?
     suspend fun sendVerificationEmail(): Boolean
     suspend fun checkEmailExists(email: String): Boolean
-    suspend fun saveUser(user: User): Boolean
+    suspend fun saveUser(user: User, uid: String): Boolean
     fun emailIsVerified(): Flow<Boolean>
-
     suspend fun loginUser(email: String, password: String): AuthResult?
 }

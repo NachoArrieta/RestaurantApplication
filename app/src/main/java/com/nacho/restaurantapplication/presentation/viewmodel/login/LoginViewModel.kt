@@ -8,10 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.nacho.restaurantapplication.core.utils.Constants.MIN_NAME_LENGTH
 import com.nacho.restaurantapplication.core.utils.Constants.MIN_PASSWORD_LENGTH
 import com.nacho.restaurantapplication.core.utils.Constants.PHONE_LENGTH
+import com.nacho.restaurantapplication.domain.model.UserAccount
 import com.nacho.restaurantapplication.domain.model.UserSignup
 import com.nacho.restaurantapplication.domain.usecase.login.CheckEmailExistsUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.CreateAccountUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.LoginUseCase
+import com.nacho.restaurantapplication.domain.usecase.login.SaveAccountUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.SendEmailVerificationUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.VerifyEmailUseCase
 import com.nacho.restaurantapplication.presentation.fragment.login.state.SignUpViewState
@@ -27,8 +29,8 @@ class LoginViewModel @Inject constructor(
     private val sendVerificationEmailUseCase: SendEmailVerificationUseCase,
     private val verifyEmailUseCase: VerifyEmailUseCase,
     private val checkEmailExistsUseCase: CheckEmailExistsUseCase,
-    private val loginUseCase: LoginUseCase
-    //private val saveAccountUseCase: SaveAccountUseCase
+    private val loginUseCase: LoginUseCase,
+    private val saveAccountUseCase: SaveAccountUseCase
 ) : ViewModel() {
 
     private val _viewState = MutableStateFlow(SignUpViewState())
@@ -55,14 +57,32 @@ class LoginViewModel @Inject constructor(
     }
 
     fun createAccount(userSignup: UserSignup) {
+
         viewModelScope.launch {
             val result = createAccountUseCase(userSignup.email, userSignup.password)
             if (result != null) {
+                val uid = result.user?.uid
                 sendVerificationEmail()
+
+                val userDomain = UserAccount(
+                    name = userSignup.name,
+                    lastName = userSignup.lastname,
+                    email = userSignup.email,
+                    phone = userSignup.phone
+                )
+
+                if (uid != null) {
+                    val success = saveAccountUseCase(userDomain, uid)
+                    if (!success) {
+                        _showErrorFragment.value = true
+                    }
+                }
+
             } else {
                 _showErrorFragment.value = true
             }
         }
+
     }
 
     private suspend fun sendVerificationEmail() {

@@ -42,10 +42,20 @@ class AuthenticationRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun saveUser(user: User): Boolean {
+    override suspend fun saveUser(user: User, uid: String): Boolean {
         return try {
-            val userId = firebaseAuth.currentUser?.uid ?: return false
-            firebaseDatabase.reference.child("users").child(userId).setValue(user).await()
+            val userMap = mapOf(
+                "Name" to user.name,
+                "LastName" to user.lastName,
+                "Email" to user.email,
+                "Phone" to user.phone,
+                "City" to user.city,
+                "Address" to user.address,
+                "Floor" to user.floor,
+                "Number" to user.number
+            )
+
+            firebaseDatabase.reference.child("Users").child(uid).setValue(userMap).await()
             true
         } catch (e: Exception) {
             false
