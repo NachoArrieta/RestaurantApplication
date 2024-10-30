@@ -2,6 +2,7 @@ package com.nacho.restaurantapplication.presentation.activity.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.navigation.findNavController
@@ -16,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.core.fragment.DialogAlertFragment
 import com.nacho.restaurantapplication.databinding.ActivityHomeBinding
+import com.nacho.restaurantapplication.databinding.NavHeaderHomeBinding
 import com.nacho.restaurantapplication.presentation.activity.login.LoginActivity
 import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +31,15 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val user = FirebaseAuth.getInstance().currentUser?.uid
+
+        if (user != null) {
+            homeVM.fetchUserInformation(user)
+        } else {
+            // Mostrar error correspondiente para cuando no se puede obtener la informacion del usuario
+        }
+
         setupObservers()
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -75,6 +86,20 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
+
+        homeVM.userInformation.observe(this) { userInformation ->
+            userInformation.let { user ->
+                Log.d("HomeActivity", "Observed user info: $userInformation")
+                val headerBinding = NavHeaderHomeBinding.bind(binding.navView.getHeaderView(0))
+                if (user != null) {
+                    headerBinding.headerTxtName.text = getString(R.string.nav_header_name, user.name, user.lastName)
+                    headerBinding.headerTxtEmail.text = user.email
+                } else {
+                    // Mostrar informacion si no se pudo obtener el nombre y apellido del usuario
+                }
+            }
+        }
+
         homeVM.backInHome.observe(this) { navigateOnBack ->
             if (navigateOnBack) {
                 showAlertDialog(

@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.databinding.FragmentHomeBinding
 import com.nacho.restaurantapplication.presentation.activity.neworder.NewOrderActivity
 import com.nacho.restaurantapplication.presentation.adapter.home.NewsAdapter

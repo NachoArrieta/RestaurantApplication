@@ -6,14 +6,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nacho.restaurantapplication.data.model.News
 import com.nacho.restaurantapplication.data.model.Store
+import com.nacho.restaurantapplication.data.model.User
 import com.nacho.restaurantapplication.domain.usecase.home.news.GetNewsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.stores.GetStoresUseCase
+import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserInformationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    private val getUserInformationUseCase: GetUserInformationUseCase,
     private val getStoresUseCase: GetStoresUseCase,
     private val getNewsUseCase: GetNewsUseCase
 ) : ViewModel() {
@@ -36,6 +39,11 @@ class HomeViewModel @Inject constructor(
     private val _news = MutableLiveData<List<News>?>()
     val news: LiveData<List<News>?> get() = _news
     //End Region News
+
+    //Region User Information
+    private val _userInformation = MutableLiveData<User?>()
+    val userInformation: LiveData<User?> get() = _userInformation
+    //End Region User Information
 
     //Region Stores
     private val _stores = MutableLiveData<List<Store>?>()
@@ -65,6 +73,23 @@ class HomeViewModel @Inject constructor(
         }
     }
     //End Region News
+
+    //Region User Information
+    fun fetchUserInformation(uid: String) {
+        viewModelScope.launch {
+            //Añadir Loading
+            try {
+                val userInfo = getUserInformationUseCase(uid)
+                _userInformation.value = userInfo
+                //Resetear el valor si se obtiene la informacion
+            } catch (e: Exception) {
+                //Mostrar error correspondiente si no se puede obtener la informacion
+            } finally {
+                //Quitar loading o shimmer
+            }
+        }
+    }
+    //End Region User Information
 
     //Region Stores
     fun fetchStores() {
