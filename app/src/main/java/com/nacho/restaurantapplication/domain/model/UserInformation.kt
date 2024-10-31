@@ -4,7 +4,6 @@ data class UserInformation(
     val name: String? = "",
     val lastName: String? = "",
     val phone: String? = "",
-    val email: String? = "",
     val city: String? = "",
     val address: String? = "",
     val floor: String? = "",

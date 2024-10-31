@@ -12,25 +12,11 @@ fun UserAccount.toData(): User {
         phone = this.phone
     )
 }
-
-fun User.toUserInformation(): UserInformation {
-    return UserInformation(
-        name = this.name,
-        lastName = this.lastName,
-        phone = this.phone,
-        email = this.email,
-        city = this.city,
-        address = this.address,
-        floor = this.floor,
-        number = this.number
-    )
-}
 fun UserInformation.toUser(): User {
     return User(
         name = this.name,
         lastName = this.lastName,
         phone = this.phone,
-        email = this.email,
         city = this.city,
         address = this.address,
         floor = this.floor,

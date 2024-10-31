@@ -2,6 +2,8 @@ package com.nacho.restaurantapplication.data.network.user
 
 import com.google.firebase.database.FirebaseDatabase
 import com.nacho.restaurantapplication.data.model.User
+import com.nacho.restaurantapplication.domain.mapper.toUser
+import com.nacho.restaurantapplication.domain.model.UserInformation
 import kotlinx.coroutines.tasks.await
 
 class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDatabase) : UserInformationRepository {
@@ -26,6 +28,26 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
             user
         } catch (e: Exception) {
             null
+        }
+    }
+
+    override suspend fun updateUserInformation(uid: String, user: User): Boolean {
+        val userReference = firebaseDatabase.getReference("Users/$uid")
+        return try {
+            val userMap = mapOf(
+                "Name" to user.name,
+                "LastName" to user.lastName,
+                "Phone" to user.phone,
+                "City" to user.city,
+                "Address" to user.address,
+                "Floor" to user.floor,
+                "Number" to user.number
+            )
+
+            userReference.updateChildren(userMap).await()
+            true
+        } catch (e: Exception) {
+            false
         }
     }
 

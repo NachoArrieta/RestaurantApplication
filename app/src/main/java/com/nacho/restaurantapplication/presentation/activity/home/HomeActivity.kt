@@ -35,6 +35,7 @@ class HomeActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser?.uid
 
         if (user != null) {
+            homeVM.setUserId(user)
             homeVM.fetchUserInformation(user)
         } else {
             // Mostrar error correspondiente para cuando no se puede obtener la informacion del usuario
@@ -89,7 +90,6 @@ class HomeActivity : AppCompatActivity() {
 
         homeVM.userInformation.observe(this) { userInformation ->
             userInformation.let { user ->
-                Log.d("HomeActivity", "Observed user info: $userInformation")
                 val headerBinding = NavHeaderHomeBinding.bind(binding.navView.getHeaderView(0))
                 if (user != null) {
                     headerBinding.headerTxtName.text = getString(R.string.nav_header_name, user.name, user.lastName)

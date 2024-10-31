@@ -19,7 +19,7 @@ import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.core.extensions.loseFocusAfterAction
 import com.nacho.restaurantapplication.core.extensions.onTextChanged
 import com.nacho.restaurantapplication.databinding.FragmentSignupBinding
-import com.nacho.restaurantapplication.domain.model.UserSignup
+import com.nacho.restaurantapplication.presentation.model.UserSignup
 import com.nacho.restaurantapplication.presentation.fragment.login.state.SignUpViewState
 import com.nacho.restaurantapplication.presentation.viewmodel.login.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint

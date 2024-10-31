@@ -1,4 +1,4 @@
-package com.nacho.restaurantapplication.domain.model
+package com.nacho.restaurantapplication.presentation.model
 
 data class UserSignup(
     val name: String = "",

@@ -7,9 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.nacho.restaurantapplication.data.model.News
 import com.nacho.restaurantapplication.data.model.Store
 import com.nacho.restaurantapplication.data.model.User
+import com.nacho.restaurantapplication.domain.model.UserInformation
 import com.nacho.restaurantapplication.domain.usecase.home.news.GetNewsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.stores.GetStoresUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserInformationUseCase
+import com.nacho.restaurantapplication.domain.usecase.home.user.UpdateUserInformationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,15 +19,18 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getUserInformationUseCase: GetUserInformationUseCase,
+    private val updateUserInformationUseCase: UpdateUserInformationUseCase,
     private val getStoresUseCase: GetStoresUseCase,
     private val getNewsUseCase: GetNewsUseCase
 ) : ViewModel() {
 
+    //States Region
     private val _backInHome = MutableLiveData<Boolean>()
     val backInHome: LiveData<Boolean> = _backInHome
 
     private val _drawerOpen = MutableLiveData<Boolean>()
     val drawerOpen: LiveData<Boolean> = _drawerOpen
+    //End States Region
 
     //Loading Region
     private val _loadingStores = MutableLiveData<Boolean>()
@@ -41,6 +46,9 @@ class HomeViewModel @Inject constructor(
     //End Region News
 
     //Region User Information
+    private val _userId = MutableLiveData<String?>()
+    val userId: LiveData<String?> get() = _userId
+
     private val _userInformation = MutableLiveData<User?>()
     val userInformation: LiveData<User?> get() = _userInformation
     //End Region User Information
@@ -75,6 +83,10 @@ class HomeViewModel @Inject constructor(
     //End Region News
 
     //Region User Information
+    fun setUserId(uid: String?) {
+        _userId.postValue(uid)
+    }
+
     fun fetchUserInformation(uid: String) {
         viewModelScope.launch {
             //Añadir Loading
@@ -86,6 +98,18 @@ class HomeViewModel @Inject constructor(
                 //Mostrar error correspondiente si no se puede obtener la informacion
             } finally {
                 //Quitar loading o shimmer
+            }
+        }
+    }
+
+    fun updateUserInformation(uid: String, userInformation: UserInformation) {
+        viewModelScope.launch {
+            val success = updateUserInformationUseCase(uid, userInformation)
+            // Manejar el resultado de la actualización
+            if (success) {
+                // Actualización exitosa, notificar al usuario o actualizar la UI
+            } else {
+                // Manejar el error
             }
         }
     }

@@ -23,8 +23,9 @@
     <TextView
         android:id="@+id/header_txt_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_height="20dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
         android:text="@string/nav_header_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/white" />
@@ -32,7 +33,8 @@
     <TextView
         android:id="@+id/header_txt_email"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
+        android:gravity="center_vertical"
         android:text="@string/nav_header_email"
         android:textColor="@color/white" />
 
