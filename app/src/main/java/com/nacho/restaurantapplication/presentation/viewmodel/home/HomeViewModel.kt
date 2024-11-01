@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nacho.restaurantapplication.core.utils.Constants.ADDRESS_LENGTH
+import com.nacho.restaurantapplication.core.utils.Constants.MIN_NAME_LENGTH
+import com.nacho.restaurantapplication.core.utils.Constants.PHONE_LENGTH
 import com.nacho.restaurantapplication.data.model.News
 import com.nacho.restaurantapplication.data.model.Store
 import com.nacho.restaurantapplication.data.model.User
@@ -12,7 +15,10 @@ import com.nacho.restaurantapplication.domain.usecase.home.news.GetNewsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.stores.GetStoresUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserInformationUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.UpdateUserInformationUseCase
+import com.nacho.restaurantapplication.presentation.fragment.home.state.MyProfileViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,6 +31,12 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     //States Region
+    private val _viewState = MutableStateFlow(MyProfileViewState())
+    val viewState: StateFlow<MyProfileViewState> get() = _viewState
+
+    private val _hasChanges = MutableLiveData<Boolean>(false)
+    val hasChanges: LiveData<Boolean> get() = _hasChanges
+
     private val _backInHome = MutableLiveData<Boolean>()
     val backInHome: LiveData<Boolean> = _backInHome
 
@@ -130,5 +142,27 @@ class HomeViewModel @Inject constructor(
         }
     }
     //End Region Stores
+
+    //Region Profile States
+    fun onFieldsChanged(infoProfile: UserInformation) {
+        _viewState.value = infoProfile.toMyProfileViewState()
+    }
+
+    private fun isValidOrEmptyName(name: String): Boolean = name.length >= MIN_NAME_LENGTH || name.isEmpty()
+
+    private fun isValidOrEmptyLastname(lastname: String): Boolean = lastname.length >= MIN_NAME_LENGTH || lastname.isEmpty()
+
+    private fun isValidOrEmptyPhone(phone: String): Boolean = phone.length == PHONE_LENGTH || phone.isEmpty()
+
+    private fun isValidOrEmptyAddress(address: String): Boolean = address.length >= ADDRESS_LENGTH || address.isEmpty()
+
+    private fun UserInformation.toMyProfileViewState(): MyProfileViewState {
+        return MyProfileViewState(
+            isValidName = isValidOrEmptyName(name),
+            isValidLastName = isValidOrEmptyLastname(lastName),
+            isValidPhone = isValidOrEmptyPhone(phone),
+            isValidAddress = isValidOrEmptyAddress(address),)
+    }
+    //Region Profile States
 
 }
