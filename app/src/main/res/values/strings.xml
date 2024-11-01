@@ -10,7 +10,7 @@
     <string name="city">Ciudad</string>
     <string name="address">Dirección</string>
     <string name="floor">Piso</string>
-    <string name="floor_number">Número</string>
+    <string name="floor_number">Número de depto</string>
     <string name="cancel">Cancelar</string>
     <string name="modify">Modificar</string>
     <string name="total">Total: </string>
@@ -68,7 +68,7 @@
     <!-- Header Drawer -->
     <string name="title_activity_home">HomeActivity</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="nav_header_name">Android Studio</string>
+    <string name="nav_header_name">%1$s %2$s</string>
     <string name="nav_header_email">android.studio@android.com</string>
 
     <!-- My Coupons -->
@@ -78,8 +78,14 @@
     <string name="orders_repeat">Repetir pedido</string>
 
     <!-- My Profile -->
+    <string name="profile_rio_tercero">Río Tercero</string>
+    <string name="profile_almafuerte">Almafuerte</string>
+    <string name="profile_villa_del_dique">Villa del Dique</string>
     <string name="profile_save_changes">Guardar cambios</string>
     <string name="profile_disabled_notifications">Deseas desactivar las notificaciones?</string>
+    <string name="profile_error_address">Debes tener contener al menos 6 caracteres</string>
+    <string name="profile_no_changes">No se ha realizado ninguna modificación</string>
+    <string name="profile_changes_successful">Cambios realizados con éxito</string>
 
     <!-- Stores -->
     <string name="stores_days">Días:</string>
@@ -121,6 +127,7 @@
     <string name="dialog_quit_title">¿Deseas salir de la aplicación?</string>
     <string name="dialog_log_out">¿Deseas cerrar sesión?</string>
     <string name="dialog_return_login_title">¿Deseas volver al inicio?</string>
+    <string name="dialog_return_profile_title">¿Deseas aplicar los cambios?</string>
     <string name="dialog_exit">Sí, deseo salir</string>
     <string name="dialog_out">Sí, deseo cerrar</string>
     <string name="dialog_accept">Aceptar</string>

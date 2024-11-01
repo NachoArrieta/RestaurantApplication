@@ -10,11 +10,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/profile_btn_save_changes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="24dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,13 +50,17 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/profile_til_name"
                 style="@style/TextInputLayoutStyleRed"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="12dp"
                 android:hint="@string/name"
                 android:textColorHint="@color/red_extra_dark"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_txt_title_email">
@@ -64,10 +68,13 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/profile_tie_name"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/white"
                     android:fontFamily="@font/montserrat_regular"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/red_extra_dark"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="@color/grey_dark"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -75,12 +82,16 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/profile_til_lastname"
                 style="@style/TextInputLayoutStyleRed"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:hint="@string/lastname"
                 android:textColorHint="@color/red_extra_dark"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_til_name">
@@ -88,30 +99,30 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/profile_tie_lastname"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/white"
                     android:fontFamily="@font/montserrat_regular"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/red_extra_dark"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="@color/grey_dark"
                     android:textSize="16sp" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/profile_til_phone"
                 style="@style/TextInputLayoutStyleRed"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:hint="@string/phone"
                 android:textColorHint="@color/red_extra_dark"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_til_lastname">
@@ -119,47 +130,63 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/profile_tie_phone"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/white"
+                    android:maxLength="10"
                     android:fontFamily="@font/montserrat_regular"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/red_extra_dark"
+                    android:importantForAutofill="no"
+                    android:inputType="phone"
+                    android:padding="8dp"
+                    android:textColor="@color/grey_dark"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/profile_til_city"
-                style="@style/TextInputLayoutStyleRed"
+                style="@style/TextInputLayoutStyleRedForDropMenu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:hint="@string/city"
                 android:textColorHint="@color/red_extra_dark"
+                app:endIconTint="@color/red_extra_dark"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
+                android:clickable="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_til_phone">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/profile_tie_city"
+                <AutoCompleteTextView
+                    android:id="@+id/profile_atv_city"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:backgroundTint="@android:color/transparent"
                     android:fontFamily="@font/montserrat_regular"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/red_extra_dark"
-                    android:textSize="16sp" />
+                    android:inputType="none"
+                    android:textColor="@color/grey_dark"
+                    android:textSize="16sp"
+                    tools:ignore="LabelFor" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/profile_til_address"
                 style="@style/TextInputLayoutStyleRed"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="22dp"
                 android:layout_marginEnd="12dp"
                 android:hint="@string/address"
                 android:textColorHint="@color/red_extra_dark"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_til_city">
@@ -167,10 +194,13 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/profile_tie_address"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/white"
                     android:fontFamily="@font/montserrat_regular"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/red_extra_dark"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="@color/grey_dark"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -179,11 +209,15 @@
                 android:id="@+id/profile_til_floor"
                 style="@style/TextInputLayoutStyleRed"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="88dp"
                 android:layout_marginStart="12dp"
-                android:hint="@string/floor"
                 android:layout_marginEnd="6dp"
+                android:hint="@string/floor"
                 android:textColorHint="@color/red_extra_dark"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
                 app:layout_constraintEnd_toStartOf="@+id/guideline15"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_til_address">
@@ -191,10 +225,14 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/profile_tie_floor"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
+                    android:maxLength="2"
+                    android:backgroundTint="@color/white"
                     android:fontFamily="@font/montserrat_regular"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/red_extra_dark"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:textColor="@color/grey_dark"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -203,11 +241,15 @@
                 android:id="@+id/profile_til_floor_number"
                 style="@style/TextInputLayoutStyleRed"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="88dp"
+                android:layout_marginStart="6dp"
                 android:layout_marginEnd="12dp"
                 android:hint="@string/floor_number"
-                android:layout_marginStart="6dp"
                 android:textColorHint="@color/red_extra_dark"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline15"
                 app:layout_constraintTop_toBottomOf="@+id/profile_til_address">
@@ -215,20 +257,23 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/profile_tie_floor_number"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/white"
                     android:fontFamily="@font/montserrat_regular"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/red_extra_dark"
+                    android:importantForAutofill="no"
+                    android:maxLength="2"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="@color/grey_dark"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="196dp" />
+                app:layout_constraintGuide_begin="205dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -240,8 +285,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/btn_gradient_red"
-        android:foreground="?attr/selectableItemBackground"
         android:fontFamily="@font/montserrat_regular"
+        android:foreground="?attr/selectableItemBackground"
         android:text="@string/profile_save_changes"
         android:textColor="@color/white"
         android:textSize="16sp"

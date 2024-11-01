@@ -10,5 +10,6 @@ object Constants {
     const val MIN_NAME_LENGTH = 4
     const val MIN_PASSWORD_LENGTH = 8
     const val PHONE_LENGTH = 10
+    const val ADDRESS_LENGTH = 6
 
 }
