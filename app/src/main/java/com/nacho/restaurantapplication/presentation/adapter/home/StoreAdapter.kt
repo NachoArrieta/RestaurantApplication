@@ -8,8 +8,8 @@ import com.nacho.restaurantapplication.core.utils.ImageLoader
 import com.nacho.restaurantapplication.data.model.Store
 import com.nacho.restaurantapplication.databinding.ItemStoreBinding
 
-class StoresAdapter(private val storeList: List<Store>) :
-    RecyclerView.Adapter<StoresAdapter.StoreViewHolder>() {
+class StoreAdapter(private val storeList: List<Store>) :
+    RecyclerView.Adapter<StoreAdapter.StoreViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreViewHolder {
         val binding = ItemStoreBinding.inflate(LayoutInflater.from(parent.context), parent, false)
