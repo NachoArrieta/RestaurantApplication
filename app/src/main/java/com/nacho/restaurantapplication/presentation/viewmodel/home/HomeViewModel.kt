@@ -1,5 +1,6 @@
 package com.nacho.restaurantapplication.presentation.viewmodel.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.nacho.restaurantapplication.core.utils.Constants.ADDRESS_LENGTH
 import com.nacho.restaurantapplication.core.utils.Constants.MIN_NAME_LENGTH
 import com.nacho.restaurantapplication.core.utils.Constants.PHONE_LENGTH
+import com.nacho.restaurantapplication.data.model.Coupon
 import com.nacho.restaurantapplication.data.model.News
 import com.nacho.restaurantapplication.data.model.Store
 import com.nacho.restaurantapplication.data.model.User
@@ -63,6 +65,9 @@ class HomeViewModel @Inject constructor(
 
     private val _userInformation = MutableLiveData<User?>()
     val userInformation: LiveData<User?> get() = _userInformation
+
+    private val _userCoupons = MutableLiveData<List<Coupon>>()
+    val userCoupons: LiveData<List<Coupon>> get() = _userCoupons
     //End Region User Information
 
     //Region Stores
@@ -105,6 +110,7 @@ class HomeViewModel @Inject constructor(
             try {
                 val userInfo = getUserInformationUseCase(uid)
                 _userInformation.value = userInfo
+                _userCoupons.value = userInfo?.coupons ?: emptyList()
                 //Resetear el valor si se obtiene la informacion
             } catch (e: Exception) {
                 //Mostrar error correspondiente si no se puede obtener la informacion
@@ -161,7 +167,8 @@ class HomeViewModel @Inject constructor(
             isValidName = isValidOrEmptyName(name),
             isValidLastName = isValidOrEmptyLastname(lastName),
             isValidPhone = isValidOrEmptyPhone(phone),
-            isValidAddress = isValidOrEmptyAddress(address),)
+            isValidAddress = isValidOrEmptyAddress(address),
+        )
     }
     //Region Profile States
 

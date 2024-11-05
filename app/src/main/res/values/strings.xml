@@ -73,6 +73,9 @@
 
     <!-- My Coupons -->
     <string name="coupons">Lo quiero!</string>
+    <string name="coupons_not_expire">Sin fecha de caducidad</string>
+    <string name="coupons_no_coupon">En este momento, no tenemos cupones disponibles para ofrecerte. Estate atento a nuestras notificaciones y noticias, que en cualquier momento llegan!</string>
+    <string name="coupons_understood">Entendido</string>
 
     <!-- My Coupons -->
     <string name="orders_repeat">Repetir pedido</string>

@@ -1,6 +1,7 @@
 package com.nacho.restaurantapplication.data.network.user
 
 import com.google.firebase.database.FirebaseDatabase
+import com.nacho.restaurantapplication.data.model.Coupon
 import com.nacho.restaurantapplication.data.model.User
 import com.nacho.restaurantapplication.domain.mapper.toUser
 import com.nacho.restaurantapplication.domain.model.UserInformation
@@ -22,9 +23,19 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
                 city = userData["City"] as? String ?: "",
                 address = userData["Address"] as? String ?: "",
                 floor = userData["Floor"] as? String ?: "",
-                number = userData["Number"] as? String ?: ""
+                number = userData["Number"] as? String ?: "",
+                coupons = (userData["Coupons"] as? Map<*, *>)?.map { entry ->
+                    val couponData = entry.value as? Map<*, *>
+                    Coupon(
+                        title = couponData?.get("Title") as? String ?: "",
+                        description = couponData?.get("Description") as? String ?: "",
+                        code = couponData?.get("Code") as? String ?: "",
+                        percentage = (couponData?.get("percentage") as? String)?.toIntOrNull() ?: 0,
+                        expirationDate = couponData?.get("ExpirationDate") as? String ?: "",
+                        amount = (couponData?.get("Amount") as? String)?.toIntOrNull() ?: 0
+                    )
+                } ?: emptyList()
             )
-
             user
         } catch (e: Exception) {
             null
