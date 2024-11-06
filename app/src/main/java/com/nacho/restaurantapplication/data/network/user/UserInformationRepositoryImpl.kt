@@ -2,9 +2,8 @@ package com.nacho.restaurantapplication.data.network.user
 
 import com.google.firebase.database.FirebaseDatabase
 import com.nacho.restaurantapplication.data.model.Coupon
+import com.nacho.restaurantapplication.data.model.Reservation
 import com.nacho.restaurantapplication.data.model.User
-import com.nacho.restaurantapplication.domain.mapper.toUser
-import com.nacho.restaurantapplication.domain.model.UserInformation
 import kotlinx.coroutines.tasks.await
 
 class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDatabase) : UserInformationRepository {
@@ -56,6 +55,25 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
             )
 
             userReference.updateChildren(userMap).await()
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    override suspend fun addReservation(uid: String, reservation: Reservation): Boolean {
+        val userReservationsReference = firebaseDatabase.getReference("Users/$uid/Reservations")
+        val reservationKey = reservation.day.replace("/", "-")
+
+        val reservationMap = mapOf(
+            "City" to reservation.city,
+            "Day" to reservation.day,
+            "Hour" to reservation.hour,
+            "Places" to reservation.places
+        )
+
+        return try {
+            userReservationsReference.child(reservationKey).setValue(reservationMap).await()
             true
         } catch (e: Exception) {
             false

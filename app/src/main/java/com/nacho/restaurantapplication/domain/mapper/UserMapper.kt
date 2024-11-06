@@ -1,6 +1,8 @@
 package com.nacho.restaurantapplication.domain.mapper
 
+import com.nacho.restaurantapplication.data.model.Reservation
 import com.nacho.restaurantapplication.data.model.User
+import com.nacho.restaurantapplication.domain.model.ReservationInformation
 import com.nacho.restaurantapplication.domain.model.UserAccount
 import com.nacho.restaurantapplication.domain.model.UserInformation
 
@@ -12,6 +14,7 @@ fun UserAccount.toData(): User {
         phone = this.phone
     )
 }
+
 fun UserInformation.toUser(): User {
     return User(
         name = this.name,
@@ -21,5 +24,14 @@ fun UserInformation.toUser(): User {
         address = this.address,
         floor = this.floor,
         number = this.number
+    )
+}
+
+fun ReservationInformation.toReservation(): Reservation {
+    return Reservation(
+        city = this.city,
+        day = this.day,
+        hour = this.hour,
+        places = this.places
     )
 }

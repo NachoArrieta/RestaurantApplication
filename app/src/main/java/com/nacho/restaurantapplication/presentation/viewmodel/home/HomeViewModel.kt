@@ -1,6 +1,5 @@
 package com.nacho.restaurantapplication.presentation.viewmodel.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,9 +11,11 @@ import com.nacho.restaurantapplication.data.model.Coupon
 import com.nacho.restaurantapplication.data.model.News
 import com.nacho.restaurantapplication.data.model.Store
 import com.nacho.restaurantapplication.data.model.User
+import com.nacho.restaurantapplication.domain.model.ReservationInformation
 import com.nacho.restaurantapplication.domain.model.UserInformation
 import com.nacho.restaurantapplication.domain.usecase.home.news.GetNewsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.stores.GetStoresUseCase
+import com.nacho.restaurantapplication.domain.usecase.home.user.AddReservationUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserInformationUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.UpdateUserInformationUseCase
 import com.nacho.restaurantapplication.presentation.fragment.home.state.MyProfileViewState
@@ -28,6 +29,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getUserInformationUseCase: GetUserInformationUseCase,
     private val updateUserInformationUseCase: UpdateUserInformationUseCase,
+    private val addReservationUseCase: AddReservationUseCase,
     private val getStoresUseCase: GetStoresUseCase,
     private val getNewsUseCase: GetNewsUseCase
 ) : ViewModel() {
@@ -138,6 +140,31 @@ class HomeViewModel @Inject constructor(
     }
     //End Region User Information
 
+    //Region Reservations
+    fun addReservation(uid: String, reservationInformation: ReservationInformation) {
+        viewModelScope.launch {
+            val success = addReservationUseCase(uid, reservationInformation)
+            // Manejar el resultado de la inserción de la reserva
+            if (success) {
+            // Reserva añadida exitosamente, notificar al usuario o actualizar la UI
+            } else {
+            // Manejar el error
+            }
+        }
+    }
+
+    fun checkFormValidity(city: String, place: String, hour: String, day: String) {
+        _reservationValidateFields.value = city.isNotEmpty() && place.isNotEmpty() && hour.isNotEmpty() && day.isNotEmpty()
+    }
+
+    fun confirmReservation(city: String, day: String, hour: String, places: String) {
+        val reservationInformation = ReservationInformation(city = city, day = day, hour = hour, places = places)
+        userId.value?.let { uid ->
+            addReservation(uid, reservationInformation)
+        }
+    }
+    //End Region Reservations
+
     //Region Stores
     fun fetchStores() {
         viewModelScope.launch {
@@ -176,11 +203,5 @@ class HomeViewModel @Inject constructor(
         )
     }
     //Region Profile States
-
-    //Region Reservations
-    fun checkFormValidity(city: String, place: String, hour: String, day: String) {
-        _reservationValidateFields.value = city.isNotEmpty() && place.isNotEmpty() && hour.isNotEmpty() && day.isNotEmpty()
-    }
-    //End Region Reservations
 
 }

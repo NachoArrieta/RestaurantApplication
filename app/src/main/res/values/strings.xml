@@ -78,6 +78,8 @@
     <string name="reservations_hours_five">23.00 hs</string>
     <string name="reservations_hours_six">00.00 hs</string>
     <string name="reservations_hours_seven">01.00 hs</string>
+    <string name="reservations_dialog">¿Estas seguro que deseas realizar la reserva?</string>
+    <string name="reservations_ok">Reserva realizada con éxito</string>
 
     <!-- Header Drawer -->
     <string name="title_activity_home">HomeActivity</string>
