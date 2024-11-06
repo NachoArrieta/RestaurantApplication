@@ -75,6 +75,11 @@ class HomeViewModel @Inject constructor(
     val stores: LiveData<List<Store>?> get() = _stores
     //End Region Stores
 
+    //Region Reservations
+    private val _reservationValidateFields = MutableLiveData(false)
+    val reservationValidateFields: LiveData<Boolean> = _reservationValidateFields
+    //End Region Reservations
+
     fun setDrawerOpen(open: Boolean) {
         _drawerOpen.value = open
     }
@@ -171,5 +176,11 @@ class HomeViewModel @Inject constructor(
         )
     }
     //Region Profile States
+
+    //Region Reservations
+    fun checkFormValidity(city: String, place: String, hour: String, day: String) {
+        _reservationValidateFields.value = city.isNotEmpty() && place.isNotEmpty() && hour.isNotEmpty() && day.isNotEmpty()
+    }
+    //End Region Reservations
 
 }
