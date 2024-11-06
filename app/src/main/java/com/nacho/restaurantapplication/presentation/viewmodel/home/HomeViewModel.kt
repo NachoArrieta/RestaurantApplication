@@ -9,6 +9,7 @@ import com.nacho.restaurantapplication.core.utils.Constants.MIN_NAME_LENGTH
 import com.nacho.restaurantapplication.core.utils.Constants.PHONE_LENGTH
 import com.nacho.restaurantapplication.data.model.Coupon
 import com.nacho.restaurantapplication.data.model.News
+import com.nacho.restaurantapplication.data.model.Reservation
 import com.nacho.restaurantapplication.data.model.Store
 import com.nacho.restaurantapplication.data.model.User
 import com.nacho.restaurantapplication.domain.model.ReservationInformation
@@ -37,9 +38,6 @@ class HomeViewModel @Inject constructor(
     //States Region
     private val _viewState = MutableStateFlow(MyProfileViewState())
     val viewState: StateFlow<MyProfileViewState> get() = _viewState
-
-    private val _hasChanges = MutableLiveData<Boolean>(false)
-    val hasChanges: LiveData<Boolean> get() = _hasChanges
 
     private val _backInHome = MutableLiveData<Boolean>()
     val backInHome: LiveData<Boolean> = _backInHome
@@ -70,6 +68,9 @@ class HomeViewModel @Inject constructor(
 
     private val _userCoupons = MutableLiveData<List<Coupon>>()
     val userCoupons: LiveData<List<Coupon>> get() = _userCoupons
+
+    private val _userReservations = MutableLiveData<List<Reservation>>()
+    val userReservations: LiveData<List<Reservation>> get() = _userReservations
     //End Region User Information
 
     //Region Stores
@@ -113,16 +114,16 @@ class HomeViewModel @Inject constructor(
 
     fun fetchUserInformation(uid: String) {
         viewModelScope.launch {
-            //Añadir Loading
             try {
                 val userInfo = getUserInformationUseCase(uid)
                 _userInformation.value = userInfo
                 _userCoupons.value = userInfo?.coupons ?: emptyList()
-                //Resetear el valor si se obtiene la informacion
+                _userReservations.value = userInfo?.reservations ?: emptyList()
+                // Resetear el valor si se obtiene la información
             } catch (e: Exception) {
-                //Mostrar error correspondiente si no se puede obtener la informacion
+                // Mostrar error correspondiente si no se puede obtener la información
             } finally {
-                //Quitar loading o shimmer
+                // Quitar loading o shimmer
             }
         }
     }
@@ -141,7 +142,7 @@ class HomeViewModel @Inject constructor(
     //End Region User Information
 
     //Region Reservations
-    fun addReservation(uid: String, reservationInformation: ReservationInformation) {
+    private fun addReservation(uid: String, reservationInformation: ReservationInformation) {
         viewModelScope.launch {
             val success = addReservationUseCase(uid, reservationInformation)
             // Manejar el resultado de la inserción de la reserva

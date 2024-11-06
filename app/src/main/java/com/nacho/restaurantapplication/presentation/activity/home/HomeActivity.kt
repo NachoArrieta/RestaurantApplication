@@ -2,7 +2,6 @@ package com.nacho.restaurantapplication.presentation.activity.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.navigation.findNavController

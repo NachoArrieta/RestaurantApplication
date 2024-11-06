@@ -1,5 +1,6 @@
 package com.nacho.restaurantapplication.data.network.user
 
+import android.util.Log
 import com.google.firebase.database.FirebaseDatabase
 import com.nacho.restaurantapplication.data.model.Coupon
 import com.nacho.restaurantapplication.data.model.Reservation
@@ -13,7 +14,6 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
         return try {
             val userSnapshot = userReference.get().await()
             val userData = userSnapshot.value as? Map<*, *> ?: return null
-
             val user = User(
                 name = userData["Name"] as? String ?: "",
                 lastName = userData["LastName"] as? String ?: "",
@@ -32,6 +32,15 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
                         percentage = (couponData?.get("percentage") as? String)?.toIntOrNull() ?: 0,
                         expirationDate = couponData?.get("ExpirationDate") as? String ?: "",
                         amount = (couponData?.get("Amount") as? String)?.toIntOrNull() ?: 0
+                    )
+                } ?: emptyList(),
+                reservations = (userData["Reservations"] as? Map<*, *>)?.map { entry ->
+                    val reservationData = entry.value as? Map<*, *>
+                    Reservation(
+                        city = reservationData?.get("City") as? String ?: "",
+                        day = reservationData?.get("Day") as? String ?: "",
+                        hour = reservationData?.get("Hour") as? String ?: "",
+                        places = reservationData?.get("Places") as? String ?: ""
                     )
                 } ?: emptyList()
             )
@@ -63,7 +72,7 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
 
     override suspend fun addReservation(uid: String, reservation: Reservation): Boolean {
         val userReservationsReference = firebaseDatabase.getReference("Users/$uid/Reservations")
-        val reservationKey = reservation.day.replace("/", "-")
+        val reservationKey = userReservationsReference.push().key ?: return false
 
         val reservationMap = mapOf(
             "City" to reservation.city,

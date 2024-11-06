@@ -80,6 +80,10 @@
     <string name="reservations_hours_seven">01.00 hs</string>
     <string name="reservations_dialog">¿Estas seguro que deseas realizar la reserva?</string>
     <string name="reservations_ok">Reserva realizada con éxito</string>
+    <string name="reservations_empty">En este momento no tienes ninguna reserva agendada. Dirígite a "Nueva reserva" para asegurar tu lugar y pasar un excelente momento en nuestras mesas</string>
+    <string name="reservations_address_vdd">San Martin 194</string>
+    <string name="reservations_address_rio">Uruguay 50</string>
+
 
     <!-- Header Drawer -->
     <string name="title_activity_home">HomeActivity</string>
