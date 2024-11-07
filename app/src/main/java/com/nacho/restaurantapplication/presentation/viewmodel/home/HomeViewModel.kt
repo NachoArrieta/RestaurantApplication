@@ -1,6 +1,5 @@
 package com.nacho.restaurantapplication.presentation.viewmodel.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,12 +9,17 @@ import com.nacho.restaurantapplication.core.utils.Constants.MIN_NAME_LENGTH
 import com.nacho.restaurantapplication.core.utils.Constants.PHONE_LENGTH
 import com.nacho.restaurantapplication.data.model.Coupon
 import com.nacho.restaurantapplication.data.model.News
+import com.nacho.restaurantapplication.data.model.Reservation
 import com.nacho.restaurantapplication.data.model.Store
 import com.nacho.restaurantapplication.data.model.User
+import com.nacho.restaurantapplication.domain.model.ReservationInformation
 import com.nacho.restaurantapplication.domain.model.UserInformation
 import com.nacho.restaurantapplication.domain.usecase.home.news.GetNewsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.stores.GetStoresUseCase
+import com.nacho.restaurantapplication.domain.usecase.home.user.AddReservationUseCase
+import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserCouponsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserInformationUseCase
+import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserReservationsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.UpdateUserInformationUseCase
 import com.nacho.restaurantapplication.presentation.fragment.home.state.MyProfileViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,6 +32,9 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getUserInformationUseCase: GetUserInformationUseCase,
     private val updateUserInformationUseCase: UpdateUserInformationUseCase,
+    private val getUserCouponsUseCase: GetUserCouponsUseCase,
+    private val getUserReservationsUseCase: GetUserReservationsUseCase,
+    private val addReservationUseCase: AddReservationUseCase,
     private val getStoresUseCase: GetStoresUseCase,
     private val getNewsUseCase: GetNewsUseCase
 ) : ViewModel() {
@@ -35,9 +42,6 @@ class HomeViewModel @Inject constructor(
     //States Region
     private val _viewState = MutableStateFlow(MyProfileViewState())
     val viewState: StateFlow<MyProfileViewState> get() = _viewState
-
-    private val _hasChanges = MutableLiveData<Boolean>(false)
-    val hasChanges: LiveData<Boolean> get() = _hasChanges
 
     private val _backInHome = MutableLiveData<Boolean>()
     val backInHome: LiveData<Boolean> = _backInHome
@@ -68,12 +72,20 @@ class HomeViewModel @Inject constructor(
 
     private val _userCoupons = MutableLiveData<List<Coupon>>()
     val userCoupons: LiveData<List<Coupon>> get() = _userCoupons
+
+    private val _userReservations = MutableLiveData<List<Reservation>>()
+    val userReservations: LiveData<List<Reservation>> get() = _userReservations
     //End Region User Information
 
     //Region Stores
     private val _stores = MutableLiveData<List<Store>?>()
     val stores: LiveData<List<Store>?> get() = _stores
     //End Region Stores
+
+    //Region Reservations
+    private val _reservationValidateFields = MutableLiveData(false)
+    val reservationValidateFields: LiveData<Boolean> = _reservationValidateFields
+    //End Region Reservations
 
     fun setDrawerOpen(open: Boolean) {
         _drawerOpen.value = open
@@ -106,16 +118,10 @@ class HomeViewModel @Inject constructor(
 
     fun fetchUserInformation(uid: String) {
         viewModelScope.launch {
-            //Añadir Loading
             try {
-                val userInfo = getUserInformationUseCase(uid)
-                _userInformation.value = userInfo
-                _userCoupons.value = userInfo?.coupons ?: emptyList()
-                //Resetear el valor si se obtiene la informacion
+                _userInformation.value = getUserInformationUseCase(uid)
             } catch (e: Exception) {
-                //Mostrar error correspondiente si no se puede obtener la informacion
-            } finally {
-                //Quitar loading o shimmer
+                // Manejo de errores
             }
         }
     }
@@ -131,7 +137,52 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
+    fun fetchUserCoupons(uid: String) {
+        viewModelScope.launch {
+            try {
+                _userCoupons.value = getUserCouponsUseCase(uid)
+            } catch (e: Exception) {
+                // Manejar de errores
+            }
+        }
+    }
+
+    fun fetchUserReservations(uid: String) {
+        viewModelScope.launch {
+            try {
+                _userReservations.value = getUserReservationsUseCase(uid)
+            } catch (e: Exception) {
+                // Manejar de errores
+            }
+        }
+    }
     //End Region User Information
+
+    //Region Reservations
+    private fun addReservation(uid: String, reservationInformation: ReservationInformation) {
+        viewModelScope.launch {
+            val success = addReservationUseCase(uid, reservationInformation)
+            // Manejar el resultado de la inserción de la reserva
+            if (success) {
+                // Reserva añadida exitosamente, notificar al usuario o actualizar la UI
+            } else {
+                // Manejar el error
+            }
+        }
+    }
+
+    fun checkFormValidity(city: String, place: String, hour: String, day: String) {
+        _reservationValidateFields.value = city.isNotEmpty() && place.isNotEmpty() && hour.isNotEmpty() && day.isNotEmpty()
+    }
+
+    fun confirmReservation(city: String, day: String, hour: String, places: String) {
+        val reservationInformation = ReservationInformation(city = city, day = day, hour = hour, places = places)
+        userId.value?.let { uid ->
+            addReservation(uid, reservationInformation)
+        }
+    }
+    //End Region Reservations
 
     //Region Stores
     fun fetchStores() {

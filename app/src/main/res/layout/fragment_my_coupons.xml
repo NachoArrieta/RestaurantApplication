@@ -43,8 +43,6 @@
 
             <include layout="@layout/skeleton_coupons" />
 
-            <include layout="@layout/skeleton_coupons" />
-
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>

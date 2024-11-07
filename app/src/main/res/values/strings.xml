@@ -64,6 +64,27 @@
     <string name="reservations_hour">Hora</string>
     <string name="reservations_places">Lugares</string>
     <string name="reservations_save">Confirmar reserva</string>
+    <string name="reservations_places_two">2 lugares</string>
+    <string name="reservations_places_four">4 lugares</string>
+    <string name="reservations_places_six">6 lugares</string>
+    <string name="reservations_places_eight">8 lugares</string>
+    <string name="reservations_places_more_eight">Más de 8 lugares</string>
+    <string name="reservations_day_not_valid">Por favor, selecciona un día válido</string>
+    <string name="reservations_select_city">Selecciona una localidad</string>
+    <string name="reservations_hours_one">19.00 hs</string>
+    <string name="reservations_hours_two">20.00 hs</string>
+    <string name="reservations_hours_three">21.00 hs</string>
+    <string name="reservations_hours_four">22.00 hs</string>
+    <string name="reservations_hours_five">23.00 hs</string>
+    <string name="reservations_hours_six">00.00 hs</string>
+    <string name="reservations_hours_seven">01.00 hs</string>
+    <string name="reservations_dialog">¿Estas seguro que deseas realizar la reserva?</string>
+    <string name="reservations_ok">Reserva realizada con éxito</string>
+    <string name="reservations_empty">En este momento no tienes ninguna reserva agendada. Dirígite a "Nueva reserva" para asegurar tu lugar y pasar un excelente momento en nuestras mesas</string>
+    <string name="reservations_address_vdd">San Martin 194</string>
+    <string name="reservations_address_rio">Uruguay 50</string>
+    <string name="reservations_loading">Aguarda un instante por favor</string>
+
 
     <!-- Header Drawer -->
     <string name="title_activity_home">HomeActivity</string>

@@ -2,9 +2,8 @@ package com.nacho.restaurantapplication.data.network.user
 
 import com.google.firebase.database.FirebaseDatabase
 import com.nacho.restaurantapplication.data.model.Coupon
+import com.nacho.restaurantapplication.data.model.Reservation
 import com.nacho.restaurantapplication.data.model.User
-import com.nacho.restaurantapplication.domain.mapper.toUser
-import com.nacho.restaurantapplication.domain.model.UserInformation
 import kotlinx.coroutines.tasks.await
 
 class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDatabase) : UserInformationRepository {
@@ -14,8 +13,7 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
         return try {
             val userSnapshot = userReference.get().await()
             val userData = userSnapshot.value as? Map<*, *> ?: return null
-
-            val user = User(
+            User(
                 name = userData["Name"] as? String ?: "",
                 lastName = userData["LastName"] as? String ?: "",
                 email = userData["Email"] as? String ?: "",
@@ -23,20 +21,8 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
                 city = userData["City"] as? String ?: "",
                 address = userData["Address"] as? String ?: "",
                 floor = userData["Floor"] as? String ?: "",
-                number = userData["Number"] as? String ?: "",
-                coupons = (userData["Coupons"] as? Map<*, *>)?.map { entry ->
-                    val couponData = entry.value as? Map<*, *>
-                    Coupon(
-                        title = couponData?.get("Title") as? String ?: "",
-                        description = couponData?.get("Description") as? String ?: "",
-                        code = couponData?.get("Code") as? String ?: "",
-                        percentage = (couponData?.get("percentage") as? String)?.toIntOrNull() ?: 0,
-                        expirationDate = couponData?.get("ExpirationDate") as? String ?: "",
-                        amount = (couponData?.get("Amount") as? String)?.toIntOrNull() ?: 0
-                    )
-                } ?: emptyList()
+                number = userData["Number"] as? String ?: ""
             )
-            user
         } catch (e: Exception) {
             null
         }
@@ -56,6 +42,63 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
             )
 
             userReference.updateChildren(userMap).await()
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    override suspend fun getUserCoupons(uid: String): List<Coupon> {
+        val couponsReference = firebaseDatabase.getReference("Users/$uid/Coupons")
+        return try {
+            val couponsSnapshot = couponsReference.get().await()
+            (couponsSnapshot.value as? Map<*, *>)?.map { entry ->
+                val couponData = entry.value as? Map<*, *>
+                Coupon(
+                    title = couponData?.get("Title") as? String ?: "",
+                    description = couponData?.get("Description") as? String ?: "",
+                    code = couponData?.get("Code") as? String ?: "",
+                    percentage = (couponData?.get("percentage") as? String)?.toIntOrNull() ?: 0,
+                    expirationDate = couponData?.get("ExpirationDate") as? String ?: "",
+                    amount = (couponData?.get("Amount") as? String)?.toIntOrNull() ?: 0
+                )
+            } ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    override suspend fun getUserReservations(uid: String): List<Reservation> {
+        val reservationsReference = firebaseDatabase.getReference("Users/$uid/Reservations")
+        return try {
+            val reservationsSnapshot = reservationsReference.get().await()
+            (reservationsSnapshot.value as? Map<*, *>)?.map { entry ->
+                val reservationData = entry.value as? Map<*, *>
+                Reservation(
+                    city = reservationData?.get("City") as? String ?: "",
+                    day = reservationData?.get("Day") as? String ?: "",
+                    hour = reservationData?.get("Hour") as? String ?: "",
+                    places = reservationData?.get("Places") as? String ?: ""
+                )
+            } ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    override suspend fun addReservation(uid: String, reservation: Reservation): Boolean {
+        val userReservationsReference = firebaseDatabase.getReference("Users/$uid/Reservations")
+        val reservationKey = userReservationsReference.push().key ?: return false
+
+        val reservationMap = mapOf(
+            "City" to reservation.city,
+            "Day" to reservation.day,
+            "Hour" to reservation.hour,
+            "Places" to reservation.places
+        )
+
+        return try {
+            userReservationsReference.child(reservationKey).setValue(reservationMap).await()
             true
         } catch (e: Exception) {
             false
