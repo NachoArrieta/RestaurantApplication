@@ -31,6 +31,10 @@ class MyCouponsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val user = viewModel.userId.value
+        if (user != null) {
+            viewModel.fetchUserCoupons(user)
+        }
         setupObservers()
     }
 

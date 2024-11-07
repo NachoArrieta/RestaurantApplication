@@ -1,12 +1,11 @@
 package com.nacho.restaurantapplication.presentation.fragment.home
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
@@ -14,6 +13,9 @@ import com.nacho.restaurantapplication.databinding.FragmentMyReservationsBinding
 import com.nacho.restaurantapplication.presentation.adapter.home.ReservationAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MyReservationsFragment : Fragment() {
@@ -35,6 +37,11 @@ class MyReservationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val uid = viewModel.userId.value
+        if (uid != null) {
+            viewModel.fetchUserReservations(uid)
+        }
+
         setupObservers()
 
         with(binding) {
@@ -46,21 +53,42 @@ class MyReservationsFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.userReservations.observe(viewLifecycleOwner) { reservations ->
+        viewModel.userReservations.observe(viewLifecycleOwner) { reservations ->
+
+            with(binding) {
                 if (reservations.isNullOrEmpty()) {
-                    binding.reservationsShimmer.visibility = View.GONE
-                    binding.reservationsRv.visibility = View.GONE
-                    binding.reservationsCvEmpty.visibility = View.VISIBLE
+                    reservationsLoading.visibility = View.GONE
+                    reservationsRv.visibility = View.GONE
+                    reservationsCvEmpty.visibility = View.VISIBLE
                 } else {
-                    binding.reservationsShimmer.visibility = View.GONE
-                    binding.reservationsCvEmpty.visibility = View.GONE
-                    binding.reservationsRv.visibility = View.VISIBLE
-                    reservationAdapter = ReservationAdapter(reservations) {}
-                    binding.reservationsRv.adapter = reservationAdapter
+                    reservationsLoading.visibility = View.VISIBLE
+                    reservationsCvEmpty.visibility = View.GONE
+                    reservationsRv.visibility = View.GONE
+                    reservationsBtnNewReservation.apply {
+                        isClickable = true
+                        background = ContextCompat.getDrawable(
+                            requireContext(), R.color.grey_dark
+                        )
+                    }
+
+                    lifecycleScope.launch {
+                        delay(2000)
+                        reservationAdapter = ReservationAdapter(reservations) {}
+                        reservationsRv.adapter = reservationAdapter
+
+                        reservationsLoading.visibility = View.GONE
+                        reservationsRv.visibility = View.VISIBLE
+                        reservationsBtnNewReservation.apply {
+                            isClickable = false
+                            background = ContextCompat.getDrawable(
+                                requireContext(), R.drawable.btn_gradient_red
+                            )
+                        }
+                    }
                 }
             }
-        }, 2000)
+
+        }
     }
 
 }

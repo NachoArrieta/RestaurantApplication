@@ -17,7 +17,9 @@ import com.nacho.restaurantapplication.domain.model.UserInformation
 import com.nacho.restaurantapplication.domain.usecase.home.news.GetNewsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.stores.GetStoresUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.AddReservationUseCase
+import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserCouponsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserInformationUseCase
+import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserReservationsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.UpdateUserInformationUseCase
 import com.nacho.restaurantapplication.presentation.fragment.home.state.MyProfileViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,6 +32,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getUserInformationUseCase: GetUserInformationUseCase,
     private val updateUserInformationUseCase: UpdateUserInformationUseCase,
+    private val getUserCouponsUseCase: GetUserCouponsUseCase,
+    private val getUserReservationsUseCase: GetUserReservationsUseCase,
     private val addReservationUseCase: AddReservationUseCase,
     private val getStoresUseCase: GetStoresUseCase,
     private val getNewsUseCase: GetNewsUseCase
@@ -115,15 +119,9 @@ class HomeViewModel @Inject constructor(
     fun fetchUserInformation(uid: String) {
         viewModelScope.launch {
             try {
-                val userInfo = getUserInformationUseCase(uid)
-                _userInformation.value = userInfo
-                _userCoupons.value = userInfo?.coupons ?: emptyList()
-                _userReservations.value = userInfo?.reservations ?: emptyList()
-                // Resetear el valor si se obtiene la información
+                _userInformation.value = getUserInformationUseCase(uid)
             } catch (e: Exception) {
-                // Mostrar error correspondiente si no se puede obtener la información
-            } finally {
-                // Quitar loading o shimmer
+                // Manejo de errores
             }
         }
     }
@@ -139,6 +137,26 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
+    fun fetchUserCoupons(uid: String) {
+        viewModelScope.launch {
+            try {
+                _userCoupons.value = getUserCouponsUseCase(uid)
+            } catch (e: Exception) {
+                // Manejar de errores
+            }
+        }
+    }
+
+    fun fetchUserReservations(uid: String) {
+        viewModelScope.launch {
+            try {
+                _userReservations.value = getUserReservationsUseCase(uid)
+            } catch (e: Exception) {
+                // Manejar de errores
+            }
+        }
+    }
     //End Region User Information
 
     //Region Reservations
@@ -147,9 +165,9 @@ class HomeViewModel @Inject constructor(
             val success = addReservationUseCase(uid, reservationInformation)
             // Manejar el resultado de la inserción de la reserva
             if (success) {
-            // Reserva añadida exitosamente, notificar al usuario o actualizar la UI
+                // Reserva añadida exitosamente, notificar al usuario o actualizar la UI
             } else {
-            // Manejar el error
+                // Manejar el error
             }
         }
     }
