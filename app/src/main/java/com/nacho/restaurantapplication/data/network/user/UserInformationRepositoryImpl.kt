@@ -75,6 +75,7 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
             (reservationsSnapshot.value as? Map<*, *>)?.map { entry ->
                 val reservationData = entry.value as? Map<*, *>
                 Reservation(
+                    reservationId = entry.key.toString(),
                     city = reservationData?.get("City") as? String ?: "",
                     day = reservationData?.get("Day") as? String ?: "",
                     hour = reservationData?.get("Hour") as? String ?: "",
@@ -89,16 +90,24 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
     override suspend fun addReservation(uid: String, reservation: Reservation): Boolean {
         val userReservationsReference = firebaseDatabase.getReference("Users/$uid/Reservations")
         val reservationKey = userReservationsReference.push().key ?: return false
-
         val reservationMap = mapOf(
             "City" to reservation.city,
             "Day" to reservation.day,
             "Hour" to reservation.hour,
             "Places" to reservation.places
         )
-
         return try {
             userReservationsReference.child(reservationKey).setValue(reservationMap).await()
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    override suspend fun deleteUserReservation(uid: String, reservationId: String): Boolean {
+        val reservationReference = firebaseDatabase.getReference("Users/$uid/Reservations/$reservationId")
+        return try {
+            reservationReference.removeValue().await()
             true
         } catch (e: Exception) {
             false

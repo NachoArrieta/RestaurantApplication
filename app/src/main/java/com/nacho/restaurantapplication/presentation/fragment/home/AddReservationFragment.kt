@@ -16,7 +16,9 @@ import com.nacho.restaurantapplication.core.fragment.DialogAlertFragment
 import com.nacho.restaurantapplication.core.utils.DatePickerHelper
 import com.nacho.restaurantapplication.databinding.FragmentAddReservationBinding
 import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddReservationFragment : Fragment() {
 
     private var _binding: FragmentAddReservationBinding? = null

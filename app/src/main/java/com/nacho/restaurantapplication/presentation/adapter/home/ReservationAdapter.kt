@@ -9,7 +9,7 @@ import com.nacho.restaurantapplication.databinding.ItemReservationBinding
 
 class ReservationAdapter(
     private val reservationList: List<Reservation>,
-    private val onItemClick: (Reservation) -> Unit
+    private val onDeleteClick: (Reservation) -> Unit
 ) : RecyclerView.Adapter<ReservationAdapter.ReservationViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationViewHolder {
@@ -20,12 +20,11 @@ class ReservationAdapter(
     override fun onBindViewHolder(holder: ReservationViewHolder, position: Int) {
         val reservation = reservationList[position]
         holder.bind(reservation)
-        holder.itemView.setOnClickListener { onItemClick(reservation) }
     }
 
     override fun getItemCount(): Int = reservationList.size
 
-    class ReservationViewHolder(private val binding: ItemReservationBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ReservationViewHolder(private val binding: ItemReservationBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(reservation: Reservation) {
             with(binding) {
                 itemReservationTxtCity.text = reservation.city
@@ -37,8 +36,11 @@ class ReservationAdapter(
                     "Río Tercero" -> binding.root.context.getString(R.string.reservations_address_rio)
                     else -> binding.root.context.getString(R.string.reservations_address_vdd)
                 }
+
+                itemReservationBtnDelete.setOnClickListener { onDeleteClick(reservation) }
+
             }
         }
-
     }
+
 }

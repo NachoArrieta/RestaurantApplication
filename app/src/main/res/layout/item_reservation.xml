@@ -7,6 +7,7 @@
     android:layout_height="212dp"
     android:layout_marginStart="16dp"
     android:layout_marginTop="4dp"
+    android:clickable="false"
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="4dp"
     app:cardCornerRadius="8dp"
@@ -158,45 +159,17 @@
             app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/item_reservation_btn_cancel"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:foreground="?attr/selectableItemBackground"
-            android:background="@drawable/btn_gradient_red"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="@string/cancel"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline11" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/item_reservation_btn_modify"
+            android:id="@+id/item_reservation_btn_delete"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:background="@drawable/btn_gradient_red"
             android:fontFamily="@font/montserrat_regular"
-            android:text="@string/modify"
             android:foreground="?attr/selectableItemBackground"
+            android:text="@string/reservations_cancel"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/item_reservation_btn_cancel"
-            app:layout_constraintTop_toTopOf="@+id/guideline11" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="2dp"
-            android:layout_height="0dp"
-            android:background="@color/white"
-            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

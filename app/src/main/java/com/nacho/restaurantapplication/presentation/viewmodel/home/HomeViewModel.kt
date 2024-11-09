@@ -17,6 +17,7 @@ import com.nacho.restaurantapplication.domain.model.UserInformation
 import com.nacho.restaurantapplication.domain.usecase.home.news.GetNewsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.stores.GetStoresUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.AddReservationUseCase
+import com.nacho.restaurantapplication.domain.usecase.home.user.DeleteUserReservationUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserCouponsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserInformationUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserReservationsUseCase
@@ -35,6 +36,7 @@ class HomeViewModel @Inject constructor(
     private val getUserCouponsUseCase: GetUserCouponsUseCase,
     private val getUserReservationsUseCase: GetUserReservationsUseCase,
     private val addReservationUseCase: AddReservationUseCase,
+    private val deleteUserReservationUseCase: DeleteUserReservationUseCase,
     private val getStoresUseCase: GetStoresUseCase,
     private val getNewsUseCase: GetNewsUseCase
 ) : ViewModel() {
@@ -147,16 +149,6 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-
-    fun fetchUserReservations(uid: String) {
-        viewModelScope.launch {
-            try {
-                _userReservations.value = getUserReservationsUseCase(uid)
-            } catch (e: Exception) {
-                // Manejar de errores
-            }
-        }
-    }
     //End Region User Information
 
     //Region Reservations
@@ -168,6 +160,28 @@ class HomeViewModel @Inject constructor(
                 // Reserva añadida exitosamente, notificar al usuario o actualizar la UI
             } else {
                 // Manejar el error
+            }
+        }
+    }
+
+    fun fetchUserReservations(uid: String) {
+        viewModelScope.launch {
+            try {
+                _userReservations.value = getUserReservationsUseCase(uid)
+            } catch (e: Exception) {
+                // Manejar de errores
+            }
+        }
+    }
+
+    fun deleteUserReservation(reservationId: String) {
+        val uid = userId.value ?: return
+        viewModelScope.launch {
+            try {
+                deleteUserReservationUseCase(uid, reservationId)
+                fetchUserReservations(uid)
+            } catch (e: Exception) {
+                // Manejar de errores
             }
         }
     }
