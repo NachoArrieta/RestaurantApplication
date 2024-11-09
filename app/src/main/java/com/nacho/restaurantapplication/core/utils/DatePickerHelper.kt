@@ -13,6 +13,8 @@ class DatePickerHelper(
 
     fun showDatePicker(selectedCity: String) {
         val calendar = Calendar.getInstance()
+        val today = calendar.timeInMillis
+
         val datePickerDialog = DatePickerDialog(
             context,
             { _, year, month, dayOfMonth ->
@@ -24,27 +26,27 @@ class DatePickerHelper(
             calendar.get(Calendar.DAY_OF_MONTH)
         )
 
-        if (selectedCity == context.getString(R.string.profile_rio_tercero)) {
-            setValidDays(datePickerDialog, listOf(Calendar.WEDNESDAY, Calendar.THURSDAY, Calendar.FRIDAY, Calendar.SATURDAY, Calendar.SUNDAY))
-        } else if (selectedCity == context.getString(R.string.profile_villa_del_dique)) {
-            setValidDays(datePickerDialog, listOf(Calendar.FRIDAY, Calendar.SATURDAY, Calendar.SUNDAY))
-        }
+        datePickerDialog.datePicker.minDate = today
 
-        datePickerDialog.show()
-    }
-
-    private fun setValidDays(datePickerDialog: DatePickerDialog, validDays: List<Int>) {
         datePickerDialog.datePicker.setOnDateChangedListener { _, year, month, dayOfMonth ->
-            val calendar = Calendar.getInstance()
-            calendar.set(year, month, dayOfMonth)
-            val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+            val selectedCalendar = Calendar.getInstance()
+            selectedCalendar.set(year, month, dayOfMonth)
+            val dayOfWeek = selectedCalendar.get(Calendar.DAY_OF_WEEK)
+
+            val validDays = when (selectedCity) {
+                context.getString(R.string.profile_rio_tercero) -> listOf(Calendar.THURSDAY, Calendar.FRIDAY, Calendar.SATURDAY, Calendar.SUNDAY)
+                context.getString(R.string.profile_villa_del_dique) -> listOf(Calendar.THURSDAY,Calendar.FRIDAY, Calendar.SATURDAY, Calendar.SUNDAY)
+                else -> emptyList()
+            }
 
             if (dayOfWeek !in validDays) {
                 Toast.makeText(context, R.string.reservations_day_not_valid, Toast.LENGTH_SHORT).show()
-                calendar.set(Calendar.DAY_OF_WEEK, validDays.first())
-                datePickerDialog.updateDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+                selectedCalendar.set(Calendar.DAY_OF_WEEK, validDays.first())
+                datePickerDialog.updateDate(selectedCalendar.get(Calendar.YEAR), selectedCalendar.get(Calendar.MONTH), selectedCalendar.get(Calendar.DAY_OF_MONTH))
             }
         }
+
+        datePickerDialog.show()
     }
 
 }

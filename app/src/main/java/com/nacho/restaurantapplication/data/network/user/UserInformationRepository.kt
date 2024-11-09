@@ -10,4 +10,5 @@ interface UserInformationRepository {
     suspend fun getUserCoupons(uid: String): List<Coupon>
     suspend fun getUserReservations(uid: String): List<Reservation>
     suspend fun addReservation(uid: String, reservation: Reservation): Boolean
+    suspend fun deleteUserReservation(uid: String, reservationId: String): Boolean
 }
