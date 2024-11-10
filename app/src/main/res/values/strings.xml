@@ -138,6 +138,8 @@
     <string name="neworder_milkshake">Milkshakes</string>
     <string name="neworder_sundae">Sundaes</string>
     <string name="neworder_desserts">Postres BSB</string>
+    <string name="neworder_all_desserts">Postres</string>
+
 
     <!-- Drinks -->
     <string name="neworder_beer">Cervezas</string>

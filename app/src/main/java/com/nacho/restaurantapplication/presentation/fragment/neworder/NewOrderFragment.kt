@@ -39,8 +39,6 @@ class NewOrderFragment : Fragment() {
         setupObservers()
         setTabLayout()
 
-        with(binding) {}
-
     }
 
     private fun setupObservers() {
