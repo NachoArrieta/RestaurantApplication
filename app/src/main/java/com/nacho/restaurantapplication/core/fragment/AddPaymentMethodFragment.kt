@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nacho.restaurantapplication.databinding.FragmentAddPaymentMethodBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddPaymentMethodFragment : Fragment() {
 
     private var _binding: FragmentAddPaymentMethodBinding? = null

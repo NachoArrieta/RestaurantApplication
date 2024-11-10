@@ -27,7 +27,6 @@
     <string name="login_enter_email">Ingresa el email</string>
     <string name="login_enter_password">Ingresa la contraseña</string>
 
-
     <!-- SignUp -->
     <string name="signup_confirm_password">Confirmar contraseña</string>
     <string name="signup_terms_and_condition">Aceptar términos y condiciones</string>
@@ -89,7 +88,6 @@
     <string name="reservations_not_delete">Se necesita un día de anticipación</string>
     <string name="reservations_cancel">Cancelar reserva</string>
 
-
     <!-- Header Drawer -->
     <string name="title_activity_home">HomeActivity</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -101,8 +99,6 @@
     <string name="coupons_not_expire">Sin fecha de caducidad</string>
     <string name="coupons_no_coupon">En este momento, no tenemos cupones disponibles para ofrecerte. Estate atento a nuestras notificaciones y noticias, que en cualquier momento llegan!</string>
     <string name="coupons_understood">Entendido</string>
-
-    <!-- My Coupons -->
     <string name="orders_repeat">Repetir pedido</string>
 
     <!-- My Profile -->
@@ -114,6 +110,12 @@
     <string name="profile_error_address">Debes tener contener al menos 6 caracteres</string>
     <string name="profile_no_changes">No se ha realizado ninguna modificación</string>
     <string name="profile_changes_successful">Cambios realizados con éxito</string>
+
+    <!-- Payment Methods -->
+    <string name="payment_methods_card_number">Número de tarjeta</string>
+    <string name="payment_methods_titular_name">Nombre del titular</string>
+    <string name="payment_methods_card_cvv">Cvv</string>
+    <string name="payment_methods_confirm_card">Confirmar medio de pago</string>
 
     <!-- Stores -->
     <string name="stores_days">Días:</string>
@@ -172,6 +174,8 @@
 
     <!-- Payment Method -->
     <string name="payment_method_add">Añadir nuevo medio de pago</string>
+    <string name="payment_method_since">Desde</string>
+    <string name="payment_method_until">Hasta</string>
 
     <!-- Shopping Cart -->
     <string name="confirm_payment">Confirmar compra</string>
@@ -232,8 +236,5 @@
     <string name="tac_description_responsibility">Beicon SA no se responsabiliza por daños directos, indirectos, incidentales, especiales o consecuentes que surjan de su uso de la App, excepto en casos de negligencia grave o dolo.</string>
     <string name="tac_description_modify_terms">Nos reservamos el derecho de modificar estos Términos en cualquier momento. Las modificaciones serán efectivas una vez publicadas en la App. Es su responsabilidad revisar periódicamente estos Términos. Su uso continuado de la App después de cualquier modificación constituye su aceptación de los nuevos Términos.</string>
     <string name="tac_description_contact">Para cualquier consulta o comentario sobre estos Términos, por favor contacte a Beicon SA a través de rrhh@beiconbsb.com</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 </resources>
