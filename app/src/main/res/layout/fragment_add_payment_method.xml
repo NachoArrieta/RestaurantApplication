@@ -45,6 +45,7 @@
                     android:backgroundTint="@color/red_extra_dark"
                     android:fontFamily="@font/montserrat_regular"
                     android:inputType="number"
+                    android:maxLength="22"
                     android:textColor="@color/red_extra_dark"
                     android:textSize="18sp" />
 
@@ -75,6 +76,7 @@
                     android:backgroundTint="@color/red_extra_dark"
                     android:fontFamily="@font/montserrat_regular"
                     android:inputType="number"
+                    android:maxLength="5"
                     android:textColor="@color/red_extra_dark"
                     android:textSize="18sp" />
 
@@ -104,7 +106,7 @@
                     android:layout_height="60dp"
                     android:backgroundTint="@color/red_extra_dark"
                     android:fontFamily="@font/montserrat_regular"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapCharacters"
                     android:textColor="@color/red_extra_dark"
                     android:textSize="18sp" />
 
@@ -135,6 +137,7 @@
                     android:backgroundTint="@color/red_extra_dark"
                     android:fontFamily="@font/montserrat_regular"
                     android:inputType="number"
+                    android:maxLength="3"
                     android:textColor="@color/red_extra_dark"
                     android:textSize="18sp" />
 
@@ -165,6 +168,7 @@
                     android:backgroundTint="@color/red_extra_dark"
                     android:fontFamily="@font/montserrat_regular"
                     android:inputType="number"
+                    android:maxLength="5"
                     android:textColor="@color/red_extra_dark"
                     android:textSize="18sp" />
 
@@ -181,7 +185,7 @@
                 android:layout_marginBottom="12dp"
                 android:elevation="8dp"
                 android:foregroundGravity="center"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -193,7 +197,7 @@
                     android:id="@+id/add_payment_card_background"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/red_extra_dark">
+                    android:background="@color/color_macro">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/add_payment_card_img_bank_logo"
@@ -201,7 +205,7 @@
                         android:layout_height="50dp"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="12dp"
-                        android:src="@drawable/ic_santander"
+                        android:src="@drawable/ic_macro"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -252,45 +256,46 @@
                         app:layout_constraintTop_toBottomOf="@+id/add_payment_card_txt_number" />
 
                     <TextView
-                        android:id="@+id/add_payment_card_txt_since_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline14"
-                        app:layout_constraintStart_toEndOf="@+id/add_payment_card_txt_since"
-                        app:layout_constraintTop_toTopOf="@+id/add_payment_card_txt_since"
-                        tools:text="05/28" />
-
-                    <TextView
                         android:id="@+id/add_payment_card_txt_until"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="36dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/payment_method_until"
+                        android:text="@string/payment_method_since"
                         android:textColor="@color/white"
                         android:textSize="12sp"
                         app:layout_constraintStart_toEndOf="@+id/add_payment_card_txt_since_date"
                         app:layout_constraintTop_toBottomOf="@+id/add_payment_card_txt_number" />
 
                     <TextView
-                        android:id="@+id/item_my_payment_txt_until_date"
+                        android:id="@+id/add_payment_card_txt_until_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:fontFamily="@font/montserrat_regular"
                         android:textColor="@color/white"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/guideline14"
                         app:layout_constraintStart_toEndOf="@+id/add_payment_card_txt_until"
                         app:layout_constraintTop_toTopOf="@+id/add_payment_card_txt_since"
                         tools:text="05/30" />
+
+                    <TextView
+                        android:id="@+id/add_payment_card_txt_since_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:maxLength="5"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/add_payment_card_txt_since"
+                        app:layout_constraintStart_toEndOf="@+id/add_payment_card_txt_since"
+                        app:layout_constraintTop_toTopOf="@+id/guideline12"
+                        tools:text="05/28" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline12"
@@ -312,7 +317,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:ellipsize="none"
                         android:fontFamily="@font/montserrat_regular"
                         android:textColor="@color/white"
                         android:textSize="14sp"
@@ -324,8 +330,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/add_payment_card_img_brand"
-                        android:layout_width="48dp"
-                        android:layout_height="36dp"
+                        android:layout_width="58dp"
+                        android:layout_height="46dp"
                         android:layout_marginEnd="28dp"
                         android:layout_marginBottom="24dp"
                         android:src="@drawable/ic_visa"

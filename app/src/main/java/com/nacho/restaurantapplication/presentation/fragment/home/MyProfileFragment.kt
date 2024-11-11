@@ -119,7 +119,7 @@ class MyProfileFragment : Fragment() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.viewState.collect { viewState ->
+                viewModel.viewStateMyProfile.collect { viewState ->
                     updateUI(viewState)
                 }
             }
@@ -129,7 +129,7 @@ class MyProfileFragment : Fragment() {
     private fun onFieldChanged(hasFocus: Boolean = false) {
         with(binding) {
             if (!hasFocus) {
-                viewModel.onFieldsChanged(
+                viewModel.onFieldsChangedMyProfile(
                     UserInformation(
                         name = profileTieName.text.toString(),
                         lastName = profileTieLastname.text.toString(),
@@ -186,7 +186,7 @@ class MyProfileFragment : Fragment() {
         if (originalUserInformation == updatedUserInformation) {
             showToast(getString(R.string.profile_no_changes))
         } else {
-            val viewState = viewModel.viewState.value.infoUserValidated()
+            val viewState = viewModel.viewStateMyProfile.value.infoUserValidated()
             if (!updatedUserInformation.isNotEmpty() || !viewState) {
                 showToast(getString(R.string.signup_fields_no_valid))
             } else {

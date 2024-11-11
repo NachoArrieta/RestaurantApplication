@@ -46,12 +46,6 @@ class SignupFragment : Fragment() {
         setupObservers()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        viewModel.onFieldsChanged(UserSignup())
-        viewModel.onTermsAccepted(false)
-    }
-
     private fun setupListeners() {
         with(binding) {
             signupTieName.loseFocusAfterAction(EditorInfo.IME_ACTION_NEXT)
@@ -193,5 +187,11 @@ class SignupFragment : Fragment() {
     }
 
     private fun showToast(message: String) = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.onFieldsChanged(UserSignup())
+        viewModel.onTermsAccepted(false)
+    }
 
 }

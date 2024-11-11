@@ -107,7 +107,7 @@
     <string name="profile_villa_del_dique">Villa del Dique</string>
     <string name="profile_save_changes">Guardar cambios</string>
     <string name="profile_disabled_notifications">Deseas desactivar las notificaciones?</string>
-    <string name="profile_error_address">Debes tener contener al menos 6 caracteres</string>
+    <string name="profile_error_address">Debe contener al menos 6 caracteres</string>
     <string name="profile_no_changes">No se ha realizado ninguna modificación</string>
     <string name="profile_changes_successful">Cambios realizados con éxito</string>
 
@@ -116,6 +116,11 @@
     <string name="payment_methods_titular_name">Nombre del titular</string>
     <string name="payment_methods_card_cvv">Cvv</string>
     <string name="payment_methods_confirm_card">Confirmar medio de pago</string>
+    <string name="add_payment_methods_error">Debe contener 16 caracteres</string>
+    <string name="add_payment_methods_error_since">Mes/Año</string>
+    <string name="add_payment_methods_error_card_number">Tarjeta no apta para pagar</string>
+    <string name="add_payment_methods_error_card_name">Debe contener al menos 8 caracteres</string>
+    <string name="add_payment_methods_error_card_cvv">Debe contener 3 caracteres</string>
 
     <!-- Stores -->
     <string name="stores_days">Días:</string>

@@ -46,8 +46,8 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     //States Region
-    private val _viewState = MutableStateFlow(MyProfileViewState())
-    val viewState: StateFlow<MyProfileViewState> get() = _viewState
+    private val _viewStateMyProfile = MutableStateFlow(MyProfileViewState())
+    val viewStateMyProfile: StateFlow<MyProfileViewState> get() = _viewStateMyProfile
 
     private val _backInHome = MutableLiveData<Boolean>()
     val backInHome: LiveData<Boolean> = _backInHome
@@ -242,8 +242,8 @@ class HomeViewModel @Inject constructor(
     //End Region Stores
 
     //Region Profile States
-    fun onFieldsChanged(infoProfile: UserInformation) {
-        _viewState.value = infoProfile.toMyProfileViewState()
+    fun onFieldsChangedMyProfile(infoProfile: UserInformation) {
+        _viewStateMyProfile.value = infoProfile.toMyProfileViewState()
     }
 
     private fun isValidOrEmptyName(name: String): Boolean = name.length >= MIN_NAME_LENGTH || name.isEmpty()
