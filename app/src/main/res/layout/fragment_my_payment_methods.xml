@@ -30,7 +30,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/btn_gradient_red_stroke_white"
         android:fontFamily="@font/montserrat_regular"
         android:foreground="?attr/selectableItemBackground"

@@ -86,11 +86,14 @@ fun EditText.formatAsExpirationDate() {
                     }
                     if (i == 1) {
                         val month = digitsOnly.substring(0, 2).toIntOrNull()
-                        if (month != null && month > 12) {
-                            setText(digitsOnly.substring(0, 1))
-                            setSelection(1)
-                            isUpdating = false
-                            return
+                        if (month != null) {
+                            // Validar que el mes no sea "00" ni mayor que 12
+                            if (month == 0 || month > 12) {
+                                setText(digitsOnly.substring(0, 1))
+                                setSelection(1)
+                                isUpdating = false
+                                return
+                            }
                         }
                     }
 

@@ -120,12 +120,14 @@ class AddPaymentMethodFragment : Fragment() {
 
     private fun onFieldChanged(hasFocus: Boolean = false) {
         val cardNumber = binding.addPaymentTieNumber.text.toString()
+        val cardSince = binding.addPaymentTieSince.text.toString()
+        val cardUntil = binding.addPaymentTieUntil.text.toString()
 
         if (!hasFocus) {
             val userCard = UserCard(
                 cardNumber = cardNumber,
-                cardSince = binding.addPaymentTieSince.text.toString(),
-                cardUntil = binding.addPaymentTieUntil.text.toString(),
+                cardSince = cardSince,
+                cardUntil = cardUntil,
                 cardName = binding.addPaymentTieTitularName.text.toString(),
                 cardCvv = binding.addPaymentTieCvv.text.toString()
             )
@@ -143,6 +145,9 @@ class AddPaymentMethodFragment : Fragment() {
                 setCardBackgroundAndBrand(cardNumber)
             }
 
+            val isValidDateRange = validateDateRange(cardSince, cardUntil)
+            binding.addPaymentTilUntil.error = if (!isValidDateRange) getString(R.string.add_payment_methods_card_data_error) else null
+
         }
     }
 
@@ -150,6 +155,9 @@ class AddPaymentMethodFragment : Fragment() {
 
         with(binding) {
             val isCardNumberValidAndSupported = viewState.isValidCardNumber && validateCardNumber(addPaymentTieNumber.text.toString())
+            val cardSince = binding.addPaymentTieSince.text.toString()
+            val cardUntil = binding.addPaymentTieUntil.text.toString()
+            val isValidDateRange = validateDateRange(cardSince, cardUntil)
 
             if (isCardNumberValidAndSupported) {
                 addPaymentCardTxtNumber.text = addPaymentTieNumber.text.toString()
@@ -171,7 +179,7 @@ class AddPaymentMethodFragment : Fragment() {
             val isNameValid = !addPaymentTieTitularName.text.isNullOrEmpty() && viewState.isValidCardName
             val isCvvValid = !addPaymentTieCvv.text.isNullOrEmpty() && viewState.isValidCardCvv
 
-            if (isSinceValid && isUntilValid) addPaymentTilTitularName.visibility = View.VISIBLE
+            if (isSinceValid && isUntilValid && isValidDateRange) addPaymentTilTitularName.visibility = View.VISIBLE
             if (isNameValid) addPaymentTilCvv.visibility = View.VISIBLE
 
             addPaymentTilNumber.error = if (!viewState.isValidCardNumber) getString(R.string.add_payment_methods_error_card_number) else null
@@ -246,6 +254,22 @@ class AddPaymentMethodFragment : Fragment() {
             }
 
         }
+    }
+
+    private fun validateDateRange(since: String, until: String): Boolean {
+        if (since.length == 5 && until.length == 5) {
+            val sinceMonth = since.substring(0, 2).toInt()
+            val sinceYear = since.substring(3, 5).toInt()
+            val untilMonth = until.substring(0, 2).toInt()
+            val untilYear = until.substring(3, 5).toInt()
+
+            return when {
+                untilYear > sinceYear -> true
+                untilYear == sinceYear && untilMonth > sinceMonth -> true
+                else -> false
+            }
+        }
+        return true
     }
 
     private fun goToLoading() {

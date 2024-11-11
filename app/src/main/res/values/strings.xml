@@ -124,6 +124,7 @@
     <string name="add_payment_methods_card_success">Medio de pago añadido con éxito</string>
     <string name="add_payment_methods_wait_a_moment">¡Aguarda un instante!</string>
     <string name="add_payment_methods_card_validating">Estamos validando los datos de la tarjeta</string>
+    <string name="add_payment_methods_card_data_error">Datos incorrectos</string>
 
     <!-- Stores -->
     <string name="stores_days">Días:</string>
