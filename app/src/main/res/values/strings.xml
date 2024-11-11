@@ -121,6 +121,9 @@
     <string name="add_payment_methods_error_card_number">Tarjeta no apta para pagar</string>
     <string name="add_payment_methods_error_card_name">Debe contener al menos 8 caracteres</string>
     <string name="add_payment_methods_error_card_cvv">Debe contener 3 caracteres</string>
+    <string name="add_payment_methods_card_success">Medio de pago añadido con éxito</string>
+    <string name="add_payment_methods_wait_a_moment">¡Aguarda un instante!</string>
+    <string name="add_payment_methods_card_validating">Estamos validando los datos de la tarjeta</string>
 
     <!-- Stores -->
     <string name="stores_days">Días:</string>

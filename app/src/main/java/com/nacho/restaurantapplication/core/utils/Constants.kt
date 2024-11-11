@@ -23,7 +23,7 @@ object Constants {
         "4546  3900  1724  3131", // MacroCredito - Visa
         "4546  3900  0618  8484", // MacroDebito - Mastercard
         "4546  3700  3132  4400", // SantanderCredito - Visa
-        "4546  3900  3354  5671"  // SantanderDebito - Visa
+        "4546  3900  3354  5671"  // SantanderCredito - Visa
     )
 
 }

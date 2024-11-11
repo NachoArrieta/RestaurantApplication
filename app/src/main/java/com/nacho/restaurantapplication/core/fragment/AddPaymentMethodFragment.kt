@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.core.extensions.formatAsCardNumber
 import com.nacho.restaurantapplication.core.extensions.formatAsExpirationDate
@@ -22,7 +23,7 @@ import com.nacho.restaurantapplication.core.utils.Constants.CARD_NUMBER_LENGTH
 import com.nacho.restaurantapplication.core.utils.Constants.SUPPORTED_CARD_NUMBERS
 import com.nacho.restaurantapplication.databinding.FragmentAddPaymentMethodBinding
 import com.nacho.restaurantapplication.domain.model.UserCard
-import com.nacho.restaurantapplication.presentation.viewmodel.neworder.PaymentMethodViewModel
+import com.nacho.restaurantapplication.presentation.viewmodel.payment.PaymentMethodViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -33,6 +34,10 @@ class AddPaymentMethodFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: PaymentMethodViewModel by activityViewModels()
+
+    private lateinit var cardBank: String
+    private lateinit var cardType: String
+    private lateinit var cardBrand: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,7 +81,29 @@ class AddPaymentMethodFragment : Fragment() {
             addPaymentTieCvv.loseFocusAfterAction(EditorInfo.IME_ACTION_NEXT)
             addPaymentTieCvv.setOnFocusChangeListener { _, hasFocus -> onFieldChanged(hasFocus) }
             addPaymentTieCvv.onTextChanged { onFieldChanged() }
+
+            addPaymentButton.setOnClickListener {
+                val uid = viewModel.uId.value
+                val cardInfo = UserCard(
+                    cardBank = cardBank,
+                    cardType = cardType,
+                    cardNumber = binding.addPaymentTieNumber.text.toString(),
+                    cardName = binding.addPaymentTieTitularName.text.toString(),
+                    cardSince = binding.addPaymentTieSince.text.toString(),
+                    cardUntil = binding.addPaymentTieUntil.text.toString(),
+                    cardCvv = binding.addPaymentTieCvv.text.toString(),
+                    cardBrand = cardBrand
+                )
+
+                if (uid != null) {
+                    viewModel.addCard(uid, cardInfo)
+                    goToLoading()
+                }
+
+            }
+
         }
+
     }
 
     private fun setupObservers() {
@@ -154,6 +181,7 @@ class AddPaymentMethodFragment : Fragment() {
             addPaymentTilCvv.error = if (!viewState.isValidCardCvv) getString(R.string.add_payment_methods_error_card_cvv) else null
 
             if (isNumberValid && isSinceValid && isUntilValid && isNameValid && isCvvValid) {
+
                 addPaymentButton.apply {
                     isClickable = true
                     background = ContextCompat.getDrawable(
@@ -161,6 +189,7 @@ class AddPaymentMethodFragment : Fragment() {
                         R.drawable.btn_gradient_red
                     )
                 }
+
             }
 
         }
@@ -174,34 +203,53 @@ class AddPaymentMethodFragment : Fragment() {
                     addPaymentCardBackground.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.color_galicia))
                     addPaymentCardImgBrand.setImageResource(R.drawable.ic_mastercard)
                     addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_galicia)
+                    cardBank = "Galicia"
+                    cardType = "Crédito"
+                    cardBrand = "Mastercard"
                 }
 
                 "4547  4400  0819  4546" -> {
                     addPaymentCardBackground.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.color_galicia))
                     addPaymentCardImgBrand.setImageResource(R.drawable.ic_visa)
                     addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_galicia)
+                    cardBank = "Galicia"
+                    cardType = "Débito"
+                    cardBrand = "Visa"
                 }
 
                 "4546  3900  1724  3131" -> {
                     addPaymentCardBackground.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.color_macro))
                     addPaymentCardImgBrand.setImageResource(R.drawable.ic_visa)
                     addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_macro)
+                    cardBank = "Macro"
+                    cardType = "Crédito"
+                    cardBrand = "Visa"
                 }
 
                 "4546  3900  0618  8484" -> {
                     addPaymentCardBackground.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.color_macro))
                     addPaymentCardImgBrand.setImageResource(R.drawable.ic_mastercard)
                     addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_macro)
+                    cardBank = "Macro"
+                    cardType = "Débito"
+                    cardBrand = "Mastercard"
                 }
 
                 else -> {
                     addPaymentCardBackground.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.color_santander))
                     addPaymentCardImgBrand.setImageResource(R.drawable.ic_visa)
                     addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_santander)
+                    cardBank = "Santander"
+                    cardType = "Visa"
+                    cardBrand = "Mastercard"
                 }
             }
 
         }
+    }
+
+    private fun goToLoading() {
+        findNavController().navigate(R.id.action_addPaymentMethodFragment_to_loadingFragment2)
     }
 
     override fun onDestroyView() {

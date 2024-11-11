@@ -5,27 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient_white"
-    tools:context=".presentation.fragment.payment.LoadingFragment">
+    tools:context=".core.fragment.LoadingFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/loading_status_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:src="@drawable/ic_status_ok"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/loading_txt_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
+        android:id="@+id/loading_progress_bar"
         style="@style/ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/loading_txt_title"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="36dp"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/loading_txt_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:fontFamily="@font/montserrat_regular"
         android:gravity="center"
-        android:text="@string/loading_title"
         android:paddingStart="4dp"
         android:paddingEnd="4dp"
-        android:layout_marginBottom="24dp"
+        tools:text="@string/loading_title"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -38,17 +51,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:paddingEnd="12dp"
-        android:paddingStart="12dp"
         android:fontFamily="@font/montserrat_regular"
         android:gravity="center"
-        tools:text="¿Sabías que todos los jueves tenemos promociones?"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="¿Sabías que todos los jueves tenemos promociones?" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loading_btn_ok"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/btn_gradient_red_stroke_white"
+        android:fontFamily="@font/montserrat_regular"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="@string/coupons_understood"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

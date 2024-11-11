@@ -88,6 +88,15 @@
         android:id="@+id/addPaymentMethodFragment"
         android:name="com.nacho.restaurantapplication.core.fragment.AddPaymentMethodFragment"
         android:label="Añadí tu medio de pago"
-        tools:layout="@layout/fragment_add_payment_method" />
+        tools:layout="@layout/fragment_add_payment_method" >
+        <action
+            android:id="@+id/action_addPaymentMethodFragment_to_loadingFragment2"
+            app:destination="@id/loadingFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadingFragment2"
+        android:name="com.nacho.restaurantapplication.core.fragment.LoadingFragment"
+        android:label="fragment_loading"
+        tools:layout="@layout/fragment_loading" />
 
 </navigation>
