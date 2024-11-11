@@ -20,6 +20,7 @@ import com.nacho.restaurantapplication.databinding.NavHeaderHomeBinding
 import com.nacho.restaurantapplication.presentation.activity.login.LoginActivity
 import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
+import com.nacho.restaurantapplication.presentation.viewmodel.payment.PaymentMethodViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,6 +29,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomeBinding
     private val homeVM: HomeViewModel by viewModels()
+    private val paymentMethodVM: PaymentMethodViewModel by viewModels()
     private val newOrderVm: NewOrderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +44,7 @@ class HomeActivity : AppCompatActivity() {
         if (user != null) {
             homeVM.setUserId(user)
             homeVM.fetchUserInformation(user)
+            paymentMethodVM.getUserId(user)
         } else {
             // Mostrar error correspondiente para cuando no se puede obtener la informacion del usuario
         }
@@ -120,6 +123,14 @@ class HomeActivity : AppCompatActivity() {
             if (drawerOpen) {
                 binding.drawerLayout.closeDrawer(GravityCompat.START)
                 homeVM.setDrawerOpen(false)
+            }
+        }
+
+        paymentMethodVM.toolbarVisible.observe(this) { isVisible ->
+            if (isVisible) {
+                supportActionBar?.show()
+            } else {
+                supportActionBar?.hide()
             }
         }
 

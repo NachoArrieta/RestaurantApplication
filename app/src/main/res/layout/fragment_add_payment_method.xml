@@ -1,12 +1,366 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient_white"
     tools:context=".core.fragment.AddPaymentMethodFragment">
 
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_payment_til_number"
+                style="@style/TextInputLayoutStyleRed"
+                android:layout_width="0dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:hint="@string/payment_methods_card_number"
+                android:textColorHint="@color/red_extra_dark"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_payment_tie_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/red_extra_dark"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:inputType="number"
+                    android:maxLength="22"
+                    android:textColor="@color/red_extra_dark"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_payment_til_until"
+                style="@style/TextInputLayoutStyleRed"
+                android:layout_width="0dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:hint="@string/payment_method_until"
+                android:textColorHint="@color/red_extra_dark"
+                android:visibility="gone"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_payment_til_since">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_payment_tie_until"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/red_extra_dark"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:textColor="@color/red_extra_dark"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_payment_til_titular_name"
+                style="@style/TextInputLayoutStyleRed"
+                android:layout_width="0dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:hint="@string/payment_methods_titular_name"
+                android:textColorHint="@color/red_extra_dark"
+                android:visibility="gone"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_payment_til_until">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_payment_tie_titular_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/red_extra_dark"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:inputType="textCapCharacters"
+                    android:textColor="@color/red_extra_dark"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_payment_til_cvv"
+                style="@style/TextInputLayoutStyleRed"
+                android:layout_width="0dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:hint="@string/payment_methods_card_cvv"
+                android:textColorHint="@color/red_extra_dark"
+                android:visibility="gone"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_payment_til_titular_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_payment_tie_cvv"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/red_extra_dark"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textColor="@color/red_extra_dark"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_payment_til_since"
+                style="@style/TextInputLayoutStyleRed"
+                android:layout_width="0dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:hint="@string/payment_method_since"
+                android:textColorHint="@color/red_extra_dark"
+                android:visibility="gone"
+                app:boxStrokeErrorColor="@color/yellow_dark"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/yellow_dark"
+                app:errorTextColor="@color/yellow_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_payment_til_number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_payment_tie_since"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/red_extra_dark"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:textColor="@color/red_extra_dark"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/add_payment_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="12dp"
+                android:elevation="8dp"
+                android:foregroundGravity="center"
+                android:visibility="visible"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_payment_til_cvv"
+                app:strokeColor="@color/plated">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/add_payment_card_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_macro">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/add_payment_card_img_bank_logo"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/ic_macro"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/add_payment_card_img_chip"
+                        android:layout_width="42dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="32dp"
+                        android:src="@drawable/ic_chip"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/add_payment_card_img_bank_logo" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/add_payment_card_img_contactless"
+                        android:layout_width="42dp"
+                        android:layout_height="36dp"
+                        android:backgroundTint="@color/white"
+                        android:src="@drawable/ic_contactless"
+                        app:layout_constraintBottom_toBottomOf="@+id/add_payment_card_img_chip"
+                        app:layout_constraintStart_toEndOf="@+id/add_payment_card_img_chip"
+                        app:layout_constraintTop_toTopOf="@+id/add_payment_card_img_chip" />
+
+                    <TextView
+                        android:id="@+id/add_payment_card_txt_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/add_payment_card_img_chip"
+                        tools:text="0346  5555  6666  7777" />
+
+                    <TextView
+                        android:id="@+id/add_payment_card_txt_since"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/payment_method_since"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/add_payment_card_txt_number" />
+
+                    <TextView
+                        android:id="@+id/add_payment_card_txt_until"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/payment_method_since"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toEndOf="@+id/add_payment_card_txt_since_date"
+                        app:layout_constraintTop_toBottomOf="@+id/add_payment_card_txt_number" />
+
+                    <TextView
+                        android:id="@+id/add_payment_card_txt_until_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline14"
+                        app:layout_constraintStart_toEndOf="@+id/add_payment_card_txt_until"
+                        app:layout_constraintTop_toTopOf="@+id/add_payment_card_txt_since"
+                        tools:text="05/30" />
+
+                    <TextView
+                        android:id="@+id/add_payment_card_txt_since_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:maxLength="5"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/add_payment_card_txt_since"
+                        app:layout_constraintStart_toEndOf="@+id/add_payment_card_txt_since"
+                        app:layout_constraintTop_toTopOf="@+id/guideline12"
+                        tools:text="05/28" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="135dp" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="152dp" />
+
+                    <TextView
+                        android:id="@+id/add_payment_card_txt_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="12dp"
+                        android:ellipsize="none"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/guideline14"
+                        tools:text="IGNACIO MIGUEL ARRIETA" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/add_payment_card_img_brand"
+                        android:layout_width="58dp"
+                        android:layout_height="46dp"
+                        android:layout_marginEnd="28dp"
+                        android:layout_marginBottom="24dp"
+                        android:src="@drawable/ic_visa"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_payment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/grey_dark"
+        android:clickable="false"
+        android:fontFamily="@font/montserrat_regular"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="@string/payment_methods_confirm_card"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
