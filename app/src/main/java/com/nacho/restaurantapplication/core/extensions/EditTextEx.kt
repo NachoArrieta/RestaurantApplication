@@ -78,14 +78,43 @@ fun EditText.formatAsExpirationDate() {
                 val formatted = StringBuilder()
 
                 for (i in digitsOnly.indices) {
+                    if (i == 0 && digitsOnly[i] > '1') {
+                        setText("")
+                        setSelection(0)
+                        isUpdating = false
+                        return
+                    }
+                    if (i == 1) {
+                        val month = digitsOnly.substring(0, 2).toIntOrNull()
+                        if (month != null && month > 12) {
+                            setText(digitsOnly.substring(0, 1))
+                            setSelection(1)
+                            isUpdating = false
+                            return
+                        }
+                    }
+
                     formatted.append(digitsOnly[i])
+
                     if (i == 1 && i < digitsOnly.length - 1) {
                         formatted.append("/")
                     }
                 }
 
                 val newFormattedText = formatted.toString()
-                if (newFormattedText != it.toString()) {
+
+                if (newFormattedText.length == 5) {
+                    val year = newFormattedText.substring(3, 5).toIntOrNull()
+                    if (year != null && year < 24) {
+                        setText(newFormattedText.substring(0, 3))
+                        setSelection(3)
+                    } else {
+                        if (newFormattedText != it.toString()) {
+                            setText(newFormattedText)
+                            setSelection(newFormattedText.length)
+                        }
+                    }
+                } else {
                     setText(newFormattedText)
                     setSelection(newFormattedText.length)
                 }

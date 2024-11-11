@@ -111,8 +111,12 @@ class AddPaymentMethodFragment : Fragment() {
                 !isCardValid -> getString(R.string.add_payment_methods_error_card_number)
                 else -> null
             }
-        }
 
+            if (isCardValid) {
+                setCardBackgroundAndBrand(cardNumber)
+            }
+
+        }
     }
 
     private fun updateUI(viewState: PaymentMethodViewState) {
@@ -160,6 +164,49 @@ class AddPaymentMethodFragment : Fragment() {
             }
 
         }
+    }
+
+    private fun setCardBackgroundAndBrand(cardNumber: String) {
+        with(binding) {
+
+            when (cardNumber) {
+                "4546  4200  0617  4342" -> {
+                    addPaymentCardBackground.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.color_galicia))
+                    addPaymentCardImgBrand.setImageResource(R.drawable.ic_mastercard)
+                    addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_galicia)
+                }
+
+                "4547  4400  0819  4546" -> {
+                    addPaymentCardBackground.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.color_galicia))
+                    addPaymentCardImgBrand.setImageResource(R.drawable.ic_visa)
+                    addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_galicia)
+                }
+
+                "4546  3900  1724  3131" -> {
+                    addPaymentCardBackground.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.color_macro))
+                    addPaymentCardImgBrand.setImageResource(R.drawable.ic_visa)
+                    addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_macro)
+                }
+
+                "4546  3900  0618  8484" -> {
+                    addPaymentCardBackground.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.color_macro))
+                    addPaymentCardImgBrand.setImageResource(R.drawable.ic_mastercard)
+                    addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_macro)
+                }
+
+                else -> {
+                    addPaymentCardBackground.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.color_santander))
+                    addPaymentCardImgBrand.setImageResource(R.drawable.ic_visa)
+                    addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_santander)
+                }
+            }
+
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.onFieldsChangedPaymentMethod(UserCard(), true)
     }
 
 }
