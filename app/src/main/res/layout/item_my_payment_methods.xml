@@ -1,88 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="4dp"
-    android:elevation="8dp"
-    app:cardCornerRadius="12dp"
-    app:strokeColor="@color/plated">
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item_my_payment_methods_background"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F6751E">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="6dp"
+        android:elevation="8dp"
+        android:foregroundGravity="center"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/plated">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/item_my_payment_methods_img_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_star"
-            android:tint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#CB0B0A">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/item_my_payment_methods_img_brand"
-            android:layout_width="48dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_mastercard"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_my_payment_methods_img_bank_logo"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_santander"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/item_my_payment_txt_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/item_my_payment_methods_img_brand"
-            app:layout_constraintStart_toEndOf="@+id/item_my_payment_methods_img_brand"
-            app:layout_constraintTop_toTopOf="@+id/item_my_payment_methods_img_brand"
-            tools:text="0346 GALICIA" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_my_payment_methods_img_chip"
+                android:layout_width="42dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="32dp"
+                android:src="@drawable/ic_chip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_my_payment_methods_img_bank_logo" />
 
-        <TextView
-            android:id="@+id/item_my_payment_txt_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/item_my_payment_txt_delete"
-            app:layout_constraintEnd_toStartOf="@+id/item_my_payment_methods_img_favorite"
-            tools:text="Crédito" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_my_payment_methods_img_contactless"
+                android:layout_width="42dp"
+                android:layout_height="36dp"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/ic_contactless"
+                app:layout_constraintBottom_toBottomOf="@+id/item_my_payment_methods_img_chip"
+                app:layout_constraintStart_toEndOf="@+id/item_my_payment_methods_img_chip"
+                app:layout_constraintTop_toTopOf="@+id/item_my_payment_methods_img_chip" />
 
-        <TextView
-            android:id="@+id/item_my_payment_txt_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/item_my_payment_methods_img_brand"
-            app:layout_constraintTop_toBottomOf="@+id/item_my_payment_methods_img_brand"
-            tools:text="Eliminar" />
+            <TextView
+                android:id="@+id/item_my_payment_txt_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_my_payment_methods_img_chip"
+                tools:text="0346  5555  6666  7777" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/item_my_payment_txt_since"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/payment_method_since"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_my_payment_txt_number" />
 
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/item_my_payment_txt_since_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                tools:text="05/28"
+                android:layout_marginStart="2dp"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/guideline14"
+                app:layout_constraintStart_toEndOf="@+id/item_my_payment_txt_since"
+                app:layout_constraintTop_toTopOf="@+id/item_my_payment_txt_since" />
+
+            <TextView
+                android:id="@+id/item_my_payment_txt_until"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="24dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/payment_method_until"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/item_my_payment_txt_since_date"
+                app:layout_constraintTop_toBottomOf="@+id/item_my_payment_txt_number" />
+
+            <TextView
+                android:id="@+id/item_my_payment_txt_until_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginStart="2dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline14"
+                app:layout_constraintStart_toEndOf="@+id/item_my_payment_txt_until"
+                app:layout_constraintTop_toTopOf="@+id/item_my_payment_txt_since"
+                tools:text="05/30" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="135dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="152dp" />
+
+            <TextView
+                android:id="@+id/item_my_payment_txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline14"
+                tools:text="IGNACIO MIGUEL ARRIETA" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_my_payment_methods_img_brand"
+                android:layout_width="48dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="24dp"
+                android:src="@drawable/ic_visa"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

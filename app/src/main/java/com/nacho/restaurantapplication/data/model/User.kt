@@ -12,5 +12,5 @@ data class User(
     val coupons: List<Coupon>? = listOf(),
     val reservations: List<Reservation>? = listOf(),
     val orders: List<Order>? = listOf(),
-    val paymentMethods: List<PaymentMethod>? = listOf()
+    val cards: List<Card>? = listOf()
 )

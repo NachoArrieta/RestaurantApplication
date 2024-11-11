@@ -39,7 +39,7 @@
         tools:layout="@layout/fragment_status" />
     <fragment
         android:id="@+id/loadingFragment"
-        android:name="com.nacho.restaurantapplication.presentation.fragment.payment.LoadingFragment"
+        android:name="com.nacho.restaurantapplication.core.fragment.LoadingFragment"
         android:label="fragment_loading"
         tools:layout="@layout/fragment_loading" >
         <action
