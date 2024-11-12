@@ -122,6 +122,8 @@ class AddPaymentMethodFragment : Fragment() {
 
     private fun validateCardNumber(cardNumber: String): Boolean = SUPPORTED_CARD_NUMBERS.contains(cardNumber)
 
+    private fun validateCardDuplicated(cardNumber: String): Boolean = viewModel.userCards.value?.any { it.cardNumber == cardNumber } == false
+
     private fun onFieldChanged(hasFocus: Boolean = false) {
         val cardNumber = binding.addPaymentTieNumber.text.toString()
         val cardSince = binding.addPaymentTieSince.text.toString()
@@ -137,11 +139,13 @@ class AddPaymentMethodFragment : Fragment() {
             )
 
             val isCardValid = validateCardNumber(cardNumber)
+            val isCardDuplicated = validateCardDuplicated(cardNumber)
             viewModel.onFieldsChangedPaymentMethod(userCard, isCardValid)
 
             binding.addPaymentTilNumber.error = when {
                 cardNumber.length < CARD_NUMBER_LENGTH -> getString(R.string.add_payment_methods_error)
                 !isCardValid -> getString(R.string.add_payment_methods_error_card_number)
+                !isCardDuplicated -> getString(R.string.add_payment_methods_error_card_duplicated)
                 else -> null
             }
 
@@ -158,7 +162,8 @@ class AddPaymentMethodFragment : Fragment() {
     private fun updateUI(viewState: PaymentMethodViewState) {
 
         with(binding) {
-            val isCardNumberValidAndSupported = viewState.isValidCardNumber && validateCardNumber(addPaymentTieNumber.text.toString())
+            val isCardNumberValidAndSupported =
+                viewState.isValidCardNumber && validateCardNumber(addPaymentTieNumber.text.toString()) && validateCardDuplicated(addPaymentTieNumber.text.toString())
             val cardSince = binding.addPaymentTieSince.text.toString()
             val cardUntil = binding.addPaymentTieUntil.text.toString()
             val isValidDateRange = validateDateRange(cardSince, cardUntil)
