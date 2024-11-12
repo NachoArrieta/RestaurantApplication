@@ -119,11 +119,17 @@
     <string name="add_payment_methods_error">Debe contener 16 caracteres</string>
     <string name="add_payment_methods_error_since">Mes/Año</string>
     <string name="add_payment_methods_error_card_number">Tarjeta no apta para pagar</string>
+    <string name="add_payment_methods_error_card_duplicated">Tarjeta ya añadida a la app</string>
     <string name="add_payment_methods_error_card_name">Debe contener al menos 8 caracteres</string>
     <string name="add_payment_methods_error_card_cvv">Debe contener 3 caracteres</string>
     <string name="add_payment_methods_card_success">Medio de pago añadido con éxito</string>
     <string name="add_payment_methods_wait_a_moment">¡Aguarda un instante!</string>
     <string name="add_payment_methods_card_validating">Estamos validando los datos de la tarjeta</string>
+    <string name="add_payment_methods_card_data_error">Datos incorrectos</string>
+    <string name="add_payment_methods_empty">No tenés medios de pagos almacenados, guardá tus tarjetas y hacé tus pedidos desde la app</string>
+    <string name="payment_method_add">Añadir nuevo medio de pago</string>
+    <string name="payment_method_since">Desde</string>
+    <string name="payment_method_until">Hasta</string>
 
     <!-- Stores -->
     <string name="stores_days">Días:</string>
@@ -182,11 +188,6 @@
     <string name="delivery_method_free">Gratis</string>
     <string name="delivery_method_modify">Modificar domicilio</string>
 
-    <!-- Payment Method -->
-    <string name="payment_method_add">Añadir nuevo medio de pago</string>
-    <string name="payment_method_since">Desde</string>
-    <string name="payment_method_until">Hasta</string>
-
     <!-- Shopping Cart -->
     <string name="confirm_payment">Confirmar compra</string>
     <string name="confirm_payment_title">Vas a pagar</string>
@@ -200,8 +201,6 @@
     <string name="status_payment_title_denied">¡Algo ha salido mal!</string>
     <string name="status_payment_go_home">Volver al inicio</string>
     <string name="status_payment_go_my_orders">Ver mis pedidos</string>
-
-    <!-- Status payment -->
     <string name="loading_title">¡Estamos procesando la compra!</string>
 
     <!-- Errors -->

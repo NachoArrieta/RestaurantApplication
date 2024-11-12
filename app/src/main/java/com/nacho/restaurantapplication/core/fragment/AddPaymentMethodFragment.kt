@@ -38,6 +38,8 @@ class AddPaymentMethodFragment : Fragment() {
     private lateinit var cardBank: String
     private lateinit var cardType: String
     private lateinit var cardBrand: String
+    private var cardAmount: Int = 0
+    private var cardLimit: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,7 +94,9 @@ class AddPaymentMethodFragment : Fragment() {
                     cardSince = binding.addPaymentTieSince.text.toString(),
                     cardUntil = binding.addPaymentTieUntil.text.toString(),
                     cardCvv = binding.addPaymentTieCvv.text.toString(),
-                    cardBrand = cardBrand
+                    cardBrand = cardBrand,
+                    cardAmount = cardAmount,
+                    cardLimit = cardLimit
                 )
 
                 if (uid != null) {
@@ -118,24 +122,30 @@ class AddPaymentMethodFragment : Fragment() {
 
     private fun validateCardNumber(cardNumber: String): Boolean = SUPPORTED_CARD_NUMBERS.contains(cardNumber)
 
+    private fun validateCardDuplicated(cardNumber: String): Boolean = viewModel.userCards.value?.any { it.cardNumber == cardNumber } == false
+
     private fun onFieldChanged(hasFocus: Boolean = false) {
         val cardNumber = binding.addPaymentTieNumber.text.toString()
+        val cardSince = binding.addPaymentTieSince.text.toString()
+        val cardUntil = binding.addPaymentTieUntil.text.toString()
 
         if (!hasFocus) {
             val userCard = UserCard(
                 cardNumber = cardNumber,
-                cardSince = binding.addPaymentTieSince.text.toString(),
-                cardUntil = binding.addPaymentTieUntil.text.toString(),
+                cardSince = cardSince,
+                cardUntil = cardUntil,
                 cardName = binding.addPaymentTieTitularName.text.toString(),
                 cardCvv = binding.addPaymentTieCvv.text.toString()
             )
 
             val isCardValid = validateCardNumber(cardNumber)
+            val isCardDuplicated = validateCardDuplicated(cardNumber)
             viewModel.onFieldsChangedPaymentMethod(userCard, isCardValid)
 
             binding.addPaymentTilNumber.error = when {
                 cardNumber.length < CARD_NUMBER_LENGTH -> getString(R.string.add_payment_methods_error)
                 !isCardValid -> getString(R.string.add_payment_methods_error_card_number)
+                !isCardDuplicated -> getString(R.string.add_payment_methods_error_card_duplicated)
                 else -> null
             }
 
@@ -143,13 +153,20 @@ class AddPaymentMethodFragment : Fragment() {
                 setCardBackgroundAndBrand(cardNumber)
             }
 
+            val isValidDateRange = validateDateRange(cardSince, cardUntil)
+            binding.addPaymentTilUntil.error = if (!isValidDateRange) getString(R.string.add_payment_methods_card_data_error) else null
+
         }
     }
 
     private fun updateUI(viewState: PaymentMethodViewState) {
 
         with(binding) {
-            val isCardNumberValidAndSupported = viewState.isValidCardNumber && validateCardNumber(addPaymentTieNumber.text.toString())
+            val isCardNumberValidAndSupported =
+                viewState.isValidCardNumber && validateCardNumber(addPaymentTieNumber.text.toString()) && validateCardDuplicated(addPaymentTieNumber.text.toString())
+            val cardSince = binding.addPaymentTieSince.text.toString()
+            val cardUntil = binding.addPaymentTieUntil.text.toString()
+            val isValidDateRange = validateDateRange(cardSince, cardUntil)
 
             if (isCardNumberValidAndSupported) {
                 addPaymentCardTxtNumber.text = addPaymentTieNumber.text.toString()
@@ -171,7 +188,7 @@ class AddPaymentMethodFragment : Fragment() {
             val isNameValid = !addPaymentTieTitularName.text.isNullOrEmpty() && viewState.isValidCardName
             val isCvvValid = !addPaymentTieCvv.text.isNullOrEmpty() && viewState.isValidCardCvv
 
-            if (isSinceValid && isUntilValid) addPaymentTilTitularName.visibility = View.VISIBLE
+            if (isSinceValid && isUntilValid && isValidDateRange) addPaymentTilTitularName.visibility = View.VISIBLE
             if (isNameValid) addPaymentTilCvv.visibility = View.VISIBLE
 
             addPaymentTilNumber.error = if (!viewState.isValidCardNumber) getString(R.string.add_payment_methods_error_card_number) else null
@@ -206,6 +223,8 @@ class AddPaymentMethodFragment : Fragment() {
                     cardBank = "Galicia"
                     cardType = "Crédito"
                     cardBrand = "Mastercard"
+                    cardAmount = 0
+                    cardLimit = 250000
                 }
 
                 "4547  4400  0819  4546" -> {
@@ -215,6 +234,8 @@ class AddPaymentMethodFragment : Fragment() {
                     cardBank = "Galicia"
                     cardType = "Débito"
                     cardBrand = "Visa"
+                    cardAmount = 240000
+                    cardLimit = 0
                 }
 
                 "4546  3900  1724  3131" -> {
@@ -224,6 +245,8 @@ class AddPaymentMethodFragment : Fragment() {
                     cardBank = "Macro"
                     cardType = "Crédito"
                     cardBrand = "Visa"
+                    cardAmount = 0
+                    cardLimit = 20000
                 }
 
                 "4546  3900  0618  8484" -> {
@@ -233,6 +256,8 @@ class AddPaymentMethodFragment : Fragment() {
                     cardBank = "Macro"
                     cardType = "Débito"
                     cardBrand = "Mastercard"
+                    cardAmount = 2000
+                    cardLimit = 0
                 }
 
                 else -> {
@@ -240,12 +265,30 @@ class AddPaymentMethodFragment : Fragment() {
                     addPaymentCardImgBrand.setImageResource(R.drawable.ic_visa)
                     addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_santander)
                     cardBank = "Santander"
-                    cardType = "Visa"
-                    cardBrand = "Mastercard"
+                    cardType = "Credito"
+                    cardBrand = "Visa"
+                    cardAmount = 0
+                    cardLimit = 24000
                 }
             }
 
         }
+    }
+
+    private fun validateDateRange(since: String, until: String): Boolean {
+        if (since.length == 5 && until.length == 5) {
+            val sinceMonth = since.substring(0, 2).toInt()
+            val sinceYear = since.substring(3, 5).toInt()
+            val untilMonth = until.substring(0, 2).toInt()
+            val untilYear = until.substring(3, 5).toInt()
+
+            return when {
+                untilYear > sinceYear -> true
+                untilYear == sinceYear && untilMonth > sinceMonth -> true
+                else -> false
+            }
+        }
+        return true
     }
 
     private fun goToLoading() {
