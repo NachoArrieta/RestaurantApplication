@@ -1,4 +1,4 @@
-package com.nacho.restaurantapplication.domain.usecase.home.user
+package com.nacho.restaurantapplication.domain.usecase.neworder.paymentMethods
 
 import com.nacho.restaurantapplication.data.network.paymentMethods.PaymentMethodsRepository
 import com.nacho.restaurantapplication.domain.mapper.toCard

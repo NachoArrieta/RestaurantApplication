@@ -38,6 +38,8 @@ class AddPaymentMethodFragment : Fragment() {
     private lateinit var cardBank: String
     private lateinit var cardType: String
     private lateinit var cardBrand: String
+    private var cardAmount: Int = 0
+    private var cardLimit: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,7 +94,9 @@ class AddPaymentMethodFragment : Fragment() {
                     cardSince = binding.addPaymentTieSince.text.toString(),
                     cardUntil = binding.addPaymentTieUntil.text.toString(),
                     cardCvv = binding.addPaymentTieCvv.text.toString(),
-                    cardBrand = cardBrand
+                    cardBrand = cardBrand,
+                    cardAmount = cardAmount,
+                    cardLimit = cardLimit
                 )
 
                 if (uid != null) {
@@ -214,6 +218,8 @@ class AddPaymentMethodFragment : Fragment() {
                     cardBank = "Galicia"
                     cardType = "Crédito"
                     cardBrand = "Mastercard"
+                    cardAmount = 0
+                    cardLimit = 250000
                 }
 
                 "4547  4400  0819  4546" -> {
@@ -223,6 +229,8 @@ class AddPaymentMethodFragment : Fragment() {
                     cardBank = "Galicia"
                     cardType = "Débito"
                     cardBrand = "Visa"
+                    cardAmount = 240000
+                    cardLimit = 0
                 }
 
                 "4546  3900  1724  3131" -> {
@@ -232,6 +240,8 @@ class AddPaymentMethodFragment : Fragment() {
                     cardBank = "Macro"
                     cardType = "Crédito"
                     cardBrand = "Visa"
+                    cardAmount = 0
+                    cardLimit = 20000
                 }
 
                 "4546  3900  0618  8484" -> {
@@ -241,6 +251,8 @@ class AddPaymentMethodFragment : Fragment() {
                     cardBank = "Macro"
                     cardType = "Débito"
                     cardBrand = "Mastercard"
+                    cardAmount = 2000
+                    cardLimit = 0
                 }
 
                 else -> {
@@ -248,8 +260,10 @@ class AddPaymentMethodFragment : Fragment() {
                     addPaymentCardImgBrand.setImageResource(R.drawable.ic_visa)
                     addPaymentCardImgBankLogo.setImageResource(R.drawable.ic_santander)
                     cardBank = "Santander"
-                    cardType = "Visa"
-                    cardBrand = "Mastercard"
+                    cardType = "Credito"
+                    cardBrand = "Visa"
+                    cardAmount = 0
+                    cardLimit = 24000
                 }
             }
 

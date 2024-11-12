@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nacho.restaurantapplication.core.fragment.state.PaymentMethodViewState
 import com.nacho.restaurantapplication.core.utils.Constants
+import com.nacho.restaurantapplication.data.model.Card
 import com.nacho.restaurantapplication.domain.model.UserCard
-import com.nacho.restaurantapplication.domain.usecase.home.user.AddUserCardUseCase
+import com.nacho.restaurantapplication.domain.usecase.neworder.paymentMethods.AddUserCardUseCase
+import com.nacho.restaurantapplication.domain.usecase.neworder.paymentMethods.GetUserCardUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,13 +17,19 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PaymentMethodViewModel @Inject constructor(private val addUserCardUseCase: AddUserCardUseCase) : ViewModel() {
+class PaymentMethodViewModel @Inject constructor(
+    private val getUserCardsUseCase: GetUserCardUseCase,
+    private val addUserCardUseCase: AddUserCardUseCase
+) : ViewModel() {
 
     private val _uid = MutableLiveData<String?>()
     val uId: LiveData<String?> get() = _uid
 
     private val _viewStatePaymentMethod = MutableStateFlow(PaymentMethodViewState())
     val viewStatePaymentMethod: StateFlow<PaymentMethodViewState> get() = _viewStatePaymentMethod
+
+    private val _userCards = MutableLiveData<List<Card>>()
+    val userCards: LiveData<List<Card>> get() = _userCards
 
     private val _addCardSuccess = MutableLiveData(false)
     val addCardSuccess: LiveData<Boolean> = _addCardSuccess
@@ -38,6 +46,16 @@ class PaymentMethodViewModel @Inject constructor(private val addUserCardUseCase:
     }
 
     fun getUserId(userId: String) = _uid.postValue(userId)
+
+    fun fetchUserCards(userId: String) {
+        viewModelScope.launch {
+            try {
+                _userCards.value = getUserCardsUseCase(userId)
+            } catch (e: Exception) {
+                // Manejar el errores
+            }
+        }
+    }
 
     fun addCard(uid: String, cardInformation: UserCard) {
         viewModelScope.launch {

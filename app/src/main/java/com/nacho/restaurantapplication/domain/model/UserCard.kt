@@ -9,9 +9,6 @@ data class UserCard(
     val cardType: String = "",
     val cardBrand: String = "",
     val cardCvv: String = "",
-) {
-    fun isNotEmpty() =
-        cardBank.isNotEmpty() && cardNumber.isNotEmpty() && cardName.isNotEmpty()
-                && cardSince.isNotEmpty() && cardUntil.isNotEmpty() && cardType.isNotEmpty()
-                && cardBrand.isNotEmpty() && cardCvv.isNotEmpty()
-}
+    val cardAmount: Int = 0,
+    val cardLimit: Int = 0
+)

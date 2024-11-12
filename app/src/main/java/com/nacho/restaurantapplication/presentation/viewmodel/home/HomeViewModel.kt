@@ -12,7 +12,6 @@ import com.nacho.restaurantapplication.data.model.Coupon
 import com.nacho.restaurantapplication.data.model.News
 import com.nacho.restaurantapplication.data.model.Reservation
 import com.nacho.restaurantapplication.data.model.Store
-import com.nacho.restaurantapplication.data.model.SupportedPaymentMethod
 import com.nacho.restaurantapplication.data.model.User
 import com.nacho.restaurantapplication.domain.model.ReservationInformation
 import com.nacho.restaurantapplication.domain.model.UserInformation
@@ -24,7 +23,6 @@ import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserCouponsUs
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserInformationUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserReservationsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.UpdateUserInformationUseCase
-import com.nacho.restaurantapplication.domain.usecase.neworder.paymentMethods.GetSupportedPaymentMethodsUseCase
 import com.nacho.restaurantapplication.presentation.fragment.home.state.MyProfileViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -40,7 +38,6 @@ class HomeViewModel @Inject constructor(
     private val getUserReservationsUseCase: GetUserReservationsUseCase,
     private val addReservationUseCase: AddReservationUseCase,
     private val deleteUserReservationUseCase: DeleteUserReservationUseCase,
-    private val getSupportedPaymentMethodsUseCase: GetSupportedPaymentMethodsUseCase,
     private val getStoresUseCase: GetStoresUseCase,
     private val getNewsUseCase: GetNewsUseCase
 ) : ViewModel() {
@@ -88,19 +85,10 @@ class HomeViewModel @Inject constructor(
     val reservationValidateFields: LiveData<Boolean> = _reservationValidateFields
     //End Region Reservations
 
-    //Region PaymentMethods
-    private val _supportedPaymentMethods = MutableLiveData<List<SupportedPaymentMethod>?>()
-    val supportedPaymentMethods: LiveData<List<SupportedPaymentMethod>?> get() = _supportedPaymentMethods
-    //End Region PaymentMethods
-
     //Region Stores
     private val _stores = MutableLiveData<List<Store>?>()
     val stores: LiveData<List<Store>?> get() = _stores
     //End Region Stores
-
-    init {
-        fetchSupportedPaymentMethods()
-    }
 
     fun setDrawerOpen(open: Boolean) {
         _drawerOpen.value = open
@@ -210,20 +198,6 @@ class HomeViewModel @Inject constructor(
         }
     }
     //End Region Reservations
-
-    //Region PaymentMethods
-    private fun fetchSupportedPaymentMethods() {
-        viewModelScope.launch {
-            try {
-                val methodsList = getSupportedPaymentMethodsUseCase()
-                _supportedPaymentMethods.value = methodsList
-                Log.d("HomeViewModel", "SupportedPaymentMethods: $methodsList")
-            } catch (e: Exception) {
-                // Manejar error
-            }
-        }
-    }
-    //End Region PaymentMethods
 
     //Region Stores
     fun fetchStores() {

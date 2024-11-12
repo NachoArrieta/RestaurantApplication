@@ -86,7 +86,7 @@
         android:foreground="?attr/selectableItemBackground"
         android:text="@string/coupons_understood"
         android:textColor="@color/white"
-        android:visibility="visible"
+        android:visibility="gone"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

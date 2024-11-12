@@ -47,6 +47,8 @@ fun UserCard.toCard(): Card {
         cardName = this.cardName,
         cardType = this.cardType,
         cardBrand = this.cardBrand,
-        cardCvv = this.cardCvv
+        cardCvv = this.cardCvv,
+        cardAmount = this.cardAmount,
+        cardLimit = this.cardLimit
     )
 }
