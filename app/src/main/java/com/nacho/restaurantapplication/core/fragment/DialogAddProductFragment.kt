@@ -10,8 +10,11 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
+import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.databinding.FragmentDialogAddProductBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DialogAddProductFragment : DialogFragment() {
 
     private var _binding: FragmentDialogAddProductBinding? = null
@@ -43,19 +46,33 @@ class DialogAddProductFragment : DialogFragment() {
         val layoutParams = dialog?.window?.attributes
         layoutParams?.gravity = Gravity.CENTER
         dialog?.window?.attributes = layoutParams
+
+        val margin = resources.getDimensionPixelSize(R.dimen.dialog_horizontal_margin)
+
+        val rootView = binding.root
+        val params = rootView.layoutParams as ViewGroup.MarginLayoutParams
+        params.setMargins(margin, 0, margin, 0)
+        rootView.layoutParams = params
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         productTitle = arguments?.getString(ARG_PRODUCT_TITLE) ?: ""
-        productDescription = arguments?.getString(ARG_PRODUCT_DESCRIPTION) ?: ""
+        productDescription = arguments?.getString(ARG_PRODUCT_DESCRIPTION).toString()
         productImage = arguments?.getString(ARG_PRODUCT_IMAGE) ?: ""
 
         with(binding) {
 
             dialogTxtTitleProduct.text = productTitle
-            dialogTxtDescriptionProduct.text = productDescription
+
+
+            if (productDescription.isEmpty()) {
+                dialogTxtDescriptionProduct.visibility = View.GONE
+            } else {
+                dialogTxtDescriptionProduct.text = productDescription
+                dialogTxtDescriptionProduct.visibility = View.VISIBLE
+            }
 
             Glide.with(requireContext())
                 .load(productImage)
@@ -78,7 +95,6 @@ class DialogAddProductFragment : DialogFragment() {
 
             dialogBtnAddToCart.setOnClickListener {}
             appCompatImageView3.setOnClickListener { dismiss() }
-
         }
 
     }

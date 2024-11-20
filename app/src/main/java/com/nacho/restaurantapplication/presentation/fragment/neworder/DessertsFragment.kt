@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.nacho.restaurantapplication.core.fragment.DialogAddProductFragment
+import com.nacho.restaurantapplication.data.model.Burger
+import com.nacho.restaurantapplication.data.model.Dessert
 import com.nacho.restaurantapplication.databinding.FragmentDessertsBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.DessertAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -42,9 +45,15 @@ class DessertsFragment : Fragment() {
 
         newOrderVM.desserts.observe(viewLifecycleOwner) { desserts ->
             desserts?.let { categories ->
-                bsbList = DessertAdapter(categories["Bsb"] ?: emptyList()) { /* Manejar click */ }
-                sundaesList = DessertAdapter(categories["Sundaes"] ?: emptyList()) { /* Manejar click */ }
-                milkshakesList = DessertAdapter(categories["Milkshakes"] ?: emptyList()) { /* Manejar click */ }
+                bsbList = DessertAdapter(categories["Bsb"] ?: emptyList()) { dessert ->
+                    showDialogAddProduct(dessert)
+                }
+                sundaesList = DessertAdapter(categories["Sundaes"] ?: emptyList()) { dessert ->
+                    showDialogAddProduct(dessert)
+                }
+                milkshakesList = DessertAdapter(categories["Milkshakes"] ?: emptyList()) { dessert ->
+                    showDialogAddProduct(dessert)
+                }
 
                 with(binding) {
                     dessertsRvDesserts.adapter = bsbList
@@ -72,6 +81,17 @@ class DessertsFragment : Fragment() {
 
             dessertsShimmer.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
+    }
+
+    private fun showDialogAddProduct(dessert: Dessert) {
+        val dialog = DialogAddProductFragment.newInstance(
+            productTitle = dessert.title,
+            productDescription = dessert.description,
+            productImageUrl = dessert.image
+        ) {
+
+        }
+        dialog.show(parentFragmentManager, DialogAddProductFragment::class.java.simpleName)
     }
 
 }

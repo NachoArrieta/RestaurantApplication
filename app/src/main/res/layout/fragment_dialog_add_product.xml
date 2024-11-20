@@ -32,11 +32,11 @@
                 android:id="@+id/appCompatImageView3"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_close" />
+                android:src="@drawable/ic_close" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/dialog_txt_title_product"
@@ -60,10 +60,10 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/plated"
                 android:textColor="@color/white"
+                app:strokeColor="@color/red_extra_dark"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -93,15 +93,15 @@
                 android:id="@+id/dialog_txt_description_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="4dp"
                 android:gravity="center"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:fontFamily="@font/montserrat_regular"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/dialog_btn_add"
+                app:layout_constraintStart_toStartOf="@+id/dialog_btn_subtract"
                 app:layout_constraintTop_toBottomOf="@+id/dialog_cardView_product"
                 tools:text="Combo chicken classic" />
 
@@ -111,7 +111,10 @@
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="24dp"
                 android:hint="@string/dialog_quantity"
@@ -126,6 +129,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:backgroundTint="@color/white"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:clickable="false"
                     android:fontFamily="@font/montserrat_regular"
                     android:gravity="center"
                     android:importantForAutofill="no"
@@ -144,7 +150,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/dialog_til_quantity"
                 app:layout_constraintTop_toTopOf="@+id/dialog_til_quantity"
-                tools:src="@drawable/ic_add" />
+                android:src="@drawable/ic_add" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/dialog_btn_subtract"
@@ -154,7 +160,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/dialog_til_quantity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/dialog_til_quantity"
-                tools:src="@drawable/ic_subtract" />
+                android:src="@drawable/ic_subtract" />
 
             <LinearLayout
                 android:id="@+id/linearLayout4"

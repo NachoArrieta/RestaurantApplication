@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
+import com.nacho.restaurantapplication.core.fragment.DialogAddProductFragment
+import com.nacho.restaurantapplication.data.model.Accompaniment
+import com.nacho.restaurantapplication.data.model.Burger
 import com.nacho.restaurantapplication.databinding.FragmentBurgersBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.BurgerAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -51,9 +54,15 @@ class BurgersFragment : Fragment() {
 
         newOrderVM.burgers.observe(viewLifecycleOwner) { burgers ->
             burgers?.let { categories ->
-                meatList = BurgerAdapter(categories["Meat"] ?: emptyList()) { /* Manejar click */ }
-                chickenList = BurgerAdapter(categories["Chicken"] ?: emptyList()) { /* Manejar click */ }
-                veganList = BurgerAdapter(categories["Vegan"] ?: emptyList()) { /* Manejar click */ }
+                meatList = BurgerAdapter(categories["Meat"] ?: emptyList()) { burger ->
+                    showDialogAddProduct(burger)
+                }
+                chickenList = BurgerAdapter(categories["Chicken"] ?: emptyList()) { burger ->
+                    showDialogAddProduct(burger)
+                }
+                veganList = BurgerAdapter(categories["Vegan"] ?: emptyList()) { burger ->
+                    showDialogAddProduct(burger)
+                }
 
                 with(binding) {
                     burgersRvMeat.adapter = meatList
@@ -64,7 +73,7 @@ class BurgersFragment : Fragment() {
         }
 
         newOrderVM.isLoading.observe(viewLifecycleOwner) { isLoading ->
-                setupViews(isLoading)
+            setupViews(isLoading)
         }
 
     }
@@ -81,6 +90,15 @@ class BurgersFragment : Fragment() {
 
             burgersShimmer.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
+    }
+
+    private fun showDialogAddProduct(burger: Burger) {
+        val dialog = DialogAddProductFragment.newInstance(
+            productTitle = burger.title,
+            productDescription = burger.description,
+            productImageUrl = burger.image
+        ) { /* Manejar el evento al hacer click en añadir al carrito */ }
+        dialog.show(parentFragmentManager, DialogAddProductFragment::class.java.simpleName)
     }
 
 }

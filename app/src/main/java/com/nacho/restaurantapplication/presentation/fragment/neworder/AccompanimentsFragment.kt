@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.nacho.restaurantapplication.core.fragment.DialogAddProductFragment
+import com.nacho.restaurantapplication.data.model.Accompaniment
 import com.nacho.restaurantapplication.databinding.FragmentAccompanimentsBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.AccompanimentAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -38,17 +40,28 @@ class AccompanimentsFragment : Fragment() {
     private fun setupObservers() {
 
         newOrderVM.accompaniments.observe(viewLifecycleOwner) { accompaniments ->
-            accompanimentList = AccompanimentAdapter(accompaniments) { /* Manejar click */ }
+            accompanimentList = AccompanimentAdapter(accompaniments) { accompaniment ->
+                showDialogAddProduct(accompaniment)
+            }
             binding.accompanimentsRv.adapter = accompanimentList
         }
 
         newOrderVM.isLoading.observe(viewLifecycleOwner) { isLoading ->
             if (!isLoading) {
-                    binding.accompanimentsRv.visibility = View.VISIBLE
-                    binding.accompanimentsShimmer.visibility = View.GONE
+                binding.accompanimentsRv.visibility = View.VISIBLE
+                binding.accompanimentsShimmer.visibility = View.GONE
             }
         }
 
+    }
+
+    private fun showDialogAddProduct(accompaniment: Accompaniment) {
+        val dialog = DialogAddProductFragment.newInstance(
+            productTitle = accompaniment.title,
+            productDescription = accompaniment.description,
+            productImageUrl = accompaniment.image
+        ) { /* Manejar el evento al hacer click en añadir al carrito */ }
+        dialog.show(parentFragmentManager, DialogAddProductFragment::class.java.simpleName)
     }
 
 }

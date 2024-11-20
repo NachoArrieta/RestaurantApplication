@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.nacho.restaurantapplication.core.fragment.DialogAddProductFragment
+import com.nacho.restaurantapplication.data.model.Dessert
+import com.nacho.restaurantapplication.data.model.Drink
 import com.nacho.restaurantapplication.databinding.FragmentDrinksBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.DrinkAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -43,10 +46,18 @@ class DrinksFragment : Fragment() {
 
         newOrderVM.drinks.observe(viewLifecycleOwner) { drinks ->
             drinks?.let { categories ->
-                beerList = DrinkAdapter(categories["Beer"] ?: emptyList()) { /* Manejar click */ }
-                sodaList = DrinkAdapter(categories["Soda"] ?: emptyList()) { /* Manejar click */ }
-                flavoredList = DrinkAdapter(categories["Flavored"] ?: emptyList()) { /* Manejar click */ }
-                waterList = DrinkAdapter(categories["Water"] ?: emptyList()) { /* Manejar click */ }
+                beerList = DrinkAdapter(categories["Beer"] ?: emptyList()) { drink ->
+                    showDialogAddProduct(drink)
+                }
+                sodaList = DrinkAdapter(categories["Soda"] ?: emptyList()) { drink ->
+                    showDialogAddProduct(drink)
+                }
+                flavoredList = DrinkAdapter(categories["Flavored"] ?: emptyList()) { drink ->
+                    showDialogAddProduct(drink)
+                }
+                waterList = DrinkAdapter(categories["Water"] ?: emptyList()) { drink ->
+                    showDialogAddProduct(drink)
+                }
 
                 with(binding) {
                     drinksRvBeers.adapter = beerList
@@ -76,6 +87,15 @@ class DrinksFragment : Fragment() {
 
             drinksShimmer.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
+    }
+
+    private fun showDialogAddProduct(drink: Drink) {
+        val dialog = DialogAddProductFragment.newInstance(
+            productTitle = drink.title,
+            productDescription = "",
+            productImageUrl = drink.image
+        ) { /* Manejar el evento al hacer click en añadir al carrito */ }
+        dialog.show(parentFragmentManager, DialogAddProductFragment::class.java.simpleName)
     }
 
 }
