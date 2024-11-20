@@ -177,6 +177,8 @@
     <string name="dialog_exit">Sí, deseo salir</string>
     <string name="dialog_out">Sí, deseo cerrar</string>
     <string name="dialog_accept">Aceptar</string>
+    <string name="dialog_quantity">Cantidad</string>
+    <string name="dialog_add">Añadir al carro</string>
 
     <!-- Shopping Cart -->
     <string name="neworder_title">Armá tu pedido</string>
@@ -245,5 +247,7 @@
     <string name="tac_description_responsibility">Beicon SA no se responsabiliza por daños directos, indirectos, incidentales, especiales o consecuentes que surjan de su uso de la App, excepto en casos de negligencia grave o dolo.</string>
     <string name="tac_description_modify_terms">Nos reservamos el derecho de modificar estos Términos en cualquier momento. Las modificaciones serán efectivas una vez publicadas en la App. Es su responsabilidad revisar periódicamente estos Términos. Su uso continuado de la App después de cualquier modificación constituye su aceptación de los nuevos Términos.</string>
     <string name="tac_description_contact">Para cualquier consulta o comentario sobre estos Términos, por favor contacte a Beicon SA a través de rrhh@beiconbsb.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
