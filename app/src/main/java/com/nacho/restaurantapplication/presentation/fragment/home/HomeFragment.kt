@@ -1,24 +1,29 @@
 package com.nacho.restaurantapplication.presentation.fragment.home
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.databinding.FragmentHomeBinding
 import com.nacho.restaurantapplication.presentation.activity.neworder.NewOrderActivity
+import com.nacho.restaurantapplication.presentation.adapter.home.HomeReservationAdapter
 import com.nacho.restaurantapplication.presentation.adapter.home.NewsAdapter
-import com.nacho.restaurantapplication.presentation.adapter.neworder.DessertAdapter
-import com.nacho.restaurantapplication.presentation.adapter.neworder.PromotionAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
-import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -27,11 +32,9 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val homeViewModel: HomeViewModel by activityViewModels()
-    private val newOrderViewModel: NewOrderViewModel by activityViewModels()
 
     private lateinit var newsAdapter: NewsAdapter
-    private lateinit var promotionList: PromotionAdapter
-    private lateinit var dessertList: DessertAdapter
+    private lateinit var reservationAdapter: HomeReservationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,11 +47,30 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        homeViewModel.fetchNews()
+
+        val user = FirebaseAuth.getInstance().currentUser?.uid
+        if (user != null) {
+            homeViewModel.fetchUserReservations(user)
+        }
+
         setupObservers()
 
         with(binding) {
             homeBtnGoNewOrder.setOnClickListener {
                 goToNewOrder()
+            }
+
+            homeBtnInstagram.setOnClickListener {
+                openInstagramProfile()
+            }
+
+            homeBtnWhatsapp.setOnClickListener {
+                openWhatsApp("+543571539872")
+            }
+
+            homeBtnCall.setOnClickListener {
+                openCall("3571414900")
             }
         }
 
@@ -72,7 +94,7 @@ class HomeFragment : Fragment() {
         homeViewModel.loadingNews.observe(viewLifecycleOwner) { isLoading ->
             if (!isLoading) {
                 lifecycleScope.launch {
-                    //delay(3000)
+                    delay(2000)
                     binding.apply {
                         homeVp.visibility = View.VISIBLE
                         homeNewsShimmer.visibility = View.GONE
@@ -86,34 +108,48 @@ class HomeFragment : Fragment() {
             }
         }
 
-        newOrderViewModel.promotions.observe(viewLifecycleOwner) { promotions ->
-            promotionList = PromotionAdapter(promotions) { /* Manejar click */ }
-            binding.homeRvPromotions.adapter = promotionList
-        }
+        homeViewModel.userReservations.observe(viewLifecycleOwner) { reservations ->
 
-        newOrderViewModel.desserts.observe(viewLifecycleOwner) { desserts ->
-            val allDesserts = desserts.values.flatten()
+            val sortedReservations = reservations.sortedWith(compareBy(
+                { LocalDate.parse(it.day, DateTimeFormatter.ofPattern("d/MM/yyyy")) },
+                { LocalTime.parse(it.hour, DateTimeFormatter.ofPattern("H.mm 'hs'")) }
+            ))
 
-            dessertList = DessertAdapter(allDesserts) { /* Manejar click */ }
-            binding.homeRvDesserts.adapter = dessertList
-        }
+            binding.apply {
+                homeReservationShimmer.visibility = View.VISIBLE
 
-        newOrderViewModel.isLoading.observe(viewLifecycleOwner) { promotionLoading ->
-            with(binding) {
-                if (!promotionLoading) {
+                if (reservations.isNullOrEmpty()) {
                     lifecycleScope.launch {
-                        //delay(3000)
-                        homeRvPromotions.visibility = View.VISIBLE
-                        homeRvDesserts.visibility = View.VISIBLE
-                        homePromotionsShimmer.visibility = View.GONE
-                        homeDessertsShimmer.visibility = View.GONE
+                        delay(2000)
+                        homeTxtReservation.visibility = View.VISIBLE
+                        homeRvReservation.visibility = View.INVISIBLE
+                        homeCvEmptyReservation.visibility = View.VISIBLE
+                        homeReservationShimmer.visibility = View.GONE
                     }
                 } else {
-                    homeRvPromotions.visibility = View.GONE
-                    homeRvDesserts.visibility = View.GONE
-                    homePromotionsShimmer.visibility = View.VISIBLE
-                    homeDessertsShimmer.visibility = View.VISIBLE
+
+                    reservationAdapter = HomeReservationAdapter(reservationList = sortedReservations)
+                    homeRvReservation.adapter = reservationAdapter
+                    lifecycleScope.launch {
+                        delay(2000)
+                        homeTxtReservation.visibility = View.VISIBLE
+                        homeCvEmptyReservation.visibility = View.GONE
+                        homeRvReservation.visibility = View.VISIBLE
+                        homeReservationShimmer.visibility = View.GONE
+                    }
                 }
+
+            }
+        }
+
+        lifecycleScope.launch {
+            delay(2500)
+            binding.apply {
+                homeBtnShimmer.visibility = View.GONE
+                homeBtnGoNewOrder.visibility = View.VISIBLE
+                homeBtnInstagram.visibility = View.VISIBLE
+                homeBtnCall.visibility = View.VISIBLE
+                homeBtnWhatsapp.visibility = View.VISIBLE
             }
         }
 
@@ -124,4 +160,47 @@ class HomeFragment : Fragment() {
         activity?.finish()
     }
 
+    private fun openInstagramProfile() {
+        val username = "beicon.bsb"
+        val appUri = Uri.parse("http://instagram.com/_u/$username")
+        val webUri = Uri.parse("https://www.instagram.com/$username")
+
+        val instagramAppIntent = Intent(Intent.ACTION_VIEW, appUri).apply {
+            setPackage("com.instagram.android")
+        }
+
+        val packageManager = requireContext().packageManager
+        if (instagramAppIntent.resolveActivity(packageManager) != null) {
+            startActivity(instagramAppIntent)
+        } else {
+            val webIntent = Intent(Intent.ACTION_VIEW, webUri)
+            startActivity(webIntent)
+        }
+    }
+
+    private fun openCall(phoneNumber: String) {
+        val dialIntent = Intent(Intent.ACTION_DIAL).apply {
+            data = Uri.parse("tel:$phoneNumber")
+        }
+        startActivity(dialIntent)
+    }
+
+    private fun openWhatsApp(phoneNumber: String) {
+        val uri = Uri.parse("https://wa.me/$phoneNumber")
+        val intent = Intent(Intent.ACTION_VIEW, uri).apply {
+            setPackage("com.whatsapp")
+        }
+
+        if (intent.resolveActivity(requireContext().packageManager) != null) {
+            startActivity(intent)
+        } else {
+            showToast(getString(R.string.home_no_wpp))
+        }
+    }
+
+    private fun showToast(message: String) = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
 }
+
+
+

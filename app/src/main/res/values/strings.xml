@@ -56,6 +56,8 @@
     <string name="home_recommendations">Recomendaciones</string>
     <string name="home_promotions">Promociones</string>
     <string name="home_new_order">Realizar pedido</string>
+    <string name="home_reservation_add">Realizar reserva</string>
+    <string name="home_no_wpp">WhatsApp no está instalado</string>
 
     <!-- My Reservations -->
     <string name="reservations_new">Nueva reserva</string>
