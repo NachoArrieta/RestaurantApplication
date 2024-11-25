@@ -107,6 +107,7 @@ class ProductsRepositoryImpl @Inject constructor(
                     val dessertData = dessert.value as? Map<*, *> ?: return@mapNotNull null
                     Dessert(
                         title = dessertData["Title"] as? String ?: "",
+                        description = dessertData["Description"] as? String ?: "",
                         image = dessertData["Image"] as? String ?: "",
                         price = when (val priceValue = dessertData["Price"]) {
                             is Int -> priceValue

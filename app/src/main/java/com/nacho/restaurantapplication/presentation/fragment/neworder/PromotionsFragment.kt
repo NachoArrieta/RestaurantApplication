@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.nacho.restaurantapplication.core.fragment.DialogAddProductFragment
+import com.nacho.restaurantapplication.data.model.Drink
+import com.nacho.restaurantapplication.data.model.Promotion
 import com.nacho.restaurantapplication.databinding.FragmentPromotionsBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.PromotionAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -38,7 +41,9 @@ class PromotionsFragment : Fragment() {
     private fun setupObservers() {
 
         newOrderVM.promotions.observe(viewLifecycleOwner) { promotions ->
-            promotionList = PromotionAdapter(promotions) { /* Manejar click */ }
+            promotionList = PromotionAdapter(promotions) { promotion ->
+                showDialogAddProduct(promotion)
+            }
             binding.promotionsRv.adapter = promotionList
         }
 
@@ -49,6 +54,15 @@ class PromotionsFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun showDialogAddProduct(promotion: Promotion) {
+        val dialog = DialogAddProductFragment.newInstance(
+            productTitle = promotion.title,
+            productDescription = promotion.description,
+            productImageUrl = promotion.image
+        ) { /* Manejar el evento al hacer click en añadir al carrito */ }
+        dialog.show(parentFragmentManager, DialogAddProductFragment::class.java.simpleName)
     }
 
 }

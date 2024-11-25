@@ -11,7 +11,9 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.databinding.FragmentDialogAlertBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DialogAlertFragment : DialogFragment() {
 
     private var _binding: FragmentDialogAlertBinding? = null
