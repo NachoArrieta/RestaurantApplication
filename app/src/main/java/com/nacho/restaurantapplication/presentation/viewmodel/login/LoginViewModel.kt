@@ -15,6 +15,7 @@ import com.nacho.restaurantapplication.domain.usecase.login.CreateAccountUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.LoginUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.SaveAccountUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.SendEmailVerificationUseCase
+import com.nacho.restaurantapplication.domain.usecase.login.SendResetPasswordUseCase
 import com.nacho.restaurantapplication.domain.usecase.login.VerifyEmailUseCase
 import com.nacho.restaurantapplication.presentation.fragment.login.state.SignUpViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,7 +31,8 @@ class LoginViewModel @Inject constructor(
     private val verifyEmailUseCase: VerifyEmailUseCase,
     private val checkEmailExistsUseCase: CheckEmailExistsUseCase,
     private val loginUseCase: LoginUseCase,
-    private val saveAccountUseCase: SaveAccountUseCase
+    private val saveAccountUseCase: SaveAccountUseCase,
+    private val sendResetPasswordUseCase: SendResetPasswordUseCase
 ) : ViewModel() {
 
     private val _viewState = MutableStateFlow(SignUpViewState())
@@ -47,6 +49,9 @@ class LoginViewModel @Inject constructor(
 
     private val _loginResult = MutableLiveData<Boolean>()
     val loginResult: LiveData<Boolean> = _loginResult
+
+    private val _resetPasswordResult = MutableLiveData<Boolean?>()
+    val resetPasswordResult: LiveData<Boolean?> get() = _resetPasswordResult
 
     fun onFieldsChanged(userSignup: UserSignup) {
         _viewState.value = userSignup.toSignupViewState()
@@ -118,6 +123,13 @@ class LoginViewModel @Inject constructor(
         }
     }
 
+    fun sendPasswordResetEmail(email: String) {
+        viewModelScope.launch {
+            val result = sendResetPasswordUseCase(email)
+            _resetPasswordResult.value = result
+        }
+    }
+
     private fun isValidOrEmptyName(name: String): Boolean = name.length >= MIN_NAME_LENGTH || name.isEmpty()
 
     private fun isValidOrEmptyLastname(lastname: String): Boolean = lastname.length >= MIN_NAME_LENGTH || lastname.isEmpty()
@@ -133,6 +145,10 @@ class LoginViewModel @Inject constructor(
     private fun isValidOrEmptyConfirmPassword(password: String, confirmPassword: String): Boolean =
         password == confirmPassword || confirmPassword.isEmpty()
 
+    fun resetPasswordState() {
+        _resetPasswordResult.value = null
+    }
+
     private fun UserSignup.toSignupViewState(): SignUpViewState {
         return SignUpViewState(
             isValidName = isValidOrEmptyName(name),
@@ -145,3 +161,6 @@ class LoginViewModel @Inject constructor(
     }
 
 }
+
+
+
