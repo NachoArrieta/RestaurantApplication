@@ -181,6 +181,10 @@
     <string name="dialog_accept">Aceptar</string>
     <string name="dialog_quantity">Cantidad</string>
     <string name="dialog_add">Añadir al carro</string>
+    <string name="dialog_add_email">Ingresa tu email</string>
+    <string name="dialog_forgot_pass">Reestablecer contraseña</string>
+    <string name="dialog_error_reset_failed">"Error al enviar el correo"</string>
+    <string name="dialog_reset_ok">Correo enviado exitosamente</string>
 
     <!-- Shopping Cart -->
     <string name="neworder_title">Armá tu pedido</string>
@@ -211,6 +215,7 @@
     <string name="error_generic">¡Ha ocurrido un problema!</string>
     <string name="error_not_create_account">Por motivos desconocidos, no hemos podido crear la cuenta. Intenta nuevamente o inténtalo más tarde</string>
     <string name="error_go_to_login">Volver al inicio</string>
+    <string name="error_email_not_found">El email no existe</string>
     <string name="error_img_loading">No pudimos cargar la imagen</string>
 
     <!-- VerifyEmail -->

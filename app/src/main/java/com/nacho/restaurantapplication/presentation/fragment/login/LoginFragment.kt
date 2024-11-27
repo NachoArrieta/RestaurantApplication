@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.nacho.restaurantapplication.R
+import com.nacho.restaurantapplication.core.fragment.DialogForgotPassFragment
 import com.nacho.restaurantapplication.databinding.FragmentLoginBinding
 import com.nacho.restaurantapplication.presentation.activity.home.HomeActivity
 import com.nacho.restaurantapplication.presentation.viewmodel.login.LoginViewModel
@@ -20,6 +21,8 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val viewModel: LoginViewModel by activityViewModels()
+
+    private var alertDialog: DialogForgotPassFragment? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,6 +66,10 @@ class LoginFragment : Fragment() {
                 findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
             }
 
+            loginTxtForgotPassword.setOnClickListener {
+                showAlertDialog()
+            }
+
             setupObservers()
 
         }
@@ -81,6 +88,11 @@ class LoginFragment : Fragment() {
     private fun goToHome() {
         startActivity(Intent(context, HomeActivity::class.java))
         activity?.finish()
+    }
+
+    private fun showAlertDialog() {
+        alertDialog = DialogForgotPassFragment()
+        alertDialog?.show(parentFragmentManager, "DialogForgotPassFragment")
     }
 
     private fun showToast(message: String) = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
