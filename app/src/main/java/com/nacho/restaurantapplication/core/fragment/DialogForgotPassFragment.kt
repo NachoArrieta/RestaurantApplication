@@ -62,6 +62,11 @@ class DialogForgotPassFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.apply {
+            dialogBtnForgot.isEnabled = false
+            binding.dialogBtnForgot.isClickable = false
+        }
+
         setupObservers()
         setupListeners()
 
@@ -90,10 +95,11 @@ class DialogForgotPassFragment : DialogFragment() {
             }
 
             dialogBtnForgot.setOnClickListener {
-                val email = dialogTieEmail.text.toString().trim()
-                viewModel.sendPasswordResetEmail(email)
+                if (dialogBtnForgot.isEnabled) {
+                    val email = dialogTieEmail.text.toString().trim()
+                    viewModel.sendPasswordResetEmail(email)
+                }
             }
-
         }
     }
 
@@ -121,6 +127,7 @@ class DialogForgotPassFragment : DialogFragment() {
             }
 
             dialogBtnForgot.isEnabled = exists
+            dialogBtnForgot.isClickable = exists
             dialogBtnForgot.setBackgroundColor(
                 ContextCompat.getColor(
                     requireContext(),
