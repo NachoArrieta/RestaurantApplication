@@ -9,7 +9,6 @@ import androidx.activity.viewModels
 import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.presentation.activity.home.HomeActivity
-import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

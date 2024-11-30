@@ -68,65 +68,107 @@
             android:id="@+id/item_cart_txt_subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:textColor="@color/grey_dark"
             android:textSize="11sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline18"
             app:layout_constraintStart_toEndOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@id/item_cart_txt_title"
-            tools:text="Combo tasty 2 x 1" />
+            app:layout_constraintTop_toTopOf="@+id/cardView"
+            tools:text="Combo hamburguesa Crispy classic talle S, porción de papas y pepsi 500ml" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_cart_txt_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:text="@string/delete"
+            android:textColor="@color/red_extra_dark"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/item_cart_txt_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
             android:fontFamily="@font/montserrat_regular"
             android:textColor="@color/grey_dark"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="$24.000" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/item_cart_txt_delete"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dialog_til_quantity"
+            style="@style/TextInputLayoutStyleRed"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="@string/dialog_quantity"
+            android:textColorHint="@color/red"
+            app:layout_constraintBottom_toBottomOf="@+id/item_cart_txt_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dialog_tie_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:backgroundTint="@color/red"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="@color/red"
+                android:textSize="12sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dialog_btn_add"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="3dp"
+            android:src="@drawable/ic_add"
+            android:tint="@color/red"
+            app:layout_constraintBottom_toBottomOf="@+id/dialog_til_quantity"
+            app:layout_constraintStart_toEndOf="@+id/dialog_til_quantity" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dialog_btn_subtract"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"
+            android:src="@drawable/ic_subtract"
+            android:tint="@color/red"
+            app:layout_constraintBottom_toBottomOf="@+id/dialog_til_quantity"
+            app:layout_constraintEnd_toStartOf="@+id/dialog_til_quantity" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_regular"
-            android:gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/red_extra_dark"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            android:text="@string/delete" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/item_cart_txt_modify"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:gravity="center"
-            android:text="@string/modify"
-            android:textColor="@color/red_extra_dark"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/item_cart_txt_delete"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="283dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
