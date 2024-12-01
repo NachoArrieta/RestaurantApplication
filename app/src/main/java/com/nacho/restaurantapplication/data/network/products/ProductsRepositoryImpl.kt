@@ -4,8 +4,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.nacho.restaurantapplication.data.model.Accompaniment
 import com.nacho.restaurantapplication.data.model.Burger
 import com.nacho.restaurantapplication.data.model.Dessert
+import com.nacho.restaurantapplication.data.model.Dressing
 import com.nacho.restaurantapplication.data.model.Drink
 import com.nacho.restaurantapplication.data.model.Promotion
+import com.nacho.restaurantapplication.data.model.Topping
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -141,6 +143,38 @@ class ProductsRepositoryImpl @Inject constructor(
                         is Double -> priceValue.toInt()
                         else -> 0
                     }
+                )
+            }
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    override suspend fun getToppings(): List<Topping> {
+        val toppingsReference = firebaseDatabase.getReference("Products/Toppings")
+        return try {
+            val toppingsSnapshot = toppingsReference.get().await()
+            toppingsSnapshot.children.mapNotNull { topping ->
+                val toppingData = topping.value as? Map<*, *> ?: return@mapNotNull null
+                Topping(
+                    title = toppingData["Title"] as? String ?: "",
+                    image = toppingData["Image"] as? String ?: ""
+                )
+            }
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    override suspend fun getDressings(): List<Dressing> {
+        val dressingsReference = firebaseDatabase.getReference("Products/Dressings")
+        return try {
+            val dressingsSnapshot = dressingsReference.get().await()
+            dressingsSnapshot.children.mapNotNull { dressing ->
+                val dressingData = dressing.value as? Map<*, *> ?: return@mapNotNull null
+                Dressing(
+                    title = dressingData["Title"] as? String ?: "",
+                    image = dressingData["Image"] as? String ?: ""
                 )
             }
         } catch (e: Exception) {

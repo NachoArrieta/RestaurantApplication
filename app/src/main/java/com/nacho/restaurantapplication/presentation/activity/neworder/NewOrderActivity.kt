@@ -6,6 +6,7 @@ import com.nacho.restaurantapplication.databinding.ActivityNewOrderBinding
 import android.content.Intent
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.presentation.activity.home.HomeActivity
@@ -27,21 +28,15 @@ class NewOrderActivity : AppCompatActivity() {
 
         val navController = supportFragmentManager.findFragmentById(R.id.new_order_container)
             ?.findNavController()
-
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (navController != null && navController.navigateUp()) {
-                    // Si puede navegar hacia atrás dentro del NavController, lo hace
-                    return
-                } else {
-                    // Si no hay más fragmentos en la pila, navega al HomeActivity
-                    val intent = Intent(this@NewOrderActivity, HomeActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                    startActivity(intent)
-                    finish()
-                }
+                handleBackPressed(navController)
             }
         })
+
+        binding.toolbarImgBack.setOnClickListener {
+            handleBackPressed(navController)
+        }
 
     }
 
@@ -52,6 +47,18 @@ class NewOrderActivity : AppCompatActivity() {
             fetchDrinks()
             fetchDesserts()
             fetchAccompaniments()
+            fetchToppingsAndDressings()
+        }
+    }
+
+    private fun handleBackPressed(navController: NavController?) {
+        if (navController != null && navController.navigateUp()) {
+            return
+        } else {
+            val intent = Intent(this@NewOrderActivity, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+            finish()
         }
     }
 

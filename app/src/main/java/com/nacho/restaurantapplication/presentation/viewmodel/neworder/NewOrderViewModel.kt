@@ -12,13 +12,17 @@ import com.nacho.restaurantapplication.core.utils.Constants.PROMOTIONS
 import com.nacho.restaurantapplication.data.model.Accompaniment
 import com.nacho.restaurantapplication.data.model.Burger
 import com.nacho.restaurantapplication.data.model.Dessert
+import com.nacho.restaurantapplication.data.model.Dressing
 import com.nacho.restaurantapplication.data.model.Drink
 import com.nacho.restaurantapplication.data.model.Promotion
+import com.nacho.restaurantapplication.data.model.Topping
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetAccompanimentsUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetBurgersUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetDessertsUseCase
+import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetDressingsUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetDrinksUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetPromotionsUseCase
+import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetToppingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,7 +33,9 @@ class NewOrderViewModel @Inject constructor(
     private val getPromotionsUseCase: GetPromotionsUseCase,
     private val getDrinksUseCase: GetDrinksUseCase,
     private val getDessertsUseCase: GetDessertsUseCase,
-    private val getAccompanimentsUseCase: GetAccompanimentsUseCase
+    private val getAccompanimentsUseCase: GetAccompanimentsUseCase,
+    private val getToppingsUseCase: GetToppingsUseCase,
+    private val getDressingsUseCase: GetDressingsUseCase
 ) : ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
@@ -55,10 +61,20 @@ class NewOrderViewModel @Inject constructor(
     val desserts: LiveData<Map<String, List<Dessert>>> get() = _desserts
     //End Region Desserts
 
-    // Region Accompaniments
+    //Region Accompaniments
     private val _accompaniments = MutableLiveData<List<Accompaniment>>()
     val accompaniments: LiveData<List<Accompaniment>> get() = _accompaniments
     //End Region Accompaniments
+
+    //Region Toppings
+    private val _toppings = MutableLiveData<List<Topping>>()
+    val toppings: LiveData<List<Topping>> get() = _toppings
+    //End Region Toppings
+
+    //Region Dressing
+    private val _dressings = MutableLiveData<List<Dressing>>()
+    val dressings: LiveData<List<Dressing>> get() = _dressings
+    //End Region Dressing
 
     //Tab Layout Region
     val selectedTabIndex = MutableLiveData<Int>()
@@ -154,5 +170,20 @@ class NewOrderViewModel @Inject constructor(
         }
     }
     //End Region Accompaniments
+
+    //Region Toppings And Dressing
+    fun fetchToppingsAndDressings() {
+        viewModelScope.launch {
+            try {
+                val toppings = getToppingsUseCase()
+                val dressings = getDressingsUseCase()
+                _toppings.postValue(toppings)
+                _dressings.postValue(dressings)
+            } catch (e: Exception) {
+                // Manejar error
+            }
+        }
+    }
+    //End Region Toppings And Dressing
 
 }

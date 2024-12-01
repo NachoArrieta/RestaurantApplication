@@ -171,6 +171,16 @@
     <string name="assemble_topping">Toppings</string>
     <string name="assemble_dressing">Aderezos y salsas</string>
 
+    <!-- Assemble Sizes-->
+    <string name="assemble_title_s">S</string>
+    <string name="assemble_title_m">M</string>
+    <string name="assemble_title_l">L</string>
+    <string name="assemble_title_xl">XL</string>
+    <string name="assemble_subtitle_s">(1 medallón 100gr)</string>
+    <string name="assemble_subtitle_m">(2 medallones 100gr)</string>
+    <string name="assemble_subtitle_l">(3 medallones 100gr)</string>
+    <string name="assemble_subtitle_xl">(4 medallones 100gr)</string>
+
     <!-- Dialogs -->
     <string name="dialog_quit_title">¿Deseas salir de la aplicación?</string>
     <string name="dialog_log_out">¿Deseas cerrar sesión?</string>
