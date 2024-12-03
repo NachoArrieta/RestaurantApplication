@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.nacho.restaurantapplication.R
@@ -37,7 +38,6 @@ class AssembleYourBurgerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadSizes()
         setupObservers()
     }
 
@@ -58,24 +58,40 @@ class AssembleYourBurgerFragment : Fragment() {
             binding.apply {
                 assembleShimmer.visibility = View.GONE
                 assembleCvSize.visibility = View.VISIBLE
-                assembleCvToppings.visibility = View.VISIBLE
-                assembleCvDressings.visibility = View.VISIBLE
                 assembleBtnConfirm.visibility = View.VISIBLE
             }
         }
 
+        sizesObserve()
+
     }
 
-    private fun loadSizes() {
+    private fun sizesObserve() {
         val sizeList = listOf(
-            BurgerSize(getString(R.string.assemble_title_s), getString(R.string.assemble_subtitle_s), R.drawable.ic_burger_s),
-            BurgerSize(getString(R.string.assemble_title_m), getString(R.string.assemble_subtitle_m), R.drawable.ic_burger_m),
-            BurgerSize(getString(R.string.assemble_title_l), getString(R.string.assemble_subtitle_l), R.drawable.ic_burger_l),
-            BurgerSize(getString(R.string.assemble_title_xl), getString(R.string.assemble_subtitle_xl), R.drawable.ic_burger_xl)
+            BurgerSize(getString(R.string.assemble_title_s), getString(R.string.assemble_subtitle_s), R.drawable.ic_burger_s, 11000),
+            BurgerSize(getString(R.string.assemble_title_m), getString(R.string.assemble_subtitle_m), R.drawable.ic_burger_m, 12000),
+            BurgerSize(getString(R.string.assemble_title_l), getString(R.string.assemble_subtitle_l), R.drawable.ic_burger_l, 13000),
+            BurgerSize(getString(R.string.assemble_title_xl), getString(R.string.assemble_subtitle_xl), R.drawable.ic_burger_xl, 14000)
         )
 
-        sizeAdapter = SizeAdapter(sizeList) {}
-        binding.assembleSizeRv.adapter = sizeAdapter
+        binding.apply {
+            sizeAdapter = SizeAdapter(sizeList) { selectedSize ->
+                assembleCvToppings.visibility = View.VISIBLE
+                assembleCvDressings.visibility = View.VISIBLE
+                assembleCvInformation.visibility = View.VISIBLE
+                assembleCvInformationTxtTitle.text = selectedSize.title
+                assembleCvInformationTxtTotal.text = getString(R.string.total, selectedSize.price.toString())
+                assembleBtnConfirm.apply {
+                    isClickable = true
+                    background = ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.btn_gradient_red
+                    )
+                }
+            }
+            assembleSizeRv.adapter = sizeAdapter
+        }
+
     }
 
 }

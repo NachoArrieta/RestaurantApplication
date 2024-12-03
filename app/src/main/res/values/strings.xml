@@ -13,7 +13,7 @@
     <string name="floor_number">Número de depto</string>
     <string name="cancel">Cancelar</string>
     <string name="modify">Modificar</string>
-    <string name="total">Total: </string>
+    <string name="total">Total: $%1$s</string>
     <string name="delete">Eliminar</string>
 
     <!-- LogIn -->

@@ -19,23 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/grey_extra_light" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/skeleton_two"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="12dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="14dp"
-        android:backgroundTint="@color/grey_extra_light"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/skeleton_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/skeleton_one"
-        app:strokeColor="@color/grey_extra_light" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/skeleton_btn"
         android:layout_width="match_parent"
