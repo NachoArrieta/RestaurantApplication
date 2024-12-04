@@ -76,6 +76,14 @@ class NewOrderViewModel @Inject constructor(
     val dressings: LiveData<List<Dressing>> get() = _dressings
     //End Region Dressing
 
+    //Region Assemble Burger
+    private val _selectedItems = MutableLiveData<List<String>>()
+    val selectedItems: LiveData<List<String>> get() = _selectedItems
+
+    private val selectedToppings = mutableSetOf<String>()
+    private val selectedDressings = mutableSetOf<String>()
+    //End Region Assemble Burger
+
     //Tab Layout Region
     val selectedTabIndex = MutableLiveData<Int>()
     val sectionNames = listOf(BURGERS, PROMOTIONS, DRINKS, DESSERTS, ACCOMPANIMENTS)
@@ -185,5 +193,21 @@ class NewOrderViewModel @Inject constructor(
         }
     }
     //End Region Toppings And Dressing
+
+    //Region Assemble Burger
+    fun updateSelectedToppings(topping: String, isSelected: Boolean) {
+        if (isSelected) selectedToppings.add(topping) else selectedToppings.remove(topping)
+        updateSelectedItems()
+    }
+
+    fun updateSelectedDressings(dressing: String, isSelected: Boolean) {
+        if (isSelected) selectedDressings.add(dressing) else selectedDressings.remove(dressing)
+        updateSelectedItems()
+    }
+
+    private fun updateSelectedItems() {
+        _selectedItems.value = (selectedToppings + selectedDressings).toList()
+    }
+    //End Region Assemble Burger
 
 }

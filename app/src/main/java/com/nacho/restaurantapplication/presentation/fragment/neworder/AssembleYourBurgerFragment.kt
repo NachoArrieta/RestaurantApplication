@@ -12,6 +12,7 @@ import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.data.model.BurgerSize
 import com.nacho.restaurantapplication.databinding.FragmentAssembleYourBurgerBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.DressingAdapter
+import com.nacho.restaurantapplication.presentation.adapter.neworder.InformationBurgerAdapter
 import com.nacho.restaurantapplication.presentation.adapter.neworder.SizeAdapter
 import com.nacho.restaurantapplication.presentation.adapter.neworder.ToppingAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -27,6 +28,7 @@ class AssembleYourBurgerFragment : Fragment() {
     private lateinit var sizeAdapter: SizeAdapter
     private lateinit var toppingList: ToppingAdapter
     private lateinit var dressingList: DressingAdapter
+    private lateinit var informationAdapter: InformationBurgerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,13 +46,23 @@ class AssembleYourBurgerFragment : Fragment() {
     private fun setupObservers() {
 
         newOrderVM.toppings.observe(viewLifecycleOwner) { toppings ->
-            toppingList = ToppingAdapter(toppings) {}
+            toppingList = ToppingAdapter(toppings) { title, isChecked ->
+                newOrderVM.updateSelectedToppings(title, isChecked)
+            }
             binding.assembleToppingsRv.adapter = toppingList
         }
 
         newOrderVM.dressings.observe(viewLifecycleOwner) { dressings ->
-            dressingList = DressingAdapter(dressings) {}
+            dressingList = DressingAdapter(dressings) { title, isChecked ->
+                newOrderVM.updateSelectedDressings(title, isChecked)
+            }
             binding.assembleDressingsRv.adapter = dressingList
+        }
+
+        newOrderVM.selectedItems.observe(viewLifecycleOwner) { selectedItems ->
+            informationAdapter = InformationBurgerAdapter(emptyList())
+            binding.assembleCvInformationRv.adapter = informationAdapter
+            informationAdapter.updateItems(selectedItems)
         }
 
         lifecycleScope.launch {
@@ -79,7 +91,7 @@ class AssembleYourBurgerFragment : Fragment() {
                 assembleCvToppings.visibility = View.VISIBLE
                 assembleCvDressings.visibility = View.VISIBLE
                 assembleCvInformation.visibility = View.VISIBLE
-                assembleCvInformationTxtTitle.text = selectedSize.title
+                assembleCvInformationTxtTitle.text = getString(R.string.assemble_title, selectedSize.title)
                 assembleCvInformationTxtTotal.text = getString(R.string.total, selectedSize.price.toString())
                 assembleBtnConfirm.apply {
                     isClickable = true

@@ -9,7 +9,7 @@ import com.nacho.restaurantapplication.databinding.ItemToppingDressingBinding
 
 class ToppingAdapter(
     private val toppingList: List<Topping>,
-    private val onItemClick: (Topping) -> Unit
+    private val onItemCheckedChange: (String, Boolean) -> Unit
 ) : RecyclerView.Adapter<ToppingAdapter.ToppingViewHolder>() {
 
     private val selectedItems = mutableSetOf<Int>()
@@ -23,25 +23,24 @@ class ToppingAdapter(
         val topping = toppingList[position]
         holder.bind(topping, selectedItems.contains(position))
 
-        holder.itemView.setOnClickListener {
-            toggleSelection(position)
-            onItemClick(topping)
+        holder.binding.itemSizeCb.setOnCheckedChangeListener { _, isChecked ->
+            updateSelection(position, isChecked)
+            onItemCheckedChange(topping.title, isChecked)
         }
 
-        holder.binding.itemSizeCb.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) selectedItems.add(position) else selectedItems.remove(position)
+        holder.itemView.setOnClickListener {
+            val isChecked = !holder.binding.itemSizeCb.isChecked
+            holder.binding.itemSizeCb.isChecked = isChecked
+            updateSelection(position, isChecked)
+            onItemCheckedChange(topping.title, isChecked)
         }
     }
 
     override fun getItemCount(): Int = toppingList.size
 
-    private fun toggleSelection(position: Int) {
-        if (selectedItems.contains(position)) {
-            selectedItems.remove(position)
-        } else {
-            selectedItems.add(position)
-        }
-        notifyItemChanged(position)
+    private fun updateSelection(position: Int, isChecked: Boolean) {
+        if (isChecked) selectedItems.add(position)
+        else selectedItems.remove(position)
     }
 
     class ToppingViewHolder(val binding: ItemToppingDressingBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -61,5 +60,4 @@ class ToppingAdapter(
             }
         }
     }
-
 }

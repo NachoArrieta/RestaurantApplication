@@ -9,7 +9,7 @@ import com.nacho.restaurantapplication.databinding.ItemToppingDressingBinding
 
 class DressingAdapter(
     private val dressingList: List<Dressing>,
-    private val onItemClick: (Dressing) -> Unit
+    private val onItemCheckedChange: (String, Boolean) -> Unit
 ) : RecyclerView.Adapter<DressingAdapter.DressingViewHolder>() {
 
     private val selectedItems = mutableSetOf<Int>()
@@ -20,28 +20,27 @@ class DressingAdapter(
     }
 
     override fun onBindViewHolder(holder: DressingViewHolder, position: Int) {
-        val topping = dressingList[position]
-        holder.bind(topping, selectedItems.contains(position))
-
-        holder.itemView.setOnClickListener {
-            toggleSelection(position)
-            onItemClick(topping)
-        }
+        val dressing = dressingList[position]
+        holder.bind(dressing, selectedItems.contains(position))
 
         holder.binding.itemSizeCb.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) selectedItems.add(position) else selectedItems.remove(position)
+            updateSelection(position, isChecked)
+            onItemCheckedChange(dressing.title, isChecked)
+        }
+
+        holder.itemView.setOnClickListener {
+            val isChecked = !holder.binding.itemSizeCb.isChecked
+            holder.binding.itemSizeCb.isChecked = isChecked
+            updateSelection(position, isChecked)
+            onItemCheckedChange(dressing.title, isChecked)
         }
     }
 
     override fun getItemCount(): Int = dressingList.size
 
-    private fun toggleSelection(position: Int) {
-        if (selectedItems.contains(position)) {
-            selectedItems.remove(position)
-        } else {
-            selectedItems.add(position)
-        }
-        notifyItemChanged(position)
+    private fun updateSelection(position: Int, isChecked: Boolean) {
+        if (isChecked) selectedItems.add(position)
+        else selectedItems.remove(position)
     }
 
     class DressingViewHolder(val binding: ItemToppingDressingBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -61,5 +60,4 @@ class DressingAdapter(
             }
         }
     }
-
 }

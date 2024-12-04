@@ -170,6 +170,7 @@
     <string name="assemble_size">Talle</string>
     <string name="assemble_topping">Toppings</string>
     <string name="assemble_dressing">Aderezos y salsas</string>
+    <string name="assemble_title">Hamburguesa %1$s</string>
 
     <!-- Assemble Sizes-->
     <string name="assemble_title_s">S</string>
