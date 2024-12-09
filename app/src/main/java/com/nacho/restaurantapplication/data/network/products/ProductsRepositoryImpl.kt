@@ -82,6 +82,7 @@ class ProductsRepositoryImpl @Inject constructor(
                     Drink(
                         title = drinkData["Title"] as? String ?: "",
                         image = drinkData["Image"] as? String ?: "",
+                        description = drinkData["Description"] as? String ?: "",
                         price = when (val priceValue = drinkData["Price"]) {
                             is Int -> priceValue
                             is Long -> priceValue.toInt()

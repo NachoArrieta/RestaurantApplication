@@ -196,10 +196,15 @@
     <string name="dialog_forgot_pass">Reestablecer contraseña</string>
     <string name="dialog_error_reset_failed">"Error al enviar el correo"</string>
     <string name="dialog_reset_ok">Correo enviado exitosamente</string>
+    <string name="dialog_add_product">Producto añadido al carrito</string>
+    <string name="dialog_delete_product">Eliminar producto</string>
+    <string name="dialog_delete_product_title">¿Deseas eliminar %1$d %2$s del carrito?</string>
+
 
     <!-- Shopping Cart -->
     <string name="neworder_title">Armá tu pedido</string>
     <string name="neworder_confirm_shopping_cart">Continuar compra</string>
+    <string name="neworder_shopping_cart_total">Total: $%1$d</string>
 
     <!-- Delivery Method -->
     <string name="delivery_method_delivery">ENVÍO A DOMICILIO</string>

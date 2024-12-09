@@ -11,6 +11,7 @@ import com.nacho.restaurantapplication.core.utils.Constants.DRINKS
 import com.nacho.restaurantapplication.core.utils.Constants.PROMOTIONS
 import com.nacho.restaurantapplication.data.model.Accompaniment
 import com.nacho.restaurantapplication.data.model.Burger
+import com.nacho.restaurantapplication.data.model.CartItem
 import com.nacho.restaurantapplication.data.model.Dessert
 import com.nacho.restaurantapplication.data.model.Dressing
 import com.nacho.restaurantapplication.data.model.Drink
@@ -41,6 +42,7 @@ class NewOrderViewModel @Inject constructor(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    //End Region Toolbar
     //Region Burgers
     private val _burgers = MutableLiveData<Map<String, List<Burger>>>()
     val burgers: LiveData<Map<String, List<Burger>>> get() = _burgers
@@ -84,6 +86,11 @@ class NewOrderViewModel @Inject constructor(
     private val selectedDressings = mutableSetOf<String>()
     //End Region Assemble Burger
 
+    //Region Shopping Cart
+    private val _cartItems = MutableLiveData<List<CartItem>>(emptyList())
+    val cartItems: LiveData<List<CartItem>> = _cartItems
+    //End Region Shopping Cart
+
     //Tab Layout Region
     val selectedTabIndex = MutableLiveData<Int>()
     val sectionNames = listOf(BURGERS, PROMOTIONS, DRINKS, DESSERTS, ACCOMPANIMENTS)
@@ -93,11 +100,11 @@ class NewOrderViewModel @Inject constructor(
         selectedTabIndex.value = 0
     }
 
-    //Tab Layout Region
+    //Region Tab Layout
     fun setSelectedTabIndex(index: Int) {
         selectedTabIndex.value = index
     }
-    //End Tab Layout Region
+    //End Region Tab Layout
 
     //Region Burgers
     fun fetchBurgers() {
@@ -209,5 +216,25 @@ class NewOrderViewModel @Inject constructor(
         _selectedItems.value = (selectedToppings + selectedDressings).toList()
     }
     //End Region Assemble Burger
+
+    //Region Shopping Cart
+    fun addToCart(item: CartItem) {
+        val currentCart = _cartItems.value.orEmpty().toMutableList()
+        val existingItem = currentCart.find { it.title == item.title && it.type == item.type }
+
+        if (existingItem != null) {
+            val updatedItem = existingItem.copy(quantity = existingItem.quantity + item.quantity)
+            currentCart[currentCart.indexOf(existingItem)] = updatedItem
+        } else currentCart.add(item)
+
+        _cartItems.value = currentCart
+    }
+
+    fun removeFromCart(item: CartItem) {
+        val currentCart = _cartItems.value.orEmpty().toMutableList()
+        currentCart.remove(item)
+        _cartItems.value = currentCart
+    }
+    //End Region Shopping Cart
 
 }

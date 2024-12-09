@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.nacho.restaurantapplication.databinding.ActivityNewOrderBinding
 import android.content.Intent
+import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.presentation.activity.home.HomeActivity
@@ -24,7 +26,9 @@ class NewOrderActivity : AppCompatActivity() {
         binding = ActivityNewOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        newOrderVM.setToolbarTitle("Armá tu hamburguesa")
         getProducts()
+        setupObservers()
 
         val navController = supportFragmentManager.findFragmentById(R.id.new_order_container)
             ?.findNavController()
@@ -38,6 +42,12 @@ class NewOrderActivity : AppCompatActivity() {
             handleBackPressed(navController)
         }
 
+        binding.toolbarShoppingCart.setOnClickListener {
+            navController?.let {
+                it.navigate(R.id.shoppingCartFragment)
+            }
+        }
+
     }
 
     private fun getProducts() {
@@ -49,6 +59,18 @@ class NewOrderActivity : AppCompatActivity() {
             fetchAccompaniments()
             fetchToppingsAndDressings()
         }
+    }
+
+    private fun setupObservers() {
+
+        newOrderVM.cartItems.observe(this) {
+            if (!it.isNullOrEmpty()) {
+                binding.toolbarShoppingCart.visibility = View.VISIBLE
+                val totalProducts = it.sumOf { cartItem -> cartItem.quantity }
+                binding.toolbarTxtQuantity.text = totalProducts.toString()
+            } else binding.toolbarShoppingCart.visibility = View.GONE
+        }
+
     }
 
     private fun handleBackPressed(navController: NavController?) {
