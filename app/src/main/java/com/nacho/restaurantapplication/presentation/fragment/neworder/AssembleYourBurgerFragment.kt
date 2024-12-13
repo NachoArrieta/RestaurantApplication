@@ -40,7 +40,11 @@ class AssembleYourBurgerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        newOrderVM.setToolbarTitle(getString(R.string.toolbar_title_assemble_burger))
+        newOrderVM.setToolbarVisibility(false)
         setupObservers()
+
     }
 
     private fun setupObservers() {

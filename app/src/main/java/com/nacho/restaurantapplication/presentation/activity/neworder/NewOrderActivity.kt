@@ -26,7 +26,6 @@ class NewOrderActivity : AppCompatActivity() {
         binding = ActivityNewOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        newOrderVM.setToolbarTitle("Armá tu hamburguesa")
         getProducts()
         setupObservers()
 
@@ -63,12 +62,21 @@ class NewOrderActivity : AppCompatActivity() {
 
     private fun setupObservers() {
 
-        newOrderVM.cartItems.observe(this) {
-            if (!it.isNullOrEmpty()) {
-                binding.toolbarShoppingCart.visibility = View.VISIBLE
-                val totalProducts = it.sumOf { cartItem -> cartItem.quantity }
-                binding.toolbarTxtQuantity.text = totalProducts.toString()
-            } else binding.toolbarShoppingCart.visibility = View.GONE
+        newOrderVM.toolbarTitle.observe(this) { title ->
+            binding.toolbarTxtTitle.text = title
+        }
+
+        newOrderVM.cartItems.observe(this) { cartItems ->
+            val hasProducts = !cartItems.isNullOrEmpty()
+            newOrderVM.toolbarShoppingCartVisibility.observe(this) { isVisible ->
+                if (isVisible && hasProducts) {
+                    binding.toolbarShoppingCart.visibility = View.VISIBLE
+                    val totalProducts = cartItems.sumOf { it.quantity }
+                    binding.toolbarTxtQuantity.text = totalProducts.toString()
+                } else {
+                    binding.toolbarShoppingCart.visibility = View.GONE
+                }
+            }
         }
 
     }

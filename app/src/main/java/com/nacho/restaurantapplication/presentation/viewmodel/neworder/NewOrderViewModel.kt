@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.transition.Visibility
 import com.nacho.restaurantapplication.core.utils.Constants.ACCOMPANIMENTS
 import com.nacho.restaurantapplication.core.utils.Constants.BURGERS
 import com.nacho.restaurantapplication.core.utils.Constants.DESSERTS
@@ -42,7 +43,14 @@ class NewOrderViewModel @Inject constructor(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    //Region Toolbar
+    private val _toolbarTitle = MutableLiveData<String>()
+    val toolbarTitle: LiveData<String> get() = _toolbarTitle
+
+    private val _toolbarShoppingCartVisibility = MutableLiveData<Boolean>()
+    val toolbarShoppingCartVisibility: LiveData<Boolean> get() = _toolbarShoppingCartVisibility
     //End Region Toolbar
+
     //Region Burgers
     private val _burgers = MutableLiveData<Map<String, List<Burger>>>()
     val burgers: LiveData<Map<String, List<Burger>>> get() = _burgers
@@ -105,6 +113,12 @@ class NewOrderViewModel @Inject constructor(
         selectedTabIndex.value = index
     }
     //End Region Tab Layout
+
+    //Region Toolbar
+    fun setToolbarTitle(title: String) = _toolbarTitle.postValue(title)
+
+    fun setToolbarVisibility(visibility: Boolean) = _toolbarShoppingCartVisibility.postValue(visibility)
+    //End Region Toolbar
 
     //Region Burgers
     fun fetchBurgers() {

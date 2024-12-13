@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.databinding.FragmentShoppingCartBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.ShoppingCartAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -29,7 +30,11 @@ class ShoppingCartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        newOrderVM.setToolbarTitle(getString(R.string.toolbar_title_shopping_cart))
+        newOrderVM.setToolbarVisibility(false)
         setupObservers()
+
     }
 
     private fun setupObservers() {
