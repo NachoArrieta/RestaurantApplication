@@ -66,16 +66,13 @@ class NewOrderActivity : AppCompatActivity() {
             binding.toolbarTxtTitle.text = title
         }
 
-        newOrderVM.cartItems.observe(this) { cartItems ->
-            val hasProducts = !cartItems.isNullOrEmpty()
-            newOrderVM.toolbarShoppingCartVisibility.observe(this) { isVisible ->
-                if (isVisible && hasProducts) {
-                    binding.toolbarShoppingCart.visibility = View.VISIBLE
-                    val totalProducts = cartItems.sumOf { it.quantity }
-                    binding.toolbarTxtQuantity.text = totalProducts.toString()
-                } else {
-                    binding.toolbarShoppingCart.visibility = View.GONE
-                }
+        newOrderVM.toolbarVisibilityState.observe(this) { isVisible ->
+            if (isVisible) {
+                binding.toolbarShoppingCart.visibility = View.VISIBLE
+                val totalProducts = newOrderVM.cartItems.value?.sumOf { it.quantity } ?: 0
+                binding.toolbarTxtQuantity.text = totalProducts.toString()
+            } else {
+                binding.toolbarShoppingCart.visibility = View.GONE
             }
         }
 

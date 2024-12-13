@@ -1,6 +1,7 @@
 package com.nacho.restaurantapplication.presentation.viewmodel.neworder
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -48,7 +49,10 @@ class NewOrderViewModel @Inject constructor(
     val toolbarTitle: LiveData<String> get() = _toolbarTitle
 
     private val _toolbarShoppingCartVisibility = MutableLiveData<Boolean>()
-    val toolbarShoppingCartVisibility: LiveData<Boolean> get() = _toolbarShoppingCartVisibility
+    private val toolbarShoppingCartVisibility: LiveData<Boolean> get() = _toolbarShoppingCartVisibility
+
+    private val _toolbarVisibilityState = MediatorLiveData<Boolean>()
+    val toolbarVisibilityState: LiveData<Boolean> = _toolbarVisibilityState
     //End Region Toolbar
 
     //Region Burgers
@@ -106,6 +110,16 @@ class NewOrderViewModel @Inject constructor(
 
     init {
         selectedTabIndex.value = 0
+
+        _toolbarVisibilityState.addSource(cartItems) { cartItems ->
+            val hasProducts = !cartItems.isNullOrEmpty()
+            _toolbarVisibilityState.value = _toolbarShoppingCartVisibility.value == true && hasProducts
+        }
+
+        _toolbarVisibilityState.addSource(toolbarShoppingCartVisibility) { isVisible ->
+            val hasProducts = !cartItems.value.isNullOrEmpty()
+            _toolbarVisibilityState.value = isVisible && hasProducts
+        }
     }
 
     //Region Tab Layout
