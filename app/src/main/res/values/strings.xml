@@ -101,6 +101,10 @@
     <string name="coupons_not_expire">Sin fecha de caducidad</string>
     <string name="coupons_no_coupon">En este momento, no tenemos cupones disponibles para ofrecerte. Estate atento a nuestras notificaciones y noticias, que en cualquier momento llegan!</string>
     <string name="coupons_understood">Entendido</string>
+    <string name="coupons_code">Código del cupón</string>
+    <string name="coupons_copy_code">Cupón copiado en el portapapeles</string>
+
+    <!-- My Orders -->
     <string name="orders_repeat">Repetir pedido</string>
 
     <!-- My Profile -->
