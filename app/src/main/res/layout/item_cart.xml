@@ -115,6 +115,7 @@
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
+                app:hintAnimationEnabled="false"
                 android:hint="@string/dialog_quantity"
                 android:textColorHint="@color/red"
                 app:layout_constraintBottom_toBottomOf="parent"

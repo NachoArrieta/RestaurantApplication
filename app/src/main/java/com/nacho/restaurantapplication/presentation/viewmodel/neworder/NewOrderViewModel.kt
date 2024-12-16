@@ -101,6 +101,9 @@ class NewOrderViewModel @Inject constructor(
     //Region Shopping Cart
     private val _cartItems = MutableLiveData<List<CartItem>>(emptyList())
     val cartItems: LiveData<List<CartItem>> = _cartItems
+
+    private val _cartTotalPrice = MutableLiveData(0)
+    val cartTotalPrice: LiveData<Int> = _cartTotalPrice
     //End Region Shopping Cart
 
     //Tab Layout Region
@@ -119,6 +122,10 @@ class NewOrderViewModel @Inject constructor(
         _toolbarVisibilityState.addSource(toolbarShoppingCartVisibility) { isVisible ->
             val hasProducts = !cartItems.value.isNullOrEmpty()
             _toolbarVisibilityState.value = isVisible && hasProducts
+        }
+
+        _cartItems.observeForever { items ->
+            _cartTotalPrice.value = items.sumOf { it.price * it.quantity }
         }
     }
 
@@ -262,6 +269,16 @@ class NewOrderViewModel @Inject constructor(
         val currentCart = _cartItems.value.orEmpty().toMutableList()
         currentCart.remove(item)
         _cartItems.value = currentCart
+    }
+
+    fun updateItemQuantity(item: CartItem, newQuantity: Int) {
+        val currentCart = _cartItems.value.orEmpty().toMutableList()
+        val index = currentCart.indexOfFirst { it.title == item.title && it.type == item.type }
+
+        if (index >= 0) {
+            currentCart[index] = currentCart[index].copy(quantity = newQuantity)
+            _cartItems.value = currentCart
+        }
     }
     //End Region Shopping Cart
 

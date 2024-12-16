@@ -12,7 +12,8 @@ import com.nacho.restaurantapplication.databinding.ItemCartBinding
 
 class ShoppingCartAdapter(
     private val cartItems: List<CartItem>,
-    private val onDeleteItem: (CartItem) -> Unit
+    private val onDeleteItem: (CartItem) -> Unit,
+    private val onQuantityChanged: (CartItem, Int) -> Unit
 ) : RecyclerView.Adapter<ShoppingCartAdapter.CartViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
@@ -28,6 +29,7 @@ class ShoppingCartAdapter(
     override fun getItemCount(): Int = cartItems.size
 
     inner class CartViewHolder(private val binding: ItemCartBinding) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(cartItem: CartItem) {
             with(binding) {
                 itemCartTxtTitle.text = cartItem.title
@@ -47,16 +49,18 @@ class ShoppingCartAdapter(
                 )
 
                 dialogBtnAdd.setOnClickListener {
-                    cartItem.quantity += 1
-                    dialogTieQuantity.setText(cartItem.quantity.toString())
-                    updateTotalPrice(cartItem)
+                    val newQuantity = cartItem.quantity + 1
+                    dialogTieQuantity.setText(newQuantity.toString())
+                    updateTotalPrice(cartItem.copy(quantity = newQuantity))
+                    onQuantityChanged(cartItem, newQuantity)
                 }
 
                 dialogBtnSubtract.setOnClickListener {
                     if (cartItem.quantity > 1) {
-                        cartItem.quantity -= 1
-                        dialogTieQuantity.setText(cartItem.quantity.toString())
-                        updateTotalPrice(cartItem)
+                        val newQuantity = cartItem.quantity - 1
+                        dialogTieQuantity.setText(newQuantity.toString())
+                        updateTotalPrice(cartItem.copy(quantity = newQuantity))
+                        onQuantityChanged(cartItem, newQuantity)
                     }
                 }
 
@@ -80,6 +84,5 @@ class ShoppingCartAdapter(
                 cartItem.price * cartItem.quantity
             )
         }
-
     }
 }

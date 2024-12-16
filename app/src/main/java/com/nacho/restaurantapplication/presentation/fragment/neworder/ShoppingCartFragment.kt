@@ -38,16 +38,27 @@ class ShoppingCartFragment : Fragment() {
     }
 
     private fun setupObservers() {
+
         newOrderVM.cartItems.observe(viewLifecycleOwner) { cartItems ->
             if (cartItems.isNotEmpty()) {
-                shoppingCartList = ShoppingCartAdapter(cartItems) { item ->
-                    newOrderVM.removeFromCart(item)
-                }
+                shoppingCartList = ShoppingCartAdapter(
+                    cartItems,
+                    onDeleteItem = { item -> newOrderVM.removeFromCart(item) },
+                    onQuantityChanged = { item, newQuantity -> newOrderVM.updateItemQuantity(item, newQuantity) }
+                )
                 binding.shoppingCartRv.adapter = shoppingCartList
             } else {
                 findNavController().navigateUp()
             }
         }
+
+        newOrderVM.cartTotalPrice.observe(viewLifecycleOwner) { total ->
+            binding.apply {
+                shoppingCartTxtTotal.text = getString(R.string.neworder_shopping_cart_total, total)
+                shoppingCartCvInformationPayment.visibility = if (total == 0) View.GONE else View.VISIBLE
+            }
+        }
+
     }
 
 }
