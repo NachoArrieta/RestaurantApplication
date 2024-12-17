@@ -8,8 +8,8 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.presentation.activity.home.HomeActivity
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -25,6 +25,11 @@ class NewOrderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityNewOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val user = FirebaseAuth.getInstance().currentUser?.uid
+        if (user != null) {
+            newOrderVM.getUserCoupons(user)
+        }
 
         getProducts()
         setupObservers()
@@ -42,9 +47,7 @@ class NewOrderActivity : AppCompatActivity() {
         }
 
         binding.toolbarShoppingCart.setOnClickListener {
-            navController?.let {
-                it.navigate(R.id.shoppingCartFragment)
-            }
+            navController?.navigate(R.id.shoppingCartFragment)
         }
 
     }

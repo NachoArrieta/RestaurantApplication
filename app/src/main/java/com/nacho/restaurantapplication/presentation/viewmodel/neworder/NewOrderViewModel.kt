@@ -5,7 +5,6 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.transition.Visibility
 import com.nacho.restaurantapplication.core.utils.Constants.ACCOMPANIMENTS
 import com.nacho.restaurantapplication.core.utils.Constants.BURGERS
 import com.nacho.restaurantapplication.core.utils.Constants.DESSERTS
@@ -14,11 +13,13 @@ import com.nacho.restaurantapplication.core.utils.Constants.PROMOTIONS
 import com.nacho.restaurantapplication.data.model.Accompaniment
 import com.nacho.restaurantapplication.data.model.Burger
 import com.nacho.restaurantapplication.data.model.CartItem
+import com.nacho.restaurantapplication.data.model.Coupon
 import com.nacho.restaurantapplication.data.model.Dessert
 import com.nacho.restaurantapplication.data.model.Dressing
 import com.nacho.restaurantapplication.data.model.Drink
 import com.nacho.restaurantapplication.data.model.Promotion
 import com.nacho.restaurantapplication.data.model.Topping
+import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserCouponsUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetAccompanimentsUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetBurgersUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.products.GetDessertsUseCase
@@ -38,7 +39,8 @@ class NewOrderViewModel @Inject constructor(
     private val getDessertsUseCase: GetDessertsUseCase,
     private val getAccompanimentsUseCase: GetAccompanimentsUseCase,
     private val getToppingsUseCase: GetToppingsUseCase,
-    private val getDressingsUseCase: GetDressingsUseCase
+    private val getDressingsUseCase: GetDressingsUseCase,
+    private val getUserCouponsUseCase: GetUserCouponsUseCase
 ) : ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
@@ -104,6 +106,14 @@ class NewOrderViewModel @Inject constructor(
 
     private val _cartTotalPrice = MutableLiveData(0)
     val cartTotalPrice: LiveData<Int> = _cartTotalPrice
+
+    private val _discountAmount = MutableLiveData(0)
+    val discountAmount: LiveData<Int> = _discountAmount
+
+    private val _userCoupons = MutableLiveData<List<Coupon>>()
+
+    private val _finalTotalPrice = MutableLiveData(0)
+    val finalTotalPrice: LiveData<Int> = _finalTotalPrice
     //End Region Shopping Cart
 
     //Tab Layout Region
@@ -279,6 +289,35 @@ class NewOrderViewModel @Inject constructor(
             currentCart[index] = currentCart[index].copy(quantity = newQuantity)
             _cartItems.value = currentCart
         }
+    }
+
+    fun getUserCoupons(uid: String) {
+        viewModelScope.launch {
+            try {
+                val coupons = getUserCouponsUseCase(uid)
+                _userCoupons.value = coupons
+            } catch (e: Exception) {
+                // Manejar errores
+            }
+        }
+    }
+
+    fun validateCoupon(inputCouponCode: String): Boolean {
+        val coupon = _userCoupons.value?.find { it.code == inputCouponCode }
+        return if (coupon != null) {
+            _discountAmount.value = coupon.amount
+            true
+        } else {
+            _discountAmount.value = 0
+            false
+        }
+    }
+
+    fun calculateTotalPrice() {
+        val total = _cartTotalPrice.value ?: 0
+        val discount = _discountAmount.value ?: 0
+        val finalPrice = total - discount
+        _finalTotalPrice.value = if (finalPrice < 0) 0 else finalPrice
     }
     //End Region Shopping Cart
 

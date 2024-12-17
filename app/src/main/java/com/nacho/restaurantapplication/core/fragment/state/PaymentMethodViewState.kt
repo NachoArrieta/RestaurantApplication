@@ -6,7 +6,4 @@ data class PaymentMethodViewState(
     val isValidCardSince: Boolean = true,
     val isValidCardUntil: Boolean = true,
     val isValidCardCvv: Boolean = true
-) {
-    fun userCardValidated() =
-        isValidCardNumber && isValidCardName && isValidCardSince && isValidCardUntil && isValidCardCvv
-}
+)

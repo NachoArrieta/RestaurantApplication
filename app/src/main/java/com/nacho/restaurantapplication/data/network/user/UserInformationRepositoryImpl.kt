@@ -58,9 +58,8 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
                     title = couponData?.get("Title") as? String ?: "",
                     description = couponData?.get("Description") as? String ?: "",
                     code = couponData?.get("Code") as? String ?: "",
-                    percentage = (couponData?.get("percentage") as? String)?.toIntOrNull() ?: 0,
                     expirationDate = couponData?.get("ExpirationDate") as? String ?: "",
-                    amount = (couponData?.get("Amount") as? String)?.toIntOrNull() ?: 0
+                    amount = (couponData?.get("Amount") as? Number)?.toInt() ?: 0
                 )
             } ?: emptyList()
         } catch (e: Exception) {

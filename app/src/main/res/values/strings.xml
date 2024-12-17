@@ -204,11 +204,13 @@
     <string name="dialog_delete_product">Eliminar producto</string>
     <string name="dialog_delete_product_title">¿Deseas eliminar %1$d %2$s del carrito?</string>
 
-
     <!-- Shopping Cart -->
     <string name="neworder_title">Armá tu pedido</string>
     <string name="neworder_confirm_shopping_cart">Continuar compra</string>
     <string name="neworder_shopping_cart_total">Total: $%1$d</string>
+    <string name="neworder_error_invalid_coupon">Cupón inexistente</string>
+    <string name="neworder_discount">"Descuento: $%1$d"</string>
+    <string name="neworder_total_price">"Precio total a pagar: $%1$d"</string>
 
     <!-- Delivery Method -->
     <string name="delivery_method_delivery">ENVÍO A DOMICILIO</string>
@@ -279,4 +281,5 @@
     <string name="toolbar_title_new_order">Armá tu pedido</string>
     <string name="toolbar_title_assemble_burger">Armá tu hamburguesa</string>
     <string name="toolbar_title_shopping_cart">Carrito de compras</string>
+
 </resources>

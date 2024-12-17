@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
+import com.nacho.restaurantapplication.core.extensions.onTextChanged
 import com.nacho.restaurantapplication.databinding.FragmentShoppingCartBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.ShoppingCartAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -34,6 +35,7 @@ class ShoppingCartFragment : Fragment() {
         newOrderVM.setToolbarTitle(getString(R.string.toolbar_title_shopping_cart))
         newOrderVM.setToolbarVisibility(false)
         setupObservers()
+        setupListeners()
 
     }
 
@@ -57,8 +59,33 @@ class ShoppingCartFragment : Fragment() {
                 shoppingCartTxtTotal.text = getString(R.string.neworder_shopping_cart_total, total)
                 shoppingCartCvInformationPayment.visibility = if (total == 0) View.GONE else View.VISIBLE
             }
+            newOrderVM.calculateTotalPrice()
         }
 
+        newOrderVM.discountAmount.observe(viewLifecycleOwner) { discount ->
+            binding.shoppingCartTxtDiscount.text = getString(R.string.neworder_discount, discount)
+            newOrderVM.calculateTotalPrice()
+        }
+
+        newOrderVM.finalTotalPrice.observe(viewLifecycleOwner) { finalTotal ->
+            binding.shoppingCartTxtPriceTotal.text = getString(R.string.neworder_total_price, finalTotal)
+        }
+
+    }
+
+    private fun setupListeners() {
+        with(binding) {
+            shoppingCartTieDiscount.onTextChanged { inputCouponCode ->
+                val trimmedCoupon = inputCouponCode.trim()
+                if (trimmedCoupon.isEmpty()) {
+                    shoppingCartTilDiscount.error = null
+                    newOrderVM.validateCoupon("")
+                } else {
+                    val isValid = newOrderVM.validateCoupon(trimmedCoupon)
+                    shoppingCartTilDiscount.error = if (isValid) null else getString(R.string.neworder_error_invalid_coupon)
+                }
+            }
+        }
     }
 
 }
