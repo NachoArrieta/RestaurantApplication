@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.databinding.FragmentNewOrderBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.ViewPagerAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -34,6 +35,8 @@ class NewOrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        newOrderVM.setToolbarTitle(getString(R.string.toolbar_title_new_order))
+        newOrderVM.setToolbarVisibility(true)
         viewPagerAdapter = ViewPagerAdapter(this, newOrderVM)
 
         setupObservers()

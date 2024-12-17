@@ -27,6 +27,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
+                android:visibility="gone"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="14dp"
                 app:cardCornerRadius="8dp"
@@ -67,12 +68,13 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/assemble_size_rv"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
                         tools:itemCount="4"
@@ -89,6 +91,7 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="14dp"
+                android:visibility="gone"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +130,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/assemble_toppings_rv"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical"
@@ -136,7 +139,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-                        app:spanCount="2"
+                        app:spanCount="1"
                         tools:itemCount="10"
                         tools:listitem="@layout/item_topping_dressing" />
 
@@ -152,8 +155,8 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="14dp"
                 android:layout_marginBottom="12dp"
+                android:visibility="gone"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +194,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/assemble_dressings_rv"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical"
@@ -200,7 +203,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-                        app:spanCount="2"
+                        app:spanCount="1"
                         tools:itemCount="10"
                         tools:listitem="@layout/item_topping_dressing" />
 
@@ -218,6 +221,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
+        android:visibility="gone"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toTopOf="@+id/assemble_btn_confirm"
         app:layout_constraintEnd_toEndOf="parent"
@@ -233,7 +237,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_regular"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -274,14 +279,37 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/assemble_shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/skeleton_assemble_burger" />
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/assemble_btn_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/btn_gradient_red"
-        android:foreground="?attr/selectableItemBackground"
+        android:background="@color/grey_dark"
+        android:clickable="false"
+        android:visibility="gone"
+        android:focusable="false"
         android:fontFamily="@font/montserrat_regular"
+        android:foreground="?attr/selectableItemBackground"
         android:text="@string/assemble_confirm"
         android:textColor="@color/white"
         android:textSize="16sp"

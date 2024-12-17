@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_newOrderFragment_to_assembleYourBurgerFragment"
             app:destination="@id/assembleYourBurgerFragment" />
+        <action
+            android:id="@+id/action_newOrderFragment_to_shoppingCartFragment"
+            app:destination="@id/shoppingCartFragment" />
     </fragment>
     <fragment
         android:id="@+id/assembleYourBurgerFragment"
         android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.AssembleYourBurgerFragment"
         android:label="fragment_assemble_your_burger"
         tools:layout="@layout/fragment_assemble_your_burger" />
+    <fragment
+        android:id="@+id/shoppingCartFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.ShoppingCartFragment"
+        android:label="fragment_shopping_cart"
+        tools:layout="@layout/fragment_shopping_cart" />
 </navigation>

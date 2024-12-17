@@ -18,6 +18,11 @@
         <item name="hintTextColor">@color/red_extra_dark</item>
     </style>
 
+    <style name="TextInputLayoutStyleGrey" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/til_tie_grey_color</item>
+        <item name="hintTextColor">@color/grey_light</item>
+    </style>
+
     <style name="TextInputLayoutStyleRedForDropMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxStrokeColor">@color/til_tie_red_color</item>
         <item name="hintTextColor">@color/red_extra_dark</item>

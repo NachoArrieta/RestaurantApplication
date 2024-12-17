@@ -1,8 +1,12 @@
 package com.nacho.restaurantapplication.presentation.adapter.home
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.data.model.Coupon
@@ -36,6 +40,16 @@ class CouponAdapter(
                     coupon.expirationDate.isNullOrEmpty() -> itemView.context.getString(R.string.coupons_not_expire)
                     else -> coupon.expirationDate
                 }
+
+                itemCouponTieCode.setText(coupon.code)
+
+                itemCouponBtnWant.setOnClickListener {
+                    val clipboardManager = itemView.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    val clip = ClipData.newPlainText("Coupon Code", coupon.code)
+                    clipboardManager.setPrimaryClip(clip)
+                    Toast.makeText(itemView.context, R.string.coupons_copy_code, Toast.LENGTH_SHORT).show()
+                }
+
             }
         }
     }

@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.nacho.restaurantapplication.databinding.ActivityNewOrderBinding
 import android.content.Intent
+import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.presentation.activity.home.HomeActivity
-import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,25 +26,29 @@ class NewOrderActivity : AppCompatActivity() {
         binding = ActivityNewOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val user = FirebaseAuth.getInstance().currentUser?.uid
+        if (user != null) {
+            newOrderVM.getUserCoupons(user)
+        }
+
         getProducts()
+        setupObservers()
 
         val navController = supportFragmentManager.findFragmentById(R.id.new_order_container)
             ?.findNavController()
-
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (navController != null && navController.navigateUp()) {
-                    // Si puede navegar hacia atrás dentro del NavController, lo hace
-                    return
-                } else {
-                    // Si no hay más fragmentos en la pila, navega al HomeActivity
-                    val intent = Intent(this@NewOrderActivity, HomeActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                    startActivity(intent)
-                    finish()
-                }
+                handleBackPressed(navController)
             }
         })
+
+        binding.toolbarImgBack.setOnClickListener {
+            handleBackPressed(navController)
+        }
+
+        binding.toolbarShoppingCart.setOnClickListener {
+            navController?.navigate(R.id.shoppingCartFragment)
+        }
 
     }
 
@@ -53,6 +59,36 @@ class NewOrderActivity : AppCompatActivity() {
             fetchDrinks()
             fetchDesserts()
             fetchAccompaniments()
+            fetchToppingsAndDressings()
+        }
+    }
+
+    private fun setupObservers() {
+
+        newOrderVM.toolbarTitle.observe(this) { title ->
+            binding.toolbarTxtTitle.text = title
+        }
+
+        newOrderVM.toolbarVisibilityState.observe(this) { isVisible ->
+            if (isVisible) {
+                binding.toolbarShoppingCart.visibility = View.VISIBLE
+                val totalProducts = newOrderVM.cartItems.value?.sumOf { it.quantity } ?: 0
+                binding.toolbarTxtQuantity.text = totalProducts.toString()
+            } else {
+                binding.toolbarShoppingCart.visibility = View.GONE
+            }
+        }
+
+    }
+
+    private fun handleBackPressed(navController: NavController?) {
+        if (navController != null && navController.navigateUp()) {
+            return
+        } else {
+            val intent = Intent(this@NewOrderActivity, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+            finish()
         }
     }
 

@@ -13,7 +13,7 @@
     <string name="floor_number">Número de depto</string>
     <string name="cancel">Cancelar</string>
     <string name="modify">Modificar</string>
-    <string name="total">Total: </string>
+    <string name="total">Total: $%1$s</string>
     <string name="delete">Eliminar</string>
 
     <!-- LogIn -->
@@ -101,6 +101,10 @@
     <string name="coupons_not_expire">Sin fecha de caducidad</string>
     <string name="coupons_no_coupon">En este momento, no tenemos cupones disponibles para ofrecerte. Estate atento a nuestras notificaciones y noticias, que en cualquier momento llegan!</string>
     <string name="coupons_understood">Entendido</string>
+    <string name="coupons_code">Código del cupón</string>
+    <string name="coupons_copy_code">Cupón copiado en el portapapeles</string>
+
+    <!-- My Orders -->
     <string name="orders_repeat">Repetir pedido</string>
 
     <!-- My Profile -->
@@ -170,6 +174,17 @@
     <string name="assemble_size">Talle</string>
     <string name="assemble_topping">Toppings</string>
     <string name="assemble_dressing">Aderezos y salsas</string>
+    <string name="assemble_title">Hamburguesa %1$s</string>
+
+    <!-- Assemble Sizes-->
+    <string name="assemble_title_s">S</string>
+    <string name="assemble_title_m">M</string>
+    <string name="assemble_title_l">L</string>
+    <string name="assemble_title_xl">XL</string>
+    <string name="assemble_subtitle_s">(1 medallón 100gr)</string>
+    <string name="assemble_subtitle_m">(2 medallones 100gr)</string>
+    <string name="assemble_subtitle_l">(3 medallones 100gr)</string>
+    <string name="assemble_subtitle_xl">(4 medallones 100gr)</string>
 
     <!-- Dialogs -->
     <string name="dialog_quit_title">¿Deseas salir de la aplicación?</string>
@@ -185,10 +200,17 @@
     <string name="dialog_forgot_pass">Reestablecer contraseña</string>
     <string name="dialog_error_reset_failed">"Error al enviar el correo"</string>
     <string name="dialog_reset_ok">Correo enviado exitosamente</string>
+    <string name="dialog_add_product">Producto añadido al carrito</string>
+    <string name="dialog_delete_product">Eliminar producto</string>
+    <string name="dialog_delete_product_title">¿Deseas eliminar %1$d %2$s del carrito?</string>
 
     <!-- Shopping Cart -->
     <string name="neworder_title">Armá tu pedido</string>
     <string name="neworder_confirm_shopping_cart">Continuar compra</string>
+    <string name="neworder_shopping_cart_total">Total: $%1$d</string>
+    <string name="neworder_error_invalid_coupon">Cupón inexistente</string>
+    <string name="neworder_discount">"Descuento: $%1$d"</string>
+    <string name="neworder_total_price">"Precio total a pagar: $%1$d"</string>
 
     <!-- Delivery Method -->
     <string name="delivery_method_delivery">ENVÍO A DOMICILIO</string>
@@ -254,7 +276,10 @@
     <string name="tac_description_responsibility">Beicon SA no se responsabiliza por daños directos, indirectos, incidentales, especiales o consecuentes que surjan de su uso de la App, excepto en casos de negligencia grave o dolo.</string>
     <string name="tac_description_modify_terms">Nos reservamos el derecho de modificar estos Términos en cualquier momento. Las modificaciones serán efectivas una vez publicadas en la App. Es su responsabilidad revisar periódicamente estos Términos. Su uso continuado de la App después de cualquier modificación constituye su aceptación de los nuevos Términos.</string>
     <string name="tac_description_contact">Para cualquier consulta o comentario sobre estos Términos, por favor contacte a Beicon SA a través de rrhh@beiconbsb.com</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Toolbar -->
+    <string name="toolbar_title_new_order">Armá tu pedido</string>
+    <string name="toolbar_title_assemble_burger">Armá tu hamburguesa</string>
+    <string name="toolbar_title_shopping_cart">Carrito de compras</string>
 
 </resources>

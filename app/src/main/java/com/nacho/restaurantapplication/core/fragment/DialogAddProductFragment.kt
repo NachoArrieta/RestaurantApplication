@@ -93,8 +93,14 @@ class DialogAddProductFragment : DialogFragment() {
                 }
             }
 
-            dialogBtnAddToCart.setOnClickListener {}
+            dialogBtnAddToCart.setOnClickListener {
+                val quantityItem = binding.dialogTieQuantity.text.toString().toIntOrNull() ?: 1
+                onAddToCartClick?.invoke(quantityItem)
+                dismiss()
+            }
+
             appCompatImageView3.setOnClickListener { dismiss() }
+
         }
 
     }

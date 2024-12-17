@@ -2,16 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_marginBottom="4dp"
         app:cardCornerRadius="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline17"
-        android:layout_marginStart="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/plated">
@@ -22,8 +25,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/item_size_img"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -39,45 +42,36 @@
         android:id="@+id/item_size_txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:fontFamily="@font/montserrat_regular"
-        tools:text="XL"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline17"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/item_size_txt_subtitle"
         app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="XL" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/item_size_txt_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
         android:fontFamily="@font/montserrat_regular"
-        tools:text="(1 medallón 100gr)"
         android:textColor="@color/grey_light"
-        android:layout_marginStart="4dp"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline17"
-        app:layout_constraintStart_toEndOf="@+id/item_size_txt_title"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="38dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="(1 medallón 100gr)" />
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/item_size_cb"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginStart="48dp"
         app:buttonTint="@color/red_dark"
-        app:layout_constraintBottom_toTopOf="@+id/guideline17"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/item_size_txt_subtitle"
         app:layout_constraintTop_toTopOf="parent"
         tools:checked="false" />
 

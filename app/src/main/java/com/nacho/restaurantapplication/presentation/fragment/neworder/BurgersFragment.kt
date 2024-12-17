@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.core.fragment.DialogAddProductFragment
-import com.nacho.restaurantapplication.data.model.Accompaniment
 import com.nacho.restaurantapplication.data.model.Burger
+import com.nacho.restaurantapplication.data.model.CartItem
+import com.nacho.restaurantapplication.data.model.ProductType
 import com.nacho.restaurantapplication.databinding.FragmentBurgersBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.BurgerAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -97,8 +99,21 @@ class BurgersFragment : Fragment() {
             productTitle = burger.title,
             productDescription = burger.description,
             productImageUrl = burger.image
-        ) { /* Manejar el evento al hacer click en añadir al carrito */ }
+        ) { quantity ->
+            val cartItem = CartItem(
+                title = burger.title,
+                description = burger.description,
+                image = burger.image,
+                type = ProductType.BURGER,
+                quantity = quantity,
+                price = burger.price
+            )
+            newOrderVM.addToCart(cartItem)
+            showToast(getString(R.string.dialog_add_product))
+        }
         dialog.show(parentFragmentManager, DialogAddProductFragment::class.java.simpleName)
     }
+
+    private fun showToast(message: String) = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
 }
