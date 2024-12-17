@@ -1,4 +1,4 @@
-package com.nacho.restaurantapplication.core.fragment
+package com.nacho.restaurantapplication.presentation.fragment.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -85,24 +85,30 @@ class AddPaymentMethodFragment : Fragment() {
             addPaymentTieCvv.onTextChanged { onFieldChanged() }
 
             addPaymentButton.setOnClickListener {
-                val uid = viewModel.uId.value
-                val cardInfo = UserCard(
-                    cardBank = cardBank,
-                    cardType = cardType,
-                    cardNumber = binding.addPaymentTieNumber.text.toString(),
-                    cardName = binding.addPaymentTieTitularName.text.toString(),
-                    cardSince = binding.addPaymentTieSince.text.toString(),
-                    cardUntil = binding.addPaymentTieUntil.text.toString(),
-                    cardCvv = binding.addPaymentTieCvv.text.toString(),
-                    cardBrand = cardBrand,
-                    cardAmount = cardAmount,
-                    cardLimit = cardLimit
-                )
-
-                if (uid != null) {
-                    viewModel.addCard(uid, cardInfo)
-                    goToLoading()
+                if (!addPaymentButton.isClickable) {
+                    return@setOnClickListener
                 }
+
+                try {
+                    val uid = viewModel.uId.value
+                    val cardInfo = UserCard(
+                        cardBank = cardBank,
+                        cardType = cardType,
+                        cardNumber = binding.addPaymentTieNumber.text.toString(),
+                        cardName = binding.addPaymentTieTitularName.text.toString(),
+                        cardSince = binding.addPaymentTieSince.text.toString(),
+                        cardUntil = binding.addPaymentTieUntil.text.toString(),
+                        cardCvv = binding.addPaymentTieCvv.text.toString(),
+                        cardBrand = cardBrand,
+                        cardAmount = cardAmount,
+                        cardLimit = cardLimit
+                    )
+
+                    if (uid != null) {
+                        viewModel.addCard(uid, cardInfo)
+                        goToLoading()
+                    }
+                } catch (e: UninitializedPropertyAccessException) { }
 
             }
 

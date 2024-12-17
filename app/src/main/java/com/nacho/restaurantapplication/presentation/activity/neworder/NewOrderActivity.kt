@@ -13,13 +13,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.presentation.activity.home.HomeActivity
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
+import com.nacho.restaurantapplication.presentation.viewmodel.payment.PaymentMethodViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NewOrderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewOrderBinding
+
     private val newOrderVM: NewOrderViewModel by viewModels()
+    private val paymentMethodVM: PaymentMethodViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +30,11 @@ class NewOrderActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val user = FirebaseAuth.getInstance().currentUser?.uid
+
         if (user != null) {
             newOrderVM.getUserCoupons(user)
+            paymentMethodVM.fetchUserCards(user)
+            paymentMethodVM.getUserId(user)
         }
 
         getProducts()

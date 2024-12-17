@@ -1,4 +1,4 @@
-package com.nacho.restaurantapplication.core.fragment
+package com.nacho.restaurantapplication.presentation.fragment.neworder.payment
 
 import android.os.Bundle
 import android.os.Handler

@@ -12,6 +12,7 @@ import com.nacho.restaurantapplication.core.extensions.onTextChanged
 import com.nacho.restaurantapplication.databinding.FragmentShoppingCartBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.ShoppingCartAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
+import com.nacho.restaurantapplication.presentation.viewmodel.payment.PaymentMethodViewModel
 
 class ShoppingCartFragment : Fragment() {
 
@@ -19,6 +20,8 @@ class ShoppingCartFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val newOrderVM: NewOrderViewModel by activityViewModels()
+    private val paymentMethodVM: PaymentMethodViewModel by activityViewModels()
+
     private lateinit var shoppingCartList: ShoppingCartAdapter
 
     override fun onCreateView(
@@ -75,6 +78,7 @@ class ShoppingCartFragment : Fragment() {
 
     private fun setupListeners() {
         with(binding) {
+
             shoppingCartTieDiscount.onTextChanged { inputCouponCode ->
                 val trimmedCoupon = inputCouponCode.trim()
                 if (trimmedCoupon.isEmpty()) {
@@ -85,6 +89,14 @@ class ShoppingCartFragment : Fragment() {
                     shoppingCartTilDiscount.error = if (isValid) null else getString(R.string.neworder_error_invalid_coupon)
                 }
             }
+
+            shoppingCartBtn.setOnClickListener {
+                paymentMethodVM.userCards.observe(viewLifecycleOwner) { userCards ->
+                    if (!userCards.isNullOrEmpty()) findNavController().navigate(R.id.action_shoppingCartFragment_to_selectedPaymentMethodFragment)
+                    else findNavController().navigate(R.id.action_shoppingCartFragment_to_addCardFragment)
+                }
+            }
+
         }
     }
 

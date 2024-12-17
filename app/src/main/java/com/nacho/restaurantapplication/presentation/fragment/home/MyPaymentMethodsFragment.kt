@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.databinding.FragmentMyPaymentMethodsBinding
-import com.nacho.restaurantapplication.presentation.adapter.home.CouponAdapter
 import com.nacho.restaurantapplication.presentation.adapter.payment.CardAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.payment.PaymentMethodViewModel
 import dagger.hilt.android.AndroidEntryPoint

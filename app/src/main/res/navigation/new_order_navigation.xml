@@ -26,5 +26,65 @@
         android:id="@+id/shoppingCartFragment"
         android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.ShoppingCartFragment"
         android:label="fragment_shopping_cart"
-        tools:layout="@layout/fragment_shopping_cart" />
+        tools:layout="@layout/fragment_shopping_cart" >
+        <action
+            android:id="@+id/action_shoppingCartFragment_to_selectedPaymentMethodFragment"
+            app:destination="@id/selectedPaymentMethodFragment" />
+        <action
+            android:id="@+id/action_shoppingCartFragment_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectedPaymentMethodFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.SelectedPaymentMethodFragment"
+        android:label="fragment_selected_payment_method"
+        tools:layout="@layout/fragment_selected_payment_method" >
+        <action
+            android:id="@+id/action_selectedPaymentMethodFragment_to_deliveryMethodFragment2"
+            app:destination="@id/deliveryMethodFragment2" />
+        <action
+            android:id="@+id/action_selectedPaymentMethodFragment_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deliveryMethodFragment2"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.DeliveryMethodFragment"
+        android:label="fragment_delivery_method"
+        tools:layout="@layout/fragment_delivery_method" >
+        <action
+            android:id="@+id/action_deliveryMethodFragment2_to_confirmPaymentFragment2"
+            app:destination="@id/confirmPaymentFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmPaymentFragment2"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.ConfirmPaymentFragment"
+        android:label="fragment_confirm_payment"
+        tools:layout="@layout/fragment_confirm_payment" >
+        <action
+            android:id="@+id/action_confirmPaymentFragment2_to_loadingFragment3"
+            app:destination="@id/loadingFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadingFragment3"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.LoadingFragment"
+        android:label="fragment_loading"
+        tools:layout="@layout/fragment_loading" >
+        <action
+            android:id="@+id/action_loadingFragment3_to_statusFragment2"
+            app:destination="@id/statusFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/statusFragment2"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.StatusFragment"
+        android:label="fragment_status"
+        tools:layout="@layout/fragment_status" />
+    <fragment
+        android:id="@+id/addCardFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.AddCardFragment"
+        android:label="fragment_add_card"
+        tools:layout="@layout/fragment_add_card" >
+        <action
+            android:id="@+id/action_addCardFragment_to_selectedPaymentMethodFragment"
+            app:destination="@id/selectedPaymentMethodFragment" />
+    </fragment>
 </navigation>
