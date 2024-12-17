@@ -162,7 +162,6 @@
     <string name="neworder_desserts">Postres BSB</string>
     <string name="neworder_all_desserts">Postres</string>
 
-
     <!-- Drinks -->
     <string name="neworder_beer">Cervezas</string>
     <string name="neworder_water">Aguas</string>
@@ -211,6 +210,9 @@
     <string name="neworder_error_invalid_coupon">Cupón inexistente</string>
     <string name="neworder_discount">"Descuento: $%1$d"</string>
     <string name="neworder_total_price">"Precio total a pagar: $%1$d"</string>
+
+    <!-- Selected Payment -->
+    <string name="selected_payment_confirm">"Confirmar medio de pago"</string>
 
     <!-- Delivery Method -->
     <string name="delivery_method_delivery">ENVÍO A DOMICILIO</string>
@@ -281,5 +283,7 @@
     <string name="toolbar_title_new_order">Armá tu pedido</string>
     <string name="toolbar_title_assemble_burger">Armá tu hamburguesa</string>
     <string name="toolbar_title_shopping_cart">Carrito de compras</string>
+    <string name="toolbar_title_selected_payment">Seleccioná tu medio de pago</string>
+    <string name="toolbar_title_add_payment_method">Añadí tu medio de pago</string>
 
 </resources>

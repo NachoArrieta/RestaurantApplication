@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_gradient_white"
-    tools:context=".presentation.fragment.payment.DeliveryMethodFragment">
+    tools:context=".presentation.fragment.neworder.payment.DeliveryMethodFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/delivery_method_cv_home_delivery"

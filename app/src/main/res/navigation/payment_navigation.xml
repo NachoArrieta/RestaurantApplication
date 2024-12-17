@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/confirmPaymentFragment"
-        android:name="com.nacho.restaurantapplication.presentation.fragment.payment.ConfirmPaymentFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.ConfirmPaymentFragment"
         android:label="fragment_confirm_payment"
         tools:layout="@layout/fragment_confirm_payment" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/deliveryMethodFragment"
-        android:name="com.nacho.restaurantapplication.presentation.fragment.payment.DeliveryMethodFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.DeliveryMethodFragment"
         android:label="fragment_delivery_method"
         tools:layout="@layout/fragment_delivery_method" >
         <action
@@ -34,12 +34,12 @@
     </fragment>
     <fragment
         android:id="@+id/statusFragment"
-        android:name="com.nacho.restaurantapplication.presentation.fragment.payment.StatusFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.StatusFragment"
         android:label="fragment_status"
         tools:layout="@layout/fragment_status" />
     <fragment
         android:id="@+id/loadingFragment"
-        android:name="com.nacho.restaurantapplication.core.fragment.LoadingFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.LoadingFragment"
         android:label="fragment_loading"
         tools:layout="@layout/fragment_loading" >
         <action
