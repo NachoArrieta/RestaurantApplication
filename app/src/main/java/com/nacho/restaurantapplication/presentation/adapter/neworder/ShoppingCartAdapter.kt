@@ -40,11 +40,20 @@ class ShoppingCartAdapter(
                 updateTotalPrice(cartItem)
                 dialogTieQuantity.setText(cartItem.quantity.toString())
 
+                // Verificamos si cartItem.image es "null" y en caso afirmativo usamos el icono por defecto
+                val imageUrl = if (cartItem.image == "null") {
+                    "android.resource://${itemView.context.packageName}/drawable/ic_example"
+                } else {
+                    cartItem.image
+                }
+
                 ImageLoader.loadImage(
                     itemView.context,
-                    cartItem.image,
+                    imageUrl,
                     itemCartImg,
-                    onLoadFailed = {},
+                    onLoadFailed = {
+                        itemCartImg.setImageResource(R.drawable.ic_example)
+                    },
                     onResourceReady = {}
                 )
 
@@ -66,14 +75,22 @@ class ShoppingCartAdapter(
 
                 itemCartTxtDelete.setOnClickListener {
                     val fragmentManager = (itemView.context as FragmentActivity).supportFragmentManager
+
+                    val imageUrl = if (cartItem.image == "null") {
+                        "android.resource://${itemView.context.packageName}/drawable/ic_example"
+                    } else {
+                        cartItem.image
+                    }
+
                     DialogDeleteProductFragment.newInstance(
                         productTitle = cartItem.title,
-                        productImageUrl = cartItem.image,
+                        productImageUrl = imageUrl,
                         productQuantity = cartItem.quantity
                     ) {
                         onDeleteItem(cartItem)
                         notifyDataSetChanged()
                     }.show(fragmentManager, DialogDeleteProductFragment::class.java.simpleName)
+
                 }
             }
         }

@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.nacho.restaurantapplication.R
+import com.nacho.restaurantapplication.core.fragment.DialogAddAssembleBurgerFragment
 import com.nacho.restaurantapplication.data.model.BurgerSize
+import com.nacho.restaurantapplication.data.model.CartItem
 import com.nacho.restaurantapplication.databinding.FragmentAssembleYourBurgerBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.DressingAdapter
 import com.nacho.restaurantapplication.presentation.adapter.neworder.InformationBurgerAdapter
@@ -43,7 +46,12 @@ class AssembleYourBurgerFragment : Fragment() {
 
         newOrderVM.setToolbarTitle(getString(R.string.toolbar_title_assemble_burger))
         newOrderVM.setToolbarVisibility(false)
+        newOrderVM.reset()
         setupObservers()
+
+        binding.assembleBtnConfirm.setOnClickListener {
+            showDialog()
+        }
 
     }
 
@@ -109,5 +117,39 @@ class AssembleYourBurgerFragment : Fragment() {
         }
 
     }
+
+    private fun showDialog() {
+        val selectedSize = sizeAdapter.getSelectedSize()
+
+        val selectedToppings = newOrderVM.selectedToppings.joinToString(", ")
+        val selectedDressings = newOrderVM.selectedDressings.joinToString(", ")
+
+        val productDescription = buildString {
+            if (selectedToppings.isNotEmpty()) append(selectedToppings)
+            if (selectedToppings.isNotEmpty() && selectedDressings.isNotEmpty()) append(", ")
+            if (selectedDressings.isNotEmpty()) append(selectedDressings)
+        }
+
+        val productTitle = "${getString(R.string.hamburger_title)} ${selectedSize?.title}"
+
+        val dialog = DialogAddAssembleBurgerFragment.newInstance(productTitle, productDescription) { quantity ->
+            selectedSize?.let {
+                val cartItem = CartItem(
+                    title = productTitle,
+                    description = productDescription,
+                    image = "null",
+                    type = "ASSEMBLED",
+                    quantity = quantity,
+                    price = it.price
+                )
+                newOrderVM.addToCart(cartItem)
+                showToast(getString(R.string.dialog_add_product))
+                requireActivity().onBackPressed()
+            } ?: showToast("Error: No size selected")
+        }
+        dialog.show(parentFragmentManager, DialogAddAssembleBurgerFragment::class.java.simpleName)
+    }
+
+    private fun showToast(message: String) = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
 }

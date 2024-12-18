@@ -106,6 +106,7 @@
 
     <!-- My Orders -->
     <string name="orders_product_quantity">x %1$d</string>
+    <string name="hamburger_title">Hamburguesa</string>
 
     <!-- My Profile -->
     <string name="profile_rio_tercero">Río Tercero</string>
@@ -303,6 +304,8 @@
     <string name="toolbar_title_confirm">Confirmación</string>
     <string name="toolbar_title_processing">Procesando pago</string>
     <string name="toolbar_title_status">Estado de tu pago</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

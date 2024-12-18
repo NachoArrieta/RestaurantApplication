@@ -21,6 +21,7 @@ class SizeAdapter(
     override fun onBindViewHolder(holder: SizeViewHolder, position: Int) {
         val size = sizeList[position]
         val isSelected = selectedPosition == position
+
         holder.bind(size, isSelected)
 
         holder.itemView.setOnClickListener {
@@ -54,5 +55,12 @@ class SizeAdapter(
             }
         }
     }
+
+    fun getSelectedSize(): BurgerSize? {
+        return selectedPosition?.let {
+            sizeList[it]
+        }
+    }
+
 
 }

@@ -99,8 +99,8 @@ class NewOrderViewModel @Inject constructor(
     private val _selectedItems = MutableLiveData<List<String>>()
     val selectedItems: LiveData<List<String>> get() = _selectedItems
 
-    private val selectedToppings = mutableSetOf<String>()
-    private val selectedDressings = mutableSetOf<String>()
+    val selectedToppings = mutableSetOf<String>()
+    val selectedDressings = mutableSetOf<String>()
     //End Region Assemble Burger
 
     //Region Shopping Cart
@@ -140,6 +140,12 @@ class NewOrderViewModel @Inject constructor(
         _cartItems.observeForever { items ->
             _cartTotalPrice.value = items.sumOf { it.price * it.quantity }
         }
+    }
+
+    fun reset() {
+        _selectedItems.value = emptyList()
+        selectedToppings.clear()
+        selectedDressings.clear()
     }
 
     //Region Tab Layout
