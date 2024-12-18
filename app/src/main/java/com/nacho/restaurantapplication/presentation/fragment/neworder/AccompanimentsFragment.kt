@@ -11,7 +11,6 @@ import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.core.fragment.DialogAddProductFragment
 import com.nacho.restaurantapplication.data.model.Accompaniment
 import com.nacho.restaurantapplication.data.model.CartItem
-import com.nacho.restaurantapplication.data.model.ProductType
 import com.nacho.restaurantapplication.databinding.FragmentAccompanimentsBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.AccompanimentAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -69,7 +68,7 @@ class AccompanimentsFragment : Fragment() {
                 title = accompaniment.title,
                 description = accompaniment.description,
                 image = accompaniment.image,
-                type = ProductType.ACCOMPANIMENT,
+                type = "ACCOMPANIMENT",
                 quantity = quantity,
                 price = accompaniment.price
             )

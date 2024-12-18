@@ -17,9 +17,10 @@ class OrdersRepositoryImpl @Inject constructor(
             "Hour" to order.hour,
             "ProductList" to order.productList.associate {
                 it.title to mapOf(
+                    "Title" to it.title,
                     "Description" to it.description,
                     "Image" to it.image,
-                    "Type" to it.type.name,
+                    "Type" to it.type,
                     "Quantity" to it.quantity,
                     "Price" to it.price
                 )

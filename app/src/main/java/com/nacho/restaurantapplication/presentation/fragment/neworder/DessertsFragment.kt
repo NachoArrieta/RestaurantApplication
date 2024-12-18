@@ -11,7 +11,6 @@ import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.core.fragment.DialogAddProductFragment
 import com.nacho.restaurantapplication.data.model.CartItem
 import com.nacho.restaurantapplication.data.model.Dessert
-import com.nacho.restaurantapplication.data.model.ProductType
 import com.nacho.restaurantapplication.databinding.FragmentDessertsBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.DessertAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
@@ -96,7 +95,7 @@ class DessertsFragment : Fragment() {
                 title = dessert.title,
                 image = dessert.image,
                 description = dessert.description,
-                type = ProductType.DESSERT,
+                type = "DESSERT",
                 quantity = quantity,
                 price = dessert.price
             )

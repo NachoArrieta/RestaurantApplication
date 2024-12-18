@@ -1,7 +1,11 @@
 package com.nacho.restaurantapplication.data.network.user
 
 import com.google.firebase.database.FirebaseDatabase
+import com.nacho.restaurantapplication.data.model.Card
+import com.nacho.restaurantapplication.data.model.CartItem
 import com.nacho.restaurantapplication.data.model.Coupon
+import com.nacho.restaurantapplication.data.model.DeliveryMethod
+import com.nacho.restaurantapplication.data.model.Order
 import com.nacho.restaurantapplication.data.model.Reservation
 import com.nacho.restaurantapplication.data.model.User
 import kotlinx.coroutines.tasks.await
@@ -110,6 +114,56 @@ class UserInformationRepositoryImpl(private val firebaseDatabase: FirebaseDataba
             true
         } catch (e: Exception) {
             false
+        }
+    }
+
+    override suspend fun getUserOrders(uid: String): List<Order> {
+        val ordersReference = firebaseDatabase.getReference("Users/$uid/Orders")
+        return try {
+            val ordersSnapshot = ordersReference.get().await()
+            (ordersSnapshot.value as? Map<*, *>)?.map { entry ->
+                val orderData = entry.value as? Map<*, *>
+                Order(
+                    date = orderData?.get("Date") as? String ?: "",
+                    hour = orderData?.get("Hour") as? String ?: "",
+                    productList = (orderData?.get("ProductList") as? Map<*, *>)?.map { productEntry ->
+                        val productData = productEntry.value as? Map<*, *>
+                        CartItem(
+                            title = productData?.get("Title") as? String ?: "",
+                            description = productData?.get("Description") as? String ?: "",
+                            image = productData?.get("Image") as? String ?: "",
+                            price = (productData?.get("Price") as? Number)?.toInt() ?: 0,
+                            quantity = (productData?.get("Quantity") as? Number)?.toInt() ?: 0,
+                            type = productData?.get("Type") as? String ?: ""
+                        )
+                    } ?: emptyList(),
+                    paymentInfo = (orderData?.get("PaymentInfo") as? Map<*, *>)?.let { paymentData ->
+                        Card(
+                            cardNumber = paymentData["CardNumber"] as? String ?: "",
+                            cardName = paymentData["CardName"] as? String ?: "",
+                            cardBank = paymentData["CardBank"] as? String ?: "",
+                            cardType = paymentData["CardType"] as? String ?: "",
+                            cardBrand = paymentData["CardBrand"] as? String ?: "",
+                            cardUntil = paymentData["CardUntil"] as? String ?: "",
+                            cardCvv = paymentData["CardCvv"] as? String ?: ""
+                        )
+                    } ?: Card(),
+                    shipmentInfo = (orderData?.get("ShipmentInfo") as? Map<*, *>)?.let { shipmentData ->
+                        DeliveryMethod(
+                            address = shipmentData["Address"] as? String ?: "",
+                            city = shipmentData["City"] as? String ?: "",
+                            floor = shipmentData["Floor"] as? String ?: "",
+                            number = shipmentData["Number"] as? String ?: "",
+                            shippingPrice = (shipmentData["ShippingPrice"] as? Number)?.toInt() ?: 0,
+                            type = shipmentData["Type"] as? String ?: ""
+                        )
+                    } ?: DeliveryMethod(),
+                    discountInfo = (orderData?.get("DiscountInfo") as? Number)?.toInt() ?: 0,
+                    totalInfo = (orderData?.get("TotalInfo") as? Number)?.toInt() ?: 0
+                )
+            } ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
         }
     }
 

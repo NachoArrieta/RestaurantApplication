@@ -4,11 +4,7 @@ data class CartItem(
     val title: String = "",
     val description: String = "",
     val image: String = "",
-    val type: ProductType,
+    val type: String,
     var quantity: Int = 0,
     val price: Int = 0,
 )
-
-enum class ProductType {
-    BURGER, DRINK, PROMOTION, DESSERT, ACCOMPANIMENT, ASSEMBLED
-}

@@ -105,7 +105,7 @@
     <string name="coupons_copy_code">Cupón copiado en el portapapeles</string>
 
     <!-- My Orders -->
-    <string name="orders_repeat">Repetir pedido</string>
+    <string name="orders_product_quantity">x %1$d</string>
 
     <!-- My Profile -->
     <string name="profile_rio_tercero">Río Tercero</string>
