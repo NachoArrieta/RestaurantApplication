@@ -390,7 +390,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <AutoCompleteTextView
-                android:id="@+id/profile_atv_city"
+                android:id="@+id/modify_atv_city"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
@@ -427,7 +427,7 @@
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/montserrat_regular"
                 android:importantForAutofill="no"
-                android:inputType="text"
+                android:inputType="textCapSentences"
                 android:padding="8dp"
                 android:textColor="@color/grey_dark"
                 android:textSize="16sp" />
@@ -490,7 +490,7 @@
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/montserrat_regular"
                 android:importantForAutofill="no"
-                android:inputType="text"
+                android:inputType="textCapCharacters"
                 android:maxLength="2"
                 android:padding="8dp"
                 android:textColor="@color/grey_dark"
@@ -499,7 +499,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/shopping_cart_btn"
+            android:id="@+id/modify_data_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -89,25 +89,36 @@
                 android:id="@+id/confirm_payment_txt_discount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/confirm_payment_txt_total"
                 app:layout_constraintTop_toTopOf="@+id/confirm_payment_txt_title_discount"
                 tools:text="- $ 2000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="-"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/confirm_payment_txt_title_discount"
+                app:layout_constraintEnd_toStartOf="@+id/confirm_payment_txt_discount"
+                app:layout_constraintTop_toTopOf="@+id/confirm_payment_txt_title_discount" />
 
             <TextView
                 android:id="@+id/confirm_payment_txt_shipment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/confirm_payment_txt_discount"
                 app:layout_constraintTop_toTopOf="@+id/confirm_payment_txt_title_shipment"
                 tools:text="$ 6000" />
 

@@ -226,6 +226,12 @@
     <string name="delivery_txt_modify_address">Modifica la dirección de envío por favor</string>
     <string name="delivery_confirm_data">Confirmar datos</string>
 
+    <!-- Confirm Payment -->
+    <string name="confirm_payment_product_price">$%1$d</string>
+    <string name="confirm_payment_discount_price">$%1$d</string>
+    <string name="confirm_payment_total">TOTAL: $%1$d</string>
+    <string name="confirm_no_shipment">$ 0</string>
+
     <!-- Shopping Cart -->
     <string name="confirm_payment">Confirmar compra</string>
     <string name="confirm_payment_title">Vas a pagar</string>
@@ -291,5 +297,8 @@
     <string name="toolbar_title_shopping_cart">Carrito de compras</string>
     <string name="toolbar_title_selected_payment">Seleccioná tu medio de pago</string>
     <string name="toolbar_title_add_payment_method">Añadí tu medio de pago</string>
+    <string name="toolbar_title_shipment">Forma de entrega</string>
+    <string name="toolbar_title_confirm">Confirmación</string>
+
 
 </resources>
