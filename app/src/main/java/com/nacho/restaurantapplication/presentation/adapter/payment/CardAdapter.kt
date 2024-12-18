@@ -47,12 +47,12 @@ class CardAdapter(
                 itemMyPaymentTxtUntilDate.text = card.cardUntil
                 itemMyPaymentTxtName.text = card.cardName
 
-                val cardType = when (card.cardType) {
+                val cardBrand = when (card.cardBrand) {
                     "Visa" -> R.drawable.ic_visa
                     else -> R.drawable.ic_mastercard
                 }
 
-                itemMyPaymentMethodsImgBrand.setImageResource(cardType)
+                itemMyPaymentMethodsImgBrand.setImageResource(cardBrand)
 
             }
         }

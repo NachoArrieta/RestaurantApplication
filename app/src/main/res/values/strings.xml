@@ -299,6 +299,8 @@
     <string name="toolbar_title_add_payment_method">Añadí tu medio de pago</string>
     <string name="toolbar_title_shipment">Forma de entrega</string>
     <string name="toolbar_title_confirm">Confirmación</string>
+    <string name="toolbar_title_processing">Procesando pago</string>
+    <string name="toolbar_title_status">Estado de tu pago</string>
 
 
 </resources>

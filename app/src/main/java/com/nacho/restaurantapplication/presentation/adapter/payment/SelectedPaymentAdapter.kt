@@ -21,6 +21,8 @@ class SelectedPaymentAdapter(private val cardList: List<Card>) : RecyclerView.Ad
 
     override fun getItemCount(): Int = cardList.size
 
+    fun getItemAtPosition(position: Int): Card = cardList[position]
+
     class SelectedPaymentViewHolder(private val binding: ItemSelectedPaymentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(card: Card) {
             with(binding) {
@@ -45,12 +47,12 @@ class SelectedPaymentAdapter(private val cardList: List<Card>) : RecyclerView.Ad
                 itemSelectedPaymentTxtUntilDate.text = card.cardUntil
                 itemSelectedPaymentTxtName.text = card.cardName
 
-                val cardType = when (card.cardType) {
+                val cardBrand = when (card.cardBrand) {
                     "Visa" -> R.drawable.ic_visa
                     else -> R.drawable.ic_mastercard
                 }
 
-                itemSelectedPaymentImgBrand.setImageResource(cardType)
+                itemSelectedPaymentImgBrand.setImageResource(cardBrand)
 
             }
         }

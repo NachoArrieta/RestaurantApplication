@@ -70,6 +70,10 @@ class SelectedPaymentMethodFragment : Fragment() {
             }
 
             selectedPaymentMethodBtn.setOnClickListener {
+                val currentItemPosition = binding.selectedPaymentMethodVp.currentItem
+                val selectedCard = paymentList.getItemAtPosition(currentItemPosition)
+
+                paymentMethodVM.setSelectedCard(selectedCard)
                 findNavController().navigate(R.id.action_selectedPaymentMethodFragment_to_deliveryMethodFragment2)
             }
 

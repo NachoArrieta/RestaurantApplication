@@ -61,17 +61,8 @@
         android:label="fragment_confirm_payment"
         tools:layout="@layout/fragment_confirm_payment" >
         <action
-            android:id="@+id/action_confirmPaymentFragment2_to_loadingFragment3"
-            app:destination="@id/loadingFragment3" />
-    </fragment>
-    <fragment
-        android:id="@+id/loadingFragment3"
-        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.LoadingFragment"
-        android:label="fragment_loading"
-        tools:layout="@layout/fragment_loading" >
-        <action
-            android:id="@+id/action_loadingFragment3_to_statusFragment2"
-            app:destination="@id/statusFragment2" />
+            android:id="@+id/action_confirmPaymentFragment2_to_loadingPaymentFragment"
+            app:destination="@id/loadingPaymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/statusFragment2"
@@ -86,5 +77,14 @@
         <action
             android:id="@+id/action_addCardFragment_to_selectedPaymentMethodFragment"
             app:destination="@id/selectedPaymentMethodFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadingPaymentFragment"
+        android:name="com.nacho.restaurantapplication.presentation.fragment.neworder.payment.LoadingPaymentFragment"
+        android:label="fragment_loading_payment"
+        tools:layout="@layout/fragment_loading_payment" >
+        <action
+            android:id="@+id/action_loadingPaymentFragment_to_statusFragment2"
+            app:destination="@id/statusFragment2" />
     </fragment>
 </navigation>

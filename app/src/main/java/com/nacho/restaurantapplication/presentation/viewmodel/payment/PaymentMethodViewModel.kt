@@ -8,9 +8,11 @@ import com.nacho.restaurantapplication.core.fragment.state.PaymentMethodViewStat
 import com.nacho.restaurantapplication.core.utils.Constants
 import com.nacho.restaurantapplication.data.model.Card
 import com.nacho.restaurantapplication.data.model.DeliveryMethod
+import com.nacho.restaurantapplication.data.model.Order
 import com.nacho.restaurantapplication.domain.model.UserCard
 import com.nacho.restaurantapplication.domain.usecase.neworder.paymentMethods.AddUserCardUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.paymentMethods.GetUserCardUseCase
+import com.nacho.restaurantapplication.domain.usecase.neworder.shoppingCart.AddOrderUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,7 +22,8 @@ import javax.inject.Inject
 @HiltViewModel
 class PaymentMethodViewModel @Inject constructor(
     private val getUserCardsUseCase: GetUserCardUseCase,
-    private val addUserCardUseCase: AddUserCardUseCase
+    private val addUserCardUseCase: AddUserCardUseCase,
+    private val addOrderUseCase: AddOrderUseCase
 ) : ViewModel() {
 
     private val _uid = MutableLiveData<String?>()
@@ -42,6 +45,14 @@ class PaymentMethodViewModel @Inject constructor(
     private val _deliveryMethod = MutableLiveData<DeliveryMethod>()
     val deliveryMethod: LiveData<DeliveryMethod> = _deliveryMethod
     //End Region Delivery Method
+
+    //Region Selected Payment Method
+    private val _selectedCard = MutableLiveData<Card>()
+    val selectedCard: LiveData<Card> = _selectedCard
+    //End Region Selected Payment Method
+
+    private val _addOrderSuccess = MutableLiveData(false)
+    val addOrderSuccess: LiveData<Boolean> = _addOrderSuccess
 
     fun setToolbarVisibility(visibility: Boolean) {
         _toolbarVisible.value = visibility
@@ -74,6 +85,17 @@ class PaymentMethodViewModel @Inject constructor(
         }
     }
 
+    fun addOrder(uid: String, order: Order) {
+        viewModelScope.launch {
+            val success = addOrderUseCase(uid, order)
+            if (success) {
+                _addOrderSuccess.postValue(true)
+            } else {
+                // Manejar el error
+            }
+        }
+    }
+
     fun onFieldsChangedPaymentMethod(userCard: UserCard, isCardValid: Boolean) {
         _viewStatePaymentMethod.value = userCard.toPaymentMethodViewState(isCardValid)
     }
@@ -97,5 +119,9 @@ class PaymentMethodViewModel @Inject constructor(
     //Region Delivery Method
     fun setDeliveryMethod(method: DeliveryMethod) = _deliveryMethod.postValue(method)
     //End Region Delivery Method
+
+    //Region Selected Payment Method
+    fun setSelectedCard(card: Card) = _selectedCard.postValue(card)
+    //End Region Selected Payment Method
 
 }

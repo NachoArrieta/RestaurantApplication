@@ -55,6 +55,9 @@ class NewOrderViewModel @Inject constructor(
 
     private val _toolbarVisibilityState = MediatorLiveData<Boolean>()
     val toolbarVisibilityState: LiveData<Boolean> = _toolbarVisibilityState
+
+    private val _toolbarBackVisibility = MutableLiveData(true)
+    val toolbarBackVisibility: LiveData<Boolean> get() = _toolbarBackVisibility
     //End Region Toolbar
 
     //Region Burgers
@@ -149,6 +152,8 @@ class NewOrderViewModel @Inject constructor(
     fun setToolbarTitle(title: String) = _toolbarTitle.postValue(title)
 
     fun setToolbarVisibility(visibility: Boolean) = _toolbarShoppingCartVisibility.postValue(visibility)
+
+    fun setOnBackVisibility(visibility: Boolean) = _toolbarBackVisibility.postValue(visibility)
     //End Region Toolbar
 
     //Region Burgers

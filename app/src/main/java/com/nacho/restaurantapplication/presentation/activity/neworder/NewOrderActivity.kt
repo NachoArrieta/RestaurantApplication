@@ -88,6 +88,11 @@ class NewOrderActivity : AppCompatActivity() {
             }
         }
 
+        newOrderVM.toolbarBackVisibility.observe(this) { isVisible ->
+            if (isVisible == true) binding.toolbarImgBack.visibility = View.VISIBLE
+            else binding.toolbarImgBack.visibility = View.GONE
+        }
+
     }
 
     private fun handleBackPressed(navController: NavController?) {
