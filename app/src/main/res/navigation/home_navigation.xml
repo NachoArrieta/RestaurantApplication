@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_nav_home_to_newsFragment"
             app:destination="@id/newsFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_addReservationFragment"
+            app:destination="@id/addReservationFragment" />
     </fragment>
 
     <fragment

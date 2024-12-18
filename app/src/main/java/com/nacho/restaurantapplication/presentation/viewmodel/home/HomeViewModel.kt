@@ -128,6 +128,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun updateInformation(newInformation: User) {
+        _userInformation.value = newInformation
+    }
+
     fun updateUserInformation(uid: String, userInformation: UserInformation) {
         viewModelScope.launch {
             val success = updateUserInformationUseCase(uid, userInformation)

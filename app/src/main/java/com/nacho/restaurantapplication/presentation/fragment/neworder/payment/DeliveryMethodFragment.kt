@@ -117,6 +117,17 @@ class DeliveryMethodFragment : Fragment() {
                 val newNumber = profileTieFloorNumber.text.toString().trim()
 
                 if (newCity.isNotEmpty() && newAddress.isNotEmpty() && newFloor.isNotEmpty() && newNumber.isNotEmpty()) {
+                    val updatedUserInfo = homeVM.userInformation.value?.copy(
+                        city = newCity,
+                        address = newAddress,
+                        floor = newFloor,
+                        number = newNumber
+                    )
+
+                    if (updatedUserInfo != null) {
+                        homeVM.updateInformation(updatedUserInfo)
+                    }
+
                     val formattedAddress = "$newAddress - Piso $newFloor - Depto $newNumber - $newCity"
                     deliveryMethodTxtAddress.text = formattedAddress
 
@@ -130,7 +141,6 @@ class DeliveryMethodFragment : Fragment() {
                     profileTieFloor.text = null
                     profileTieFloorNumber.text = null
                 }
-
             }
 
             deliveryMethodCvHomeDelivery.setOnClickListener {
