@@ -66,8 +66,11 @@ class SelectedPaymentMethodFragment : Fragment() {
         binding.apply {
 
             selectedPaymentMethodAdd.setOnClickListener {
-                newOrderVM.setToolbarTitle(getString(R.string.toolbar_title_add_payment_method))
                 findNavController().navigate(R.id.action_selectedPaymentMethodFragment_to_addCardFragment)
+            }
+
+            selectedPaymentMethodBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_selectedPaymentMethodFragment_to_deliveryMethodFragment2)
             }
 
         }

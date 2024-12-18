@@ -219,6 +219,12 @@
     <string name="delivery_method_pick_it">RETIRO EN LOCAL</string>
     <string name="delivery_method_free">Gratis</string>
     <string name="delivery_method_modify">Modificar domicilio</string>
+    <string name="delivery_txt_address_one">Uruguay 50 - Piso 1 - Río Tercero</string>
+    <string name="delivery_txt_address_two">Pedo C. Molina 119 - Piso 1 - Almafuerte</string>
+    <string name="delivery_txt_address_three">San Martin 194 - Piso 1 - Villa del Dique</string>
+    <string name="delivery_txt_price">$ 2.500</string>
+    <string name="delivery_txt_modify_address">Modifica la dirección de envío por favor</string>
+    <string name="delivery_confirm_data">Confirmar datos</string>
 
     <!-- Shopping Cart -->
     <string name="confirm_payment">Confirmar compra</string>

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.nacho.restaurantapplication.core.fragment.state.PaymentMethodViewState
 import com.nacho.restaurantapplication.core.utils.Constants
 import com.nacho.restaurantapplication.data.model.Card
+import com.nacho.restaurantapplication.data.model.DeliveryMethod
 import com.nacho.restaurantapplication.domain.model.UserCard
 import com.nacho.restaurantapplication.domain.usecase.neworder.paymentMethods.AddUserCardUseCase
 import com.nacho.restaurantapplication.domain.usecase.neworder.paymentMethods.GetUserCardUseCase
@@ -36,6 +37,11 @@ class PaymentMethodViewModel @Inject constructor(
 
     private val _toolbarVisible = MutableLiveData(true)
     val toolbarVisible: LiveData<Boolean> = _toolbarVisible
+
+    //Region Delivery Method
+    private val _deliveryMethod = MutableLiveData<DeliveryMethod>()
+    val deliveryMethod: LiveData<DeliveryMethod> = _deliveryMethod
+    //End Region Delivery Method
 
     fun setToolbarVisibility(visibility: Boolean) {
         _toolbarVisible.value = visibility
@@ -87,5 +93,9 @@ class PaymentMethodViewModel @Inject constructor(
             isValidCardCvv = isValidOrEmptyCardCvv(cardCvv)
         )
     }
+
+    //Region Delivery Method
+    fun setDeliveryMethod(method: DeliveryMethod) = _deliveryMethod.postValue(method)
+    //End Region Delivery Method
 
 }

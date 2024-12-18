@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_gradient_white"
     tools:context=".presentation.fragment.neworder.payment.DeliveryMethodFragment">
 
@@ -14,13 +14,14 @@
         android:layout_marginStart="14dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="14dp"
-        app:strokeColor="@color/white"
-        app:strokeWidth="1dp"
+        android:clickable="false"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -45,7 +46,7 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/delivery_method_delivery"
                 android:textColor="@color/grey_dark"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/delivery_method_txt_amount"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,25 +59,25 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
+                android:text="@string/delivery_txt_price"
                 android:textColor="@color/grey_dark"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/delivery_method_txt_address"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="$ 1.500" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/delivery_method_txt_address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_regular"
-                android:textColor="@color/grey_dark"
-                android:gravity="center"
                 android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
                 android:layout_marginTop="24dp"
-                android:textSize="12sp"
-                android:textStyle="normal"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textColor="@color/grey_dark"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/delivery_method_txt_title"
@@ -98,12 +99,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/montserrat_regular"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:text="@string/delivery_method_modify"
                 android:textColor="@color/red_extra_dark"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,10 +119,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="14dp"
+        android:clickable="true"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
-        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/delivery_method_cv_home_delivery"
@@ -151,7 +153,7 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/delivery_method_pick_it"
                 android:textColor="@color/grey_dark"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/delivery_method_txt_amount_local_one"
                 app:layout_constraintStart_toStartOf="parent"
@@ -164,12 +166,12 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
+                android:text="@string/delivery_method_free"
                 android:textColor="@color/grey_dark"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/delivery_method_txt_address_local_one"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/delivery_method_free" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/delivery_method_txt_address_local_one"
@@ -178,17 +180,99 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
+                android:layout_marginBottom="32dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
+                android:text="@string/delivery_txt_address_one"
                 android:textColor="@color/grey_dark"
-                android:textSize="12sp"
-                android:layout_marginBottom="24dp"
-                android:textStyle="normal"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/delivery_method_txt_title_local_one"
-                tools:text="Cristino tapia 1042 - Piso 1 - Río Tercero" />
+                app:layout_constraintTop_toBottomOf="@+id/delivery_method_txt_title_local_one" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/delivery_method_cv_pick_it_local_three"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="14dp"
+        android:clickable="true"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delivery_method_cv_pick_it_local_two"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_gradient_white">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView_local_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@+id/delivery_method_txt_amount_local_three"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/delivery_method_txt_amount_local_three" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/delivery_method_txt_title_local_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/delivery_method_pick_it"
+                android:textColor="@color/grey_dark"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/delivery_method_txt_amount_local_three"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/delivery_method_txt_amount_local_three" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/delivery_method_txt_amount_local_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/delivery_method_free"
+                android:textColor="@color/grey_dark"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/delivery_method_txt_address_local_three"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/delivery_method_txt_address_local_three"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="@string/delivery_txt_address_three"
+                android:textColor="@color/grey_dark"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/delivery_method_txt_title_local_three" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -199,8 +283,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="14dp"
+        android:clickable="true"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -232,7 +317,7 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/delivery_method_pick_it"
                 android:textColor="@color/grey_dark"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/delivery_method_txt_amount_local_two"
                 app:layout_constraintStart_toStartOf="parent"
@@ -247,7 +332,7 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/delivery_method_free"
                 android:textColor="@color/grey_dark"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/delivery_method_txt_address_local_two"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -259,21 +344,184 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="32dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
+                android:text="@string/delivery_txt_address_two"
                 android:textColor="@color/grey_dark"
-                android:textSize="12sp"
-                android:textStyle="normal"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/delivery_method_txt_title_local_two"
-                tools:text="Cristino tapia 1042 - Piso 1 - Río Tercero" />
+                app:layout_constraintTop_toBottomOf="@+id/delivery_method_txt_title_local_two" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/modify_data"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delivery_method_cv_pick_it_local_three">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/modify_data_city"
+            style="@style/TextInputLayoutStyleRedForDropMenu"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:clickable="false"
+            android:hint="@string/city"
+            android:textColorHint="@color/red_extra_dark"
+            app:boxStrokeErrorColor="@color/yellow_dark"
+            app:endIconTint="@color/red_extra_dark"
+            app:errorIconTint="@color/yellow_dark"
+            app:errorTextColor="@color/yellow_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/profile_atv_city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@android:color/transparent"
+                android:fontFamily="@font/montserrat_regular"
+                android:inputType="none"
+                android:textColor="@color/grey_dark"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/modify_data_address"
+            style="@style/TextInputLayoutStyleRed"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="12dp"
+            android:hint="@string/address"
+            android:textColorHint="@color/red_extra_dark"
+            app:boxStrokeErrorColor="@color/yellow_dark"
+            app:errorEnabled="true"
+            app:errorIconTint="@color/yellow_dark"
+            app:errorTextColor="@color/yellow_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/modify_data_city">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profile_tie_address"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/montserrat_regular"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="8dp"
+                android:textColor="@color/grey_dark"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/modify_data_floor"
+            style="@style/TextInputLayoutStyleRed"
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="6dp"
+            android:hint="@string/floor"
+            android:textColorHint="@color/red_extra_dark"
+            app:boxStrokeErrorColor="@color/yellow_dark"
+            app:errorEnabled="true"
+            app:errorIconTint="@color/yellow_dark"
+            app:errorTextColor="@color/yellow_dark"
+            app:layout_constraintEnd_toStartOf="@+id/guideline15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/modify_data_address">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profile_tie_floor"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/montserrat_regular"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="2"
+                android:padding="8dp"
+                android:textColor="@color/grey_dark"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/modify_data_floor_number"
+            style="@style/TextInputLayoutStyleRed"
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="12dp"
+            android:hint="@string/floor_number"
+            android:textColorHint="@color/red_extra_dark"
+            app:boxStrokeErrorColor="@color/yellow_dark"
+            app:errorEnabled="true"
+            app:errorIconTint="@color/yellow_dark"
+            app:errorTextColor="@color/yellow_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toBottomOf="@+id/modify_data_address">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profile_tie_floor_number"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/montserrat_regular"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="2"
+                android:padding="8dp"
+                android:textColor="@color/grey_dark"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/shopping_cart_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/grey_dark"
+            android:clickable="false"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/delivery_confirm_data"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="205dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
