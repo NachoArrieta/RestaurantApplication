@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.core.fragment.DialogAddProductFragment
 import com.nacho.restaurantapplication.data.model.CartItem
-import com.nacho.restaurantapplication.data.model.ProductType
 import com.nacho.restaurantapplication.data.model.Promotion
 import com.nacho.restaurantapplication.databinding.FragmentPromotionsBinding
 import com.nacho.restaurantapplication.presentation.adapter.neworder.PromotionAdapter
@@ -69,7 +68,7 @@ class PromotionsFragment : Fragment() {
                 title = promotion.title,
                 image = promotion.image,
                 description = promotion.description,
-                type = ProductType.PROMOTION,
+                type = "PROMOTION",
                 quantity = quantity,
                 price = promotion.price
             )

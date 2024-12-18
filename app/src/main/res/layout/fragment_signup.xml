@@ -44,7 +44,7 @@
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/montserrat_regular"
                     android:importantForAutofill="no"
-                    android:inputType="text"
+                    android:inputType="textCapSentences"
                     android:padding="8dp"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
@@ -75,7 +75,7 @@
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/montserrat_regular"
                     android:importantForAutofill="no"
-                    android:inputType="text"
+                    android:inputType="textCapSentences"
                     android:padding="8dp"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
@@ -168,7 +168,7 @@
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/montserrat_regular"
                     android:importantForAutofill="no"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textCapSentences"
                     android:padding="8dp"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
@@ -199,7 +199,7 @@
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/montserrat_regular"
                     android:importantForAutofill="no"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textCapSentences"
                     android:padding="8dp"
                     android:textColor="@color/white"
                     android:textSize="20sp" />

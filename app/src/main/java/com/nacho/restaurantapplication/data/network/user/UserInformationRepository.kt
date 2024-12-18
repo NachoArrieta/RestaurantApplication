@@ -1,6 +1,7 @@
 package com.nacho.restaurantapplication.data.network.user
 
 import com.nacho.restaurantapplication.data.model.Coupon
+import com.nacho.restaurantapplication.data.model.Order
 import com.nacho.restaurantapplication.data.model.Reservation
 import com.nacho.restaurantapplication.data.model.User
 
@@ -11,4 +12,5 @@ interface UserInformationRepository {
     suspend fun getUserReservations(uid: String): List<Reservation>
     suspend fun addReservation(uid: String, reservation: Reservation): Boolean
     suspend fun deleteUserReservation(uid: String, reservationId: String): Boolean
+    suspend fun getUserOrders(uid: String): List<Order>
 }

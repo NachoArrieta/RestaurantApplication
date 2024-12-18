@@ -117,6 +117,17 @@ class DeliveryMethodFragment : Fragment() {
                 val newNumber = profileTieFloorNumber.text.toString().trim()
 
                 if (newCity.isNotEmpty() && newAddress.isNotEmpty() && newFloor.isNotEmpty() && newNumber.isNotEmpty()) {
+                    val updatedUserInfo = homeVM.userInformation.value?.copy(
+                        city = newCity,
+                        address = newAddress,
+                        floor = newFloor,
+                        number = newNumber
+                    )
+
+                    if (updatedUserInfo != null) {
+                        homeVM.updateInformation(updatedUserInfo)
+                    }
+
                     val formattedAddress = "$newAddress - Piso $newFloor - Depto $newNumber - $newCity"
                     deliveryMethodTxtAddress.text = formattedAddress
 
@@ -130,7 +141,6 @@ class DeliveryMethodFragment : Fragment() {
                     profileTieFloor.text = null
                     profileTieFloorNumber.text = null
                 }
-
             }
 
             deliveryMethodCvHomeDelivery.setOnClickListener {
@@ -156,6 +166,48 @@ class DeliveryMethodFragment : Fragment() {
 
                     }
                 }
+                findNavController().navigate(R.id.action_deliveryMethodFragment2_to_confirmPaymentFragment2)
+            }
+
+            deliveryMethodCvPickItLocalOne.setOnClickListener {
+                paymentMethodVM.setDeliveryMethod(
+                    DeliveryMethod(
+                        type = "Retiro",
+                        shippingPrice = 0,
+                        address = "Uruguay 50",
+                        floor = "1",
+                        number = "1",
+                        city = "Río Tercero"
+                    )
+                )
+                findNavController().navigate(R.id.action_deliveryMethodFragment2_to_confirmPaymentFragment2)
+            }
+
+            deliveryMethodCvPickItLocalTwo.setOnClickListener {
+                paymentMethodVM.setDeliveryMethod(
+                    DeliveryMethod(
+                        type = "Retiro",
+                        shippingPrice = 0,
+                        address = "Pedo C. Molina 119",
+                        floor = "1",
+                        number = "1",
+                        city = "Almafuerte"
+                    )
+                )
+                findNavController().navigate(R.id.action_deliveryMethodFragment2_to_confirmPaymentFragment2)
+            }
+
+            deliveryMethodCvPickItLocalThree.setOnClickListener {
+                paymentMethodVM.setDeliveryMethod(
+                    DeliveryMethod(
+                        type = "Retiro",
+                        shippingPrice = 0,
+                        address = "San Martin 194",
+                        floor = "1",
+                        number = "1",
+                        city = "Villa del dique"
+                    )
+                )
                 findNavController().navigate(R.id.action_deliveryMethodFragment2_to_confirmPaymentFragment2)
             }
 

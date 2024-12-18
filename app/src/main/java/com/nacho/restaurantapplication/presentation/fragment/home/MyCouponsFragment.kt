@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.databinding.FragmentMyCouponsBinding
 import com.nacho.restaurantapplication.presentation.adapter.home.CouponAdapter
 import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
@@ -36,17 +37,22 @@ class MyCouponsFragment : Fragment() {
             viewModel.fetchUserCoupons(user)
         }
         setupObservers()
+
+        binding.couponsCvBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
     }
 
     private fun setupObservers() {
         Handler(Looper.getMainLooper()).postDelayed({
             viewModel.userCoupons.observe(viewLifecycleOwner) { coupons ->
                 if (coupons.isNullOrEmpty()) {
-                    binding.couponsShimmer.visibility = View.GONE
+                    binding.reservationsLoading.visibility = View.GONE
                     binding.couponsRv.visibility = View.GONE
                     binding.couponsCv.visibility = View.VISIBLE
                 } else {
-                    binding.couponsShimmer.visibility = View.GONE
+                    binding.reservationsLoading.visibility = View.GONE
                     binding.couponsRv.visibility = View.VISIBLE
                     binding.couponsCv.visibility = View.GONE
                     couponAdapter = CouponAdapter(coupons) {}

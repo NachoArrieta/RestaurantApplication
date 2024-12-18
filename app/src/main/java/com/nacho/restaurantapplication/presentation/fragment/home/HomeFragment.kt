@@ -72,6 +72,11 @@ class HomeFragment : Fragment() {
             homeBtnCall.setOnClickListener {
                 openCall("3571414900")
             }
+
+            homeCvEmptyTxtAdd.setOnClickListener {
+                findNavController().navigate(R.id.action_nav_home_to_addReservationFragment)
+            }
+
         }
 
     }

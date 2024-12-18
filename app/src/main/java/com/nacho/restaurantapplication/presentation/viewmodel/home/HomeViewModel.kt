@@ -1,5 +1,6 @@
 package com.nacho.restaurantapplication.presentation.viewmodel.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,7 @@ import com.nacho.restaurantapplication.core.utils.Constants.MIN_NAME_LENGTH
 import com.nacho.restaurantapplication.core.utils.Constants.PHONE_LENGTH
 import com.nacho.restaurantapplication.data.model.Coupon
 import com.nacho.restaurantapplication.data.model.News
+import com.nacho.restaurantapplication.data.model.Order
 import com.nacho.restaurantapplication.data.model.Reservation
 import com.nacho.restaurantapplication.data.model.Store
 import com.nacho.restaurantapplication.data.model.User
@@ -20,6 +22,7 @@ import com.nacho.restaurantapplication.domain.usecase.home.user.AddReservationUs
 import com.nacho.restaurantapplication.domain.usecase.home.user.DeleteUserReservationUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserCouponsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserInformationUseCase
+import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserOrderUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.GetUserReservationsUseCase
 import com.nacho.restaurantapplication.domain.usecase.home.user.UpdateUserInformationUseCase
 import com.nacho.restaurantapplication.presentation.fragment.home.state.MyProfileViewState
@@ -38,7 +41,8 @@ class HomeViewModel @Inject constructor(
     private val addReservationUseCase: AddReservationUseCase,
     private val deleteUserReservationUseCase: DeleteUserReservationUseCase,
     private val getStoresUseCase: GetStoresUseCase,
-    private val getNewsUseCase: GetNewsUseCase
+    private val getNewsUseCase: GetNewsUseCase,
+    private val getUserOrderUseCase: GetUserOrderUseCase
 ) : ViewModel() {
 
     //States Region
@@ -84,6 +88,9 @@ class HomeViewModel @Inject constructor(
     val reservationValidateFields: LiveData<Boolean> = _reservationValidateFields
     //End Region Reservations
 
+    private val _userOrders = MutableLiveData<List<Order>>()
+    val userOrders: LiveData<List<Order>> get() = _userOrders
+
     //Region Stores
     private val _stores = MutableLiveData<List<Store>?>()
     val stores: LiveData<List<Store>?> get() = _stores
@@ -126,6 +133,10 @@ class HomeViewModel @Inject constructor(
                 // Manejo de errores
             }
         }
+    }
+
+    fun updateInformation(newInformation: User) {
+        _userInformation.value = newInformation
     }
 
     fun updateUserInformation(uid: String, userInformation: UserInformation) {
@@ -182,6 +193,15 @@ class HomeViewModel @Inject constructor(
                 fetchUserReservations(uid)
             } catch (e: Exception) {
                 // Manejar de errores
+            }
+        }
+    }
+
+    fun fetchUserOrders(uid: String) {
+        viewModelScope.launch {
+            try {
+                _userOrders.value = getUserOrderUseCase(uid)
+            } catch (e: Exception) {
             }
         }
     }

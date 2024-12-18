@@ -120,7 +120,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/confirm_payment_txt_discount"
                 app:layout_constraintTop_toTopOf="@+id/confirm_payment_txt_title_shipment"
-                tools:text="$ 6000" />
+                android:text="@string/confirm_no_shipment" />
 
             <LinearLayout
                 android:id="@+id/linearLayout4"
