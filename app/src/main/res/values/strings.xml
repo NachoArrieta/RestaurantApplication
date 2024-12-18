@@ -202,6 +202,8 @@
     <string name="dialog_add_product">Producto añadido al carrito</string>
     <string name="dialog_delete_product">Eliminar producto</string>
     <string name="dialog_delete_product_title">¿Deseas eliminar %1$d %2$s del carrito?</string>
+    <string name="dialog_new_order">Tienes productos en el carrito, si vuelves al menú principal se descartarán los cambios. ¿Deseas regresar?</string>
+
 
     <!-- Shopping Cart -->
     <string name="neworder_title">Armá tu pedido</string>
@@ -230,7 +232,7 @@
     <string name="confirm_payment_product_price">$%1$d</string>
     <string name="confirm_payment_discount_price">$%1$d</string>
     <string name="confirm_payment_total">TOTAL: $%1$d</string>
-    <string name="confirm_no_shipment">$ 0</string>
+    <string name="confirm_no_shipment">$0</string>
 
     <!-- Shopping Cart -->
     <string name="confirm_payment">Confirmar compra</string>

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.data.model.Order
 import com.nacho.restaurantapplication.databinding.FragmentConfirmPaymentBinding
+import com.nacho.restaurantapplication.presentation.viewmodel.home.HomeViewModel
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
 import com.nacho.restaurantapplication.presentation.viewmodel.payment.PaymentMethodViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +24,7 @@ class ConfirmPaymentFragment : Fragment() {
     private var _binding: FragmentConfirmPaymentBinding? = null
     private val binding get() = _binding!!
 
+    private val homeVM: HomeViewModel by activityViewModels()
     private val newOrderVM: NewOrderViewModel by activityViewModels()
     private val paymentMethodVM: PaymentMethodViewModel by activityViewModels()
 

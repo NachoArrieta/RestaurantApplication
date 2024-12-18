@@ -159,6 +159,48 @@ class DeliveryMethodFragment : Fragment() {
                 findNavController().navigate(R.id.action_deliveryMethodFragment2_to_confirmPaymentFragment2)
             }
 
+            deliveryMethodCvPickItLocalOne.setOnClickListener {
+                paymentMethodVM.setDeliveryMethod(
+                    DeliveryMethod(
+                        type = "Retiro",
+                        shippingPrice = 0,
+                        address = "Uruguay 50",
+                        floor = "1",
+                        number = "1",
+                        city = "Río Tercero"
+                    )
+                )
+                findNavController().navigate(R.id.action_deliveryMethodFragment2_to_confirmPaymentFragment2)
+            }
+
+            deliveryMethodCvPickItLocalTwo.setOnClickListener {
+                paymentMethodVM.setDeliveryMethod(
+                    DeliveryMethod(
+                        type = "Retiro",
+                        shippingPrice = 0,
+                        address = "Pedo C. Molina 119",
+                        floor = "1",
+                        number = "1",
+                        city = "Almafuerte"
+                    )
+                )
+                findNavController().navigate(R.id.action_deliveryMethodFragment2_to_confirmPaymentFragment2)
+            }
+
+            deliveryMethodCvPickItLocalThree.setOnClickListener {
+                paymentMethodVM.setDeliveryMethod(
+                    DeliveryMethod(
+                        type = "Retiro",
+                        shippingPrice = 0,
+                        address = "San Martin 194",
+                        floor = "1",
+                        number = "1",
+                        city = "Villa del dique"
+                    )
+                )
+                findNavController().navigate(R.id.action_deliveryMethodFragment2_to_confirmPaymentFragment2)
+            }
+
         }
 
         setupCityDropdown()
