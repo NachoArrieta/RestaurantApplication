@@ -245,10 +245,13 @@
 
     <!-- Status payment -->
     <string name="status_payment_title_ok">¡Compra realizada con éxito!</string>
-    <string name="status_payment_title_denied">¡Algo ha salido mal!</string>
+    <string name="status_payment_title_denied">¡No pudimos procesar tu pago!</string>
+    <string name="status_payment_subtitle_denied">Algo ha salido mal, intentá nuevamente</string>
     <string name="status_payment_go_home">Volver al inicio</string>
     <string name="status_payment_go_my_orders">Ver mis pedidos</string>
     <string name="loading_title">¡Estamos procesando la compra!</string>
+    <string name="status_one">Tu pago fue procesado con éxito. Esperamos que disfrutes tu pedido al máximo. Recibirás tu pedido en 1 hora aproximadamente</string>
+    <string name="status_two">Tu pago fue procesado con éxito. Esperamos que disfrutes tu pedido al máximo. Podrás retirar tu pedido en 1 hora aproximadamente en el lugar seleccionado como punto de entrega</string>
 
     <!-- Errors -->
     <string name="error_generic">¡Ha ocurrido un problema!</string>

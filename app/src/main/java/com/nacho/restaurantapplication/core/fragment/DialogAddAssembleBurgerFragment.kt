@@ -72,6 +72,8 @@ class DialogAddAssembleBurgerFragment : DialogFragment() {
                 onAddToCartClick?.invoke(quantityItem)
                 dismiss()
             }
+
+            appCompatImageView3.setOnClickListener { dismiss() }
         }
     }
 

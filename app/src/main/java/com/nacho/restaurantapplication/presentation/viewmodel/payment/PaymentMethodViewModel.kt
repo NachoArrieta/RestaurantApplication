@@ -91,7 +91,7 @@ class PaymentMethodViewModel @Inject constructor(
             if (success) {
                 _addOrderSuccess.postValue(true)
             } else {
-                // Manejar el error
+                _addOrderSuccess.postValue(false)
             }
         }
     }

@@ -53,7 +53,7 @@ class StoresFragment : Fragment() {
                     storesShimmer.visibility = if (isLoading) View.VISIBLE else View.GONE
                 }
             }
-        }, 2000)
+        }, 3000)
 
     }
 

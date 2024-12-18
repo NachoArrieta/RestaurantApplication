@@ -8,7 +8,5 @@ data class UserCard(
     val cardUntil: String = "",
     val cardType: String = "",
     val cardBrand: String = "",
-    val cardCvv: String = "",
-    val cardAmount: Int = 0,
-    val cardLimit: Int = 0
+    val cardCvv: String = ""
 )

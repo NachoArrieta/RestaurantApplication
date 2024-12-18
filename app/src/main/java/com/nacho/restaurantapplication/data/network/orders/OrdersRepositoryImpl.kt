@@ -26,11 +26,9 @@ class OrdersRepositoryImpl @Inject constructor(
                 )
             },
             "PaymentInfo" to mapOf(
-                "CardAmount" to order.paymentInfo.cardAmount,
                 "CardBank" to order.paymentInfo.cardBank,
                 "CardBrand" to order.paymentInfo.cardBrand,
                 "CardCvv" to order.paymentInfo.cardCvv,
-                "CardLimit" to order.paymentInfo.cardLimit,
                 "CardName" to order.paymentInfo.cardName,
                 "CardNumber" to order.paymentInfo.cardNumber,
                 "CardSince" to order.paymentInfo.cardSince,
