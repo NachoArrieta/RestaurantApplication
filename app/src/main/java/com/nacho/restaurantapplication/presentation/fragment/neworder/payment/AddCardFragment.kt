@@ -40,8 +40,6 @@ class AddCardFragment : Fragment() {
     private lateinit var cardBank: String
     private lateinit var cardType: String
     private lateinit var cardBrand: String
-    private var cardAmount: Int = 0
-    private var cardLimit: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -104,16 +102,15 @@ class AddCardFragment : Fragment() {
                         cardSince = binding.addCardTieSince.text.toString(),
                         cardUntil = binding.addCardTieUntil.text.toString(),
                         cardCvv = binding.addCardTieCvv.text.toString(),
-                        cardBrand = cardBrand,
-                        cardAmount = cardAmount,
-                        cardLimit = cardLimit
+                        cardBrand = cardBrand
                     )
 
                     if (uid != null) {
                         paymentMethodVM.addCard(uid, cardInfo)
                         findNavController().navigate(R.id.action_addCardFragment_to_selectedPaymentMethodFragment)
                     }
-                } catch (_: UninitializedPropertyAccessException) { }
+                } catch (_: UninitializedPropertyAccessException) {
+                }
             }
 
         }
@@ -233,8 +230,6 @@ class AddCardFragment : Fragment() {
                     cardBank = "Galicia"
                     cardType = "Crédito"
                     cardBrand = "Mastercard"
-                    cardAmount = 0
-                    cardLimit = 250000
                 }
 
                 "4547  4400  0819  4546" -> {
@@ -244,8 +239,6 @@ class AddCardFragment : Fragment() {
                     cardBank = "Galicia"
                     cardType = "Débito"
                     cardBrand = "Visa"
-                    cardAmount = 240000
-                    cardLimit = 0
                 }
 
                 "4546  3900  1724  3131" -> {
@@ -255,8 +248,6 @@ class AddCardFragment : Fragment() {
                     cardBank = "Macro"
                     cardType = "Crédito"
                     cardBrand = "Visa"
-                    cardAmount = 0
-                    cardLimit = 20000
                 }
 
                 "4546  3900  0618  8484" -> {
@@ -266,8 +257,6 @@ class AddCardFragment : Fragment() {
                     cardBank = "Macro"
                     cardType = "Débito"
                     cardBrand = "Mastercard"
-                    cardAmount = 2000
-                    cardLimit = 0
                 }
 
                 else -> {
@@ -277,8 +266,6 @@ class AddCardFragment : Fragment() {
                     cardBank = "Santander"
                     cardType = "Credito"
                     cardBrand = "Visa"
-                    cardAmount = 0
-                    cardLimit = 24000
                 }
             }
 

@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         coroutineScope.launch {
-            delay(3000)
+            delay(5000)
 
             if (currentUser != null) {
                 startActivity(Intent(this@SplashActivity, HomeActivity::class.java))

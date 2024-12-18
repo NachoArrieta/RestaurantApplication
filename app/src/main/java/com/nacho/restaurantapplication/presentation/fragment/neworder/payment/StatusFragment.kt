@@ -12,6 +12,7 @@ import com.nacho.restaurantapplication.R
 import com.nacho.restaurantapplication.databinding.FragmentStatusBinding
 import com.nacho.restaurantapplication.presentation.activity.home.HomeActivity
 import com.nacho.restaurantapplication.presentation.viewmodel.neworder.NewOrderViewModel
+import com.nacho.restaurantapplication.presentation.viewmodel.payment.PaymentMethodViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,6 +22,8 @@ class StatusFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val newOrderVM: NewOrderViewModel by activityViewModels()
+    private val paymentMethodVM: PaymentMethodViewModel by activityViewModels()
+
     private lateinit var onBackPressedCallback: OnBackPressedCallback
 
     override fun onCreateView(
@@ -47,6 +50,26 @@ class StatusFragment : Fragment() {
 
         binding.statusBtnGoHome.setOnClickListener {
             goToHome()
+        }
+
+        setupObservers()
+
+    }
+
+    private fun setupObservers() {
+        paymentMethodVM.deliveryMethod.observe(viewLifecycleOwner) { deliveryMethod ->
+            if (deliveryMethod.shippingPrice != 0) binding.statusTxtSubtitle.text =
+                getString(R.string.status_one)
+            else binding.statusTxtSubtitle.text =
+                getString(R.string.status_two)
+        }
+
+        paymentMethodVM.addOrderSuccess.observe(viewLifecycleOwner) { status ->
+            if (status == false) {
+                binding.statusImg.setImageResource(R.drawable.ic_load_error)
+                binding.statusTxtTitle.text = getString(R.string.status_payment_title_denied)
+                binding.statusTxtSubtitle.text = getString(R.string.status_payment_subtitle_denied)
+            }
         }
 
     }

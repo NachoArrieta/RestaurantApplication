@@ -20,9 +20,7 @@ class PaymentMethodsRepositoryImpl @Inject constructor(
             "CardName" to card.cardName,
             "CardType" to card.cardType,
             "CardBrand" to card.cardBrand,
-            "CardCvv" to card.cardCvv,
-            "CardAmount" to card.cardAmount,
-            "CardLimit" to card.cardLimit
+            "CardCvv" to card.cardCvv
         )
         return try {
             userCardsReference.child(cardKey).setValue(cardMap).await()
@@ -47,10 +45,7 @@ class PaymentMethodsRepositoryImpl @Inject constructor(
                     cardNumber = cardData?.get("CardNumber") as? String ?: "",
                     cardSince = cardData?.get("CardSince") as? String ?: "",
                     cardType = cardData?.get("CardType") as? String ?: "",
-                    cardUntil = cardData?.get("CardUntil") as? String ?: "",
-                    cardAmount = cardData?.get("CardAmount") as? Int ?: 0,
-                    cardLimit = cardData?.get("CardLimit") as? Int ?: 0
-                )
+                    cardUntil = cardData?.get("CardUntil") as? String ?: "")
             } ?: emptyList()
         } catch (e: Exception) {
             emptyList()

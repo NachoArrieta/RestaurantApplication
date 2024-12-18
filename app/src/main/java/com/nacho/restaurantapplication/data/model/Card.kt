@@ -9,7 +9,5 @@ data class Card(
     val cardType: String = "",
     val cardBank: String = "",
     val cardCvv: String = "",
-    val cardBrand: String = "",
-    val cardAmount: Int = 0,
-    val cardLimit: Int = 0
+    val cardBrand: String = ""
 )
