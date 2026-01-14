@@ -24,6 +24,8 @@ class LoginFragment : Fragment() {
 
     private var alertDialog: DialogForgotPassFragment? = null
 
+    private var gitPrueba: String = "Prueba"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
