@@ -32,6 +32,8 @@ class SignupFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: LoginViewModel by activityViewModels()
 
+    private val gitPrueba2: String = "Prueba2"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
